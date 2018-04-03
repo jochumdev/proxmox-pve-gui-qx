@@ -209,7 +209,7 @@ qx.Class.define("proxmox.Application", {
         }
       }
 
-      var view = new (clazz)();
+      var view = this._contentView = new (clazz)();
       view.set({
         id: routeParams.id
       });
@@ -220,7 +220,6 @@ qx.Class.define("proxmox.Application", {
         return;
       }
       this._contentContainerHolder.add(ct, 1);
-      this._contentView = view;
 
       this.setRouteParams(routeParams);
     },
