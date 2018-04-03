@@ -18,7 +18,7 @@ qx.Class.define("proxmox.page.Qemu", {
             actionsBar.setPadding([6, 5, 6, 8]);
             container.add(actionsBar, {edge: "north", width: "100%"});
 
-            var headline = new qx.ui.basic.Label(this.getHeadline()).set({ appearance: "actionsbar-label" });
+            var headline = new qx.ui.basic.Label(this.getResourceData().getHeadline()).set({ appearance: "actionsbar-label" });
             actionsBar.add(headline);
             actionsBar.add(new qx.ui.basic.Atom(), { flex: 1 });
             actionsBar.add(new qx.ui.form.Button(this.tr("Start"), "@FontAwesome/book"));

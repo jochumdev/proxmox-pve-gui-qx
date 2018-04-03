@@ -5,7 +5,7 @@ qx.Class.define("proxmox.part.ServerBrowser", {
         qx.locale.MTranslation,
     ],
 
-    construct: function (mode) {
+    construct: function () {
         this.base(arguments);
 
         var app = qx.core.Init.getApplication();
@@ -85,9 +85,10 @@ qx.Class.define("proxmox.part.ServerBrowser", {
             app.navigateTo(id);
         });
 
-        this.setMode(mode);
+        var sr = app.getService("resources");
+        this.setModel(sr.getModel());
 
-        app.getService("resources").addListener("changeModel", (e) => {
+        sr.addListener("changeModel", (e) => {
             this.setModel(e.getData());
         });
 
@@ -125,6 +126,7 @@ qx.Class.define("proxmox.part.ServerBrowser", {
         },
 
         mode: {
+            init: "server",
             check: ["server", "folder", "storage", "pool", "empty"],
             event: "changeMode",
             apply: "_updateTree"
@@ -163,11 +165,11 @@ qx.Class.define("proxmox.part.ServerBrowser", {
             return leftColumn;
         },
 
-        _updateTree: function (model) {
+        _updateTree: function () {
             var treeState = this._tree.getTreeState("id");
 
-            var mode = this.getMode();
             var model = this.getModel();
+            var mode = this.getMode();
 
             if (!model) {
                 mode = "empty";
@@ -183,7 +185,7 @@ qx.Class.define("proxmox.part.ServerBrowser", {
                     var nodes = {};
 
                     model.forEach((node) => {
-                        var info = proxmox.Utils.getResourceInfo(node);
+                        var info = node.toJSObject();
                         if (!(info.node in nodes)) {
                             nodes[info.node] = { children: [] };
                         }
@@ -209,7 +211,7 @@ qx.Class.define("proxmox.part.ServerBrowser", {
                 case "folder":
                     var folders = {};
                     model.forEach((node) => {
-                        var info = proxmox.Utils.getResourceInfo(node);
+                        var info = node.toJSObject();
 
                         if (!(info.type in folders)) {
                             switch (info.type) {
@@ -245,7 +247,7 @@ qx.Class.define("proxmox.part.ServerBrowser", {
                     var nodes = {};
 
                     model.forEach((node) => {
-                        var info = proxmox.Utils.getResourceInfo(node);
+                        var info = node.toJSObject();
                         if (!(info.node in nodes)) {
                             nodes[info.node] = { children: [] };
                         }
@@ -271,7 +273,7 @@ qx.Class.define("proxmox.part.ServerBrowser", {
                     var children = [];
 
                     model.forEach((node) => {
-                        var info = proxmox.Utils.getResourceInfo(node);
+                        var info = node.toJSObject();
                         if (info.type == "lxc" || info.type == "qemu") {
                             children.push({ label: info.label, type: info.type, status: info.status, id: info.fullId });
                         }

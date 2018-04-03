@@ -14,6 +14,10 @@ qx.Class.define("proxmox.service.Resources", {
             return {
                 manipulateData: function(data) {
                     return data.data;
+                },
+
+                getModelMixins: function(properties) {
+                    return proxmox.model.MResource;
                 }
             }
         }
