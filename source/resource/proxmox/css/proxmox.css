@@ -1,0 +1,58 @@
+/* big symbols */
+.x-tree-icon-custom {
+    font-size: 1.25em;
+    line-height: 1.6em;
+    color: #555;
+    margin-right: 5px;
+}
+
+/* grid icons (resources, etc) */
+.x-grid-icon-custom {
+    font-size: 1.25em;
+    color: #555;
+    margin-right: 5px;
+}
+
+.x-tree-icon-custom::after {
+    position: relative;
+    left: -5px;
+    top: 1px;
+    font-size: 0.75em;
+    text-shadow: -1px 0px 2px #fff;
+    content: "\ ";
+}
+
+/* the green check */
+.x-tree-icon-custom.online:after,
+.x-grid-icon-custom.online:after {
+    content: "\f058";
+    color: #21BF4B;
+}
+
+/* the running vms are darker */
+.x-tree-icon-custom.running,
+.x-grid-icon-custom.running {
+    color: #000;
+}
+
+.x-tree-icon-custom.running::after {
+    content: "\f04b";
+    color: #21BF48;
+}
+
+/* stopped and offline items are greyed out */
+.x-tree-icon-custom.stopped,
+.x-grid-icon-custom.stopped,
+.x-tree-icon-custom.offline,
+.x-grid-icon-custom.offline {
+    color: #cfcfcf;
+}
+
+/* the red x */
+.x-tree-icon-custom.offline:after,
+.x-grid-icon-custom.offline:after,
+.x-tree-icon-custom.ha-error:after,
+.x-grid-icon-custom.ha-error:after {
+    content: "\f057";
+    color: #CC1800;
+}

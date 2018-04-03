@@ -1,0 +1,54 @@
+{
+  "info" :
+  {
+    "name" : "proxmox",
+
+    "summary" : "",
+    "description" : "",
+
+    "homepage" : "",
+
+    "license" : "MIT license",
+    "authors" : [
+  {
+    "name": "",
+    "email": ""
+  }
+],
+
+    "version" : "1.0.0",
+    "qooxdoo-range": "6.0.0-alpha"
+  },
+
+  "provides" :
+  {
+    "namespace"   : "proxmox",
+    "encoding"    : "utf-8",
+    "class"       : "source/class",
+    "resource"    : "source/resource",
+    "translation" : "source/translation",
+    "type"        : "application",
+
+    "webfonts": [
+      {
+        "name": "FontAwesome",
+        "defaultSize": 14,
+        "mapping": "fontawesome-4.7.0.map",
+        "resources": [
+          "proxmox/fonts/fontawesome-webfont.ttf",
+          "proxmox/fonts/fontawesome-webfont.eot",
+          "proxmox/fonts/fontawesome-webfont.woff",
+          "proxmox/fonts/fontawesome-webfont.woff2"
+        ]
+      }
+    ]
+  },
+
+  "externalResources":
+  {
+    "css": [
+      "proxmox/css/proxmox.css",
+      "proxmox/css/font-awesome.min.css"
+    ]
+  }
+}
