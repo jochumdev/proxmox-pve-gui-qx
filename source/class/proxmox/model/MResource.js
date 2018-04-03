@@ -17,6 +17,8 @@ qx.Mixin.define("proxmox.model.MResource", {
                 case "storage":
                     return this.getStorage();
             }
+
+            return "";
         },
 
         getHeadline: function() {
@@ -30,10 +32,10 @@ qx.Mixin.define("proxmox.model.MResource", {
                 case "storage":
                     return this.tr("Storage '%1' on node '%2'", this.getStorage(), this.getNode());
             }
-            return;
+            return "";
         },
 
-        getLabel: function() {
+        getDescription: function() {
             switch (this.getType()) {
                 case "node":
                     return this.getNode();
@@ -45,11 +47,53 @@ qx.Mixin.define("proxmox.model.MResource", {
                     return this.getStorage() + " (" + this.getNode() + ")";
                     break;
             }
+            return "";
+        },
+
+        getDiskUsagePercent: function() {
+            return Math.round(this.getDisk() / this.getMaxdisk() * 100 * 10) / 10;
+        },
+
+        getMemoryUsagePercent: function() {
+            if (this.getType() === "storage") {
+                return -1;
+            }
+            return Math.round(this.getMem() / this.getMaxmem() * 100 * 10) / 10;
+        },
+
+        getCPUUsagePercent: function() {
+            if (this.getType() === "storage") {
+                return -1;
+            }
+            return Math.round(this.getCpu() * 100 * 10) / 10;
+        },
+
+        getDisplayUptime: function() {
+            if (this.getType() === "storage") {
+                return "-";
+            }
+            return proxmox.Utils.secondsToHHMMSS(this.getUptime());
+        },
+
+        searchValue: function(value) {
+            if (this.getType().includes(value)) {
+                return true;
+            }
+
+            if (this.getNode().includes(value)) {
+                return true;
+            }
+
+            if (this.getDisplayName().includes(value)) {
+                return true;
+            }
+
+            return false;
         },
 
         toJSObject: function() {
             var object = {
-                label: this.getLabel(),
+                description: this.getDescription(),
                 type: this.getType(),
                 status: this.getStatus(),
                 fullId: this.getId(),

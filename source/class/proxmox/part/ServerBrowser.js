@@ -191,9 +191,9 @@ qx.Class.define("proxmox.part.ServerBrowser", {
                         }
 
                         if (info.type == "node") {
-                            nodes[info.node] = Object.assign({ label: info.label, type: info.type, status: info.status, id: info.fullId }, nodes[info.node]);
+                            nodes[info.node] = Object.assign({ label: info.description, type: info.type, status: info.status, id: info.fullId }, nodes[info.node]);
                         } else {
-                            nodes[info.node].children.push({ label: info.label, type: info.type, status: info.status, id: info.fullId });
+                            nodes[info.node].children.push({ label: info.description, type: info.type, status: info.status, id: info.fullId });
                         }
                     });
 
@@ -230,7 +230,7 @@ qx.Class.define("proxmox.part.ServerBrowser", {
                             }
                         }
 
-                        folders[info.type].children.push({ label: info.label, type: info.type, status: info.status, id: info.fullId });
+                        folders[info.type].children.push({ label: info.description, type: info.type, status: info.status, id: info.fullId });
                     });
                     var children = [];
                     Object.keys(folders).forEach((key) => {
@@ -252,9 +252,9 @@ qx.Class.define("proxmox.part.ServerBrowser", {
                             nodes[info.node] = { children: [] };
                         }
                         if (info.type == "storage") {
-                            nodes[info.node].children.push({ label: info.label, type: info.type, status: info.status, id: info.fullId });
+                            nodes[info.node].children.push({ label: info.description, type: info.type, status: info.status, id: info.fullId });
                         } else if (info.type == "node") {
-                            nodes[info.node] = Object.assign({ label: info.label, type: info.type, status: info.status, id: info.fullId }, nodes[info.node]);
+                            nodes[info.node] = Object.assign({ label: info.description, type: info.type, status: info.status, id: info.fullId }, nodes[info.node]);
                         }
                     });
 
@@ -275,7 +275,7 @@ qx.Class.define("proxmox.part.ServerBrowser", {
                     model.forEach((node) => {
                         var info = node.toJSObject();
                         if (info.type == "lxc" || info.type == "qemu") {
-                            children.push({ label: info.label, type: info.type, status: info.status, id: info.fullId });
+                            children.push({ label: info.description, type: info.type, status: info.status, id: info.fullId });
                         }
                     });
 

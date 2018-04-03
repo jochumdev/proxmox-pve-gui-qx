@@ -109,7 +109,8 @@ qx.Class.define("proxmox.Application", {
       headerColumn.add(new qx.ui.basic.Image("proxmox/proxmox_logo.png"));
       var versionLabel = new qx.ui.basic.Label("").set({ appearance: "header-label", rich: true });
       headerColumn.add(versionLabel);
-      headerColumn.add(new qx.ui.form.TextField().set({ placeholder: this.tr("Search"), height: 22 }).set({ width: 168, appearance: "header-search" }));
+      var searchField = new qx.ui.form.TextField().set({ placeholder: this.tr("Search"), height: 22 }).set({ width: 168, appearance: "search" });
+      headerColumn.add(searchField);
       headerColumn.add(new qx.ui.basic.Atom(), { flex: 1 });
       var loginLabel = new qx.ui.basic.Label("").set({ appearance: "header-label" });
       headerColumn.add(loginLabel);
@@ -136,6 +137,8 @@ qx.Class.define("proxmox.Application", {
         if (data.login) {
           this._services.resources.fetch();
           this._services.tasks.fetch();
+
+          // Timer
           this._servicesTimer.start();
 
           versionLabel.setValue(this.tr("Virtual Environment %1", "5.1-46"));
@@ -145,7 +148,9 @@ qx.Class.define("proxmox.Application", {
 
           this.getRouter().init();
         } else {
+          // Timer
           this._servicesTimer.stop();
+
           versionLabel.setValue(this.tr("Virtual Environment %1", "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"));
           loginLabel.setValue("");
           this.setPageView(proxmox.page.Empty, defaultRouteParams);
@@ -163,7 +168,7 @@ qx.Class.define("proxmox.Application", {
       vspane.add(hspane, 1)
 
       // Left tree column
-      var serverBrowser = new proxmox.part.ServerBrowser("server");
+      var serverBrowser = new proxmox.part.ServerBrowser();
       hspane.add(serverBrowser.getContainer(), 0);
 
       this.setPageView(proxmox.page.Empty, defaultRouteParams);

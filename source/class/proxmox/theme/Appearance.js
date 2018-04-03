@@ -142,7 +142,7 @@ qx.Theme.define("proxmox.theme.Appearance",
         }
       },
 
-      "header-search": {
+      "search": {
         include: "textfield",
 
         style: function (states) {

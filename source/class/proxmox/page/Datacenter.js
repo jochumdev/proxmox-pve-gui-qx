@@ -30,13 +30,16 @@ qx.Class.define("proxmox.page.Datacenter", {
             ct.add(navbar.getContainer(), {edge: "west", height: "100%"});
 
             // Content
-            var scroll = new qx.ui.container.Scroll().set({
-                scrollbarX: "auto",
-                scrollbarY: "auto",
-                height: qx.bom.Viewport.getHeight() - 200
-            });
-            scroll.add(new qx.ui.core.Widget().set({ width: 2000, minWidth: 2000, height: 2000, minHeight: 2000 }));
-            ct.add(scroll, {edge: "north", width: "100%"});
+            var sr = new proxmox.part.SearchResources();
+
+            var searchBar = new qx.ui.container.Composite(new qx.ui.layout.HBox(5)).set({ appearance: "actionsbar-box" });
+            searchBar.setPadding([6, 5, 6, 8]);
+            ct.add(searchBar, {edge: "north", width: "100%"});
+
+            searchBar.add(new qx.ui.basic.Atom(), { flex: 1 });
+            searchBar.add(sr.getSearchField());
+
+            ct.add(sr.getContainer(), {edge: "north", width: "100%"});
 
             return ct;
         },
