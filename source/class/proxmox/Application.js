@@ -201,9 +201,13 @@ qx.Class.define("proxmox.Application", {
 
       this._contentViewClazz = clazz;
 
-      // if (this._contentContainer != null) {
-      //   this._contentContainerHolder.remove(this._contentContainer);
-      // }
+      if (this._contentContainer != null) {
+        if (this._contentContainerHolder._indexOf(this._contentContainer) !== -1) {
+          this._contentContainerHolder.remove(this._contentContainer);
+          this._contentContainer = null;
+          this._contentView = null;
+        }
+      }
 
       var view = new (clazz)();
       view.set({
