@@ -49,21 +49,6 @@ qx.Theme.define("proxmox.theme.Font",
         color: "black",
         weight: "300",
         lineHeight: 1.85
-      },
-
-      "FontAwesome": {
-        size: 14,
-        lineHeight: 1,
-        comparisonString : "\uf001\uf002\uf003\uf004",
-        family: ["FontAwesome"],
-        sources: [
-          {
-            family: "FontAwesome",
-            source: [
-              "proxmox/fonts/fontawesome-webfont.ttf",
-            ]
-          }
-        ]
       }
     }
   });
