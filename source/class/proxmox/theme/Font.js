@@ -24,6 +24,30 @@ qx.Theme.define("proxmox.theme.Font",
         weight: "300",
       },
 
+      "bold" :
+      {
+        size : 12,
+        family : ["helvetica", "arial", "verdana", "sans-serif"],
+        bold : true,
+        color: "font",
+        lineHeight: 1.8
+      },
+
+      "headline": {
+        size : 22,
+        family : ["helvetica", "arial", "verdana", "sans-serif"],
+        color: "black",
+        weight: "300",
+      },
+
+      "small" :
+      {
+        size : 11,
+        family : ["helvetica", "arial", "verdana", "sans-serif"],
+        color: "font",
+        lineHeight: 1.8
+      },
+
       /*
        * Own
        */
