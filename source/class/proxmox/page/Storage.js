@@ -5,11 +5,12 @@ qx.Class.define("proxmox.page.Storage", {
         proxmox.page.core.MResourcePage
     ],
 
-    members: {
-        getDefaultPageId: function() {
-            return "summary";
-        },
+    statics: {
+        SUBPAGES: ["summary"],
+        DEFAULT_PAGE_ID: "summary"
+    },
 
+    members: {
         _getContentContainer: function () {
             var containerLayout = new qx.ui.layout.Dock();
             var container = new qx.ui.container.Composite(containerLayout).set({ appearance: "content-box" });

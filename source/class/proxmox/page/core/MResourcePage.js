@@ -17,6 +17,7 @@ qx.Mixin.define("proxmox.page.core.MResourcePage", {
             var model = e.getData();
             this.__updateDataFromService(model);
         });
+        this.__updateDataFromService(this._resourceService.getModel());
     },
 
     properties: {
@@ -30,6 +31,7 @@ qx.Mixin.define("proxmox.page.core.MResourcePage", {
         app: {},
 
         resourceData: {
+            async: true,
             event: "changeResourceData",
             nullable: true,
             init: null
@@ -41,11 +43,11 @@ qx.Mixin.define("proxmox.page.core.MResourcePage", {
         _currentSubPageContainer: null,
         _resourceService: null,
 
-        _applyId: function(value, old) {
+        _applyId: function (value, old) {
             this.__updateDataFromService(this._resourceService.getModel());
         },
 
-        __updateDataFromService: function(model) {
+        __updateDataFromService: function (model) {
             if (!model) {
                 return
             }
@@ -53,19 +55,31 @@ qx.Mixin.define("proxmox.page.core.MResourcePage", {
             var nodeId = this.getId();
             model.forEach((node) => {
                 if (node.getId() == nodeId) {
-                    this.setResourceData(node);
+                    this.setResourceDataAsync(node);
                 }
             });
         },
 
         // proxmox.page.core.IView implementation
-        getContainer: function() {
-            this._contentContainer = this._getContentContainer();
-            return this._contentContainer;
+        getContainerAsync: function () {
+            if (this.getResourceData() === null) {
+
+                return new qx.Promise((resolve, reject) => {
+                    this.addListenerOnce("changeResourceData", resolve)
+                }).then(() => {
+                    this._contentContainer = this._getContentContainer();
+                    return this._contentContainer;
+                });
+            }
+
+            return this.getResourceDataAsync().then(() => {
+                this._contentContainer = this._getContentContainer();
+                return this._contentContainer;
+            });
         },
 
         // proxmox.page.core.IView implementation
-        navigateToPageId: function(pageId) {
+        navigateToPageId: function (pageId) {
             var subPage = this._getSubPage(pageId);
             if (subPage === false) {
                 return false;
@@ -79,7 +93,7 @@ qx.Mixin.define("proxmox.page.core.MResourcePage", {
             }
 
             var subc = this._currentSubPageContainer = subPage.getSubPageContainer();
-            this._contentContainer.add(subc, {edge: "north", width: "100%"});
+            this._contentContainer.add(subc, { edge: "north", width: "100%" });
 
             return true;
         }

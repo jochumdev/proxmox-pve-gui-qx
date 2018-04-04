@@ -31,6 +31,7 @@ qx.Class.define("proxmox.Application", {
     _loginWindow: null,
     _contentViewClazz: null,
     _contentContainer: null,
+    _contentContainerPromise: null,
     _contentContainerHolder: null,
 
     _services: null,
@@ -195,11 +196,7 @@ qx.Class.define("proxmox.Application", {
 
     setPageView: function (clazz, routeParams) {
       if (this._contentViewClazz === clazz && this._contentView.getId() == routeParams.id) {
-          if (!this._contentView.navigateToPageId(routeParams.pageId)) {
-            this.navigateTo(routeParams.id, this._contentView.getDefaultPageId());
-            return;
-          }
-
+          this._contentView.navigateToPageId(routeParams.pageId);
           this.setRouteParams(routeParams);
           return;
       }
@@ -219,14 +216,14 @@ qx.Class.define("proxmox.Application", {
         id: routeParams.id
       });
 
-      var ct = this._contentContainer = view.getContainer();
-      if (!view.navigateToPageId(routeParams.pageId)) {
-        this.navigateTo(routeParams.id, view.getDefaultPageId());
-        return;
-      }
-      this._contentContainerHolder.add(ct, 1);
+      this._contentContainerPromise = view.getContainerAsync();
+      this._contentContainerPromise.then((ct) => {
+        this._contentContainer = ct;
+        view.navigateToPageId(routeParams.pageId);
+        this._contentContainerHolder.add(ct, 1);
 
-      this.setRouteParams(routeParams);
+        this.setRouteParams(routeParams);
+      });
     },
 
     getService: function(service) {
@@ -285,29 +282,35 @@ qx.Class.define("proxmox.Application", {
       r.onGet('^\/(node|lxc|qemu|type)+\/([a-z0-9]+)\/?(?:([a-z0-9\-\/]*))$', (data) => {
         var id = data.params[0] + "/" + data.params[1];
         var oldParams = this.getRouteParams();
-        routeParams = {
+        var routeParams = {
           method: "GET",
           path: data.path,
           id: id,
           pageId: data.params[2] != "" ? data.params[2] : oldParams.pageId
         };
 
+        var clazz;
         switch (data.params[0]) {
           case "node":
-            this.setPageView(proxmox.page.Node, routeParams);
+            clazz = proxmox.page.Node;
             break;
           case "lxc":
-            this.setPageView(proxmox.page.Lxc, routeParams);
+            clazz = proxmox.page.Lxc;
             break;
           case "qemu":
-            this.setPageView(proxmox.page.Qemu, routeParams);
+            clazz = proxmox.page.Qemu;
             break;
           case "type":
-            this.setPageView(proxmox.page.Type, routeParams);
+            clazz = proxmox.page.Type;
             break;
           default:
-            this.setPageView(proxmox.page.Empty, routeParams);
+            clazz = proxmox.page.Empty;
         }
+
+        if (!clazz.SUBPAGES.includes(routeParams.pageId)) {
+          routeParams.pageId = clazz.DEFAULT_PAGE_ID;
+        }
+        this.setPageView(clazz, routeParams);
       });
     }
   }

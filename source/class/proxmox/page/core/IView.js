@@ -1,16 +1,18 @@
 qx.Interface.define("proxmox.page.core.IView", {
+    statics: {
+        DEFAULT_PAGE_ID: "",
+        SUBPAGES: "",
+    },
+
     properties: {
         id: {}
     },
 
     members: {
         /**
-         * @return {qx.ui.core.Widget} Container for the view.
+         * @return {Promise} A promise which will return a qx.ui.core.Widget on success.
          */
-        getContainer: function() {
-        },
-
-        getDefaultPageId: function() {
+        getContainerAsync: function() {
         },
 
         /**
