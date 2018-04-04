@@ -85,11 +85,23 @@ qx.Class.define("proxmox.part.ServerBrowser", {
             app.navigateTo(id);
         });
 
-        var sr = app.getService("resources");
-        this.setModel(sr.getModel());
+        /**
+         * Bind to the service.
+         */
+        var sm = app.getServiceManager();
+        var that = this;
+        var listenToService = function() {
+            var sr = sm.getService("cluster/resources");
+            that.setModel(sr.getModel());
 
-        sr.addListener("changeModel", (e) => {
-            this.setModel(e.getData());
+            sr.addListener("changeModel", (e) => {
+                that.setModel(e.getData());
+            });
+        }
+        listenToService();
+
+        sm.addListener("disposedServices", () => {
+            listenToService();
         });
 
         app.addListener("changeLogin", (e) => {

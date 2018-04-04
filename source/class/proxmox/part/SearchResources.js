@@ -67,12 +67,7 @@ qx.Class.define("proxmox.part.SearchResources", {
             this.setSearchValue(e.getData());
         });
 
-        var sr = app.getService("resources");
-        this.setModel(sr.getModel());
-
-        sr.addListener("changeModel", (e) => {
-            this.setModel(e.getData());
-        });
+        this._serviceManager = app.getServiceManager();
     },
 
     properties: {
@@ -102,6 +97,7 @@ qx.Class.define("proxmox.part.SearchResources", {
         _tableModel: null,
         _searchField: null,
         _columns: null,
+        _serviceManager: null,
 
         getSearchField: function () {
             if (this._searchField !== null) {
@@ -114,6 +110,29 @@ qx.Class.define("proxmox.part.SearchResources", {
 
         getContainer: function () {
             return this._table;
+        },
+
+        startListening: function() {
+            var sr = this._serviceManager.getService("cluster/resources");
+            this.setModel(sr.getModel());
+
+            sr.addListener("changeModel", this._changeModelListener, this);
+
+            this._serviceManager.addListener("disposedServices", () => {
+                var sr = this._serviceManager.getService("cluster/resources");
+                this.setModel(sr.getModel());
+
+                sr.addListener("changeModel", this._changeModelListener, this);
+            });
+        },
+
+        stopListening: function() {
+            var sr = this._serviceManager.getService("cluster/resources");
+            sr.removeListener("changeModel", this._changeModelListener, this);
+        },
+
+        _changeModelListener: function(e) {
+            this.setModel(e.getData());
         },
 
         _updateData: function () {
@@ -177,7 +196,8 @@ qx.Class.define("proxmox.part.SearchResources", {
         }
     },
 
-    destruct : function() {
+    destruct: function() {
+        this.stopListening();
         this._disposeObjects("_tableModel");
     }
 });

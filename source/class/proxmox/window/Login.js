@@ -1,3 +1,7 @@
+/**
+ * TODO: Remove when we remove the "mock" endpoint.
+ * @asset(proxmox/json/*)
+ */
 qx.Class.define("proxmox.window.Login", {
     extend: qx.ui.window.Window,
 
@@ -7,6 +11,9 @@ qx.Class.define("proxmox.window.Login", {
 
     construct: function () {
         this.base(arguments, this.tr("Proxmox VE Login"));
+
+        var app = qx.core.Init.getApplication();
+        var sm = app.getServiceManager();
 
         var layout = new qx.ui.layout.VBox();
         layout.setSpacing(4);
@@ -22,11 +29,22 @@ qx.Class.define("proxmox.window.Login", {
         });
 
         this.add(new qx.ui.basic.Label().set({
-            value: 'Any login will work.',
+            value: 'Any login will work with "Mock Data".',
             rich: false
         }));
 
         var form = new qx.ui.form.Form();
+
+        var host = new qx.ui.form.SelectBox();
+        form.add(host, this.tr("Host"), null, "host");
+        host.add(new qx.ui.form.ListItem(this.tr("Mock Data")).set({model: "proxmox/json"}));
+        host.add(new qx.ui.form.ListItem("srv01").set({model: "https://srv01.pcdummy.lan:8006/api2"}));
+        host.add(new qx.ui.form.ListItem("srv02").set({model: "https://srv02.pcdummy.lan:8006/api2"}));
+        host.add(new qx.ui.form.ListItem("srv03").set({model: "https://srv03.pcdummy.lan:8006/api2"}));
+
+        host.addListener("changeValue", (e) => {
+            sm.setBaseUrl(e.getData().getModel());
+        });
 
         var username = new qx.ui.form.TextField();
         username.setRequired(true);
@@ -66,8 +84,9 @@ qx.Class.define("proxmox.window.Login", {
                     username: controller.getModel().getUsername(),
                     password: controller.getModel().getPassword(),
                     realm: controller.getModel().getRealm(),
-                    login: true,
+                    login: true
                 };
+                sm.setBaseUrl(controller.getModel().getHost());
                 this.fireDataEvent("changeLogin", loginData);
                 this.close();
             }

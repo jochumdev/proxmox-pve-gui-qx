@@ -19,6 +19,8 @@ qx.Class.define("proxmox.page.Type", {
     },
 
     members: {
+        _searchResources: null,
+
         getContainerAsync: function () {
             return new qx.Promise((resolve, reject) => {
                 var ct = new qx.ui.container.Composite(new qx.ui.layout.Dock()).set({ appearance: "content-box"});
@@ -53,7 +55,8 @@ qx.Class.define("proxmox.page.Type", {
                 ct.add(navbar.getContainer(), {edge: "west", height: "100%"});
 
                 // Content
-                var sr = new proxmox.part.SearchResources();
+                var sr = this._searchResources = new proxmox.part.SearchResources();
+                sr.startListening();
                 sr.setLimitType(idSplit[1]);
 
                 var searchBar = new qx.ui.container.Composite(new qx.ui.layout.HBox(5)).set({ appearance: "actionsbar-box" });
@@ -72,5 +75,9 @@ qx.Class.define("proxmox.page.Type", {
         navigateToPageId: function(pageId) {
             return true;
         },
+    },
+
+    destruct: function() {
+        this._disposeObjects("_searchResources");
     }
 });

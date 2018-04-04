@@ -19,6 +19,8 @@ qx.Class.define("proxmox.page.Datacenter", {
     },
 
     members: {
+        _searchResources: null,
+
         getContainerAsync: function () {
             return new qx.Promise((resolve, reject) => {
                 var ct = new qx.ui.container.Composite(new qx.ui.layout.Dock()).set({ appearance: "content-box"});
@@ -36,7 +38,8 @@ qx.Class.define("proxmox.page.Datacenter", {
                 ct.add(navbar.getContainer(), {edge: "west", height: "100%"});
 
                 // Content
-                var sr = new proxmox.part.SearchResources();
+                var sr = this._searchResources = new proxmox.part.SearchResources();
+                sr.startListening();
 
                 var searchBar = new qx.ui.container.Composite(new qx.ui.layout.HBox(5)).set({ appearance: "actionsbar-box" });
                 searchBar.setPadding([6, 5, 6, 8]);
@@ -54,5 +57,9 @@ qx.Class.define("proxmox.page.Datacenter", {
         navigateToPageId: function(pageId) {
             return true;
         },
+    },
+
+    destruct: function() {
+        this._disposeObjects("_searchResources");
     }
 });

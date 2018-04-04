@@ -4,10 +4,10 @@ qx.Mixin.define("proxmox.page.core.MResourcePage", {
     ],
 
     construct: function () {
-        var app = qx.core.Init.getApplication();
-        this.setApp(app);
+        var app = this._serviceManager = qx.core.Init.getApplication();
+        var sm = this._serviceManager = app.getServiceManager();
 
-        this._resourceService = app.getService("resources");
+        this._resourceService = sm.getService("cluster/resources");
 
         this._resourceService.addListener("changeModel", (e) => {
             if (this.getId() == null) {
@@ -28,8 +28,6 @@ qx.Mixin.define("proxmox.page.core.MResourcePage", {
             init: null
         },
 
-        app: {},
-
         resourceData: {
             async: true,
             event: "changeResourceData",
@@ -39,6 +37,9 @@ qx.Mixin.define("proxmox.page.core.MResourcePage", {
     },
 
     members: {
+        _app: null,
+        _serviceManager: null,
+
         _contentContainer: null,
         _currentSubPageContainer: null,
         _resourceService: null,
@@ -97,5 +98,10 @@ qx.Mixin.define("proxmox.page.core.MResourcePage", {
 
             return true;
         }
+    },
+
+    destruct: function() {
+        this._serviceManager.disposeResourceServices();
+        this._disposeObjects("_contentContainer", "_currentSubPageContainer");
     }
 });

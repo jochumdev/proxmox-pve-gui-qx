@@ -34,7 +34,7 @@ qx.Class.define("proxmox.Application", {
     _contentContainerPromise: null,
     _contentContainerHolder: null,
 
-    _services: null,
+    _serviceManager: null,
     _servicesTimer: null,
 
     _router: null,
@@ -62,12 +62,19 @@ qx.Class.define("proxmox.Application", {
         Below is your actual application code...
       -------------------------------------------------------------------------
       */
+
+      /**
+       * qxc.require
+       */
       var r = qxc.require.Init.getInstance();
       r.addResourceManagerPath("fetch", "proxmox/js/fetch.min.js");
 
       // Must be last
       r.init();
 
+      /**
+       * Routing
+       */
       var defaultRouteParams = {
         method: "GET",
         path: "/",
@@ -77,14 +84,22 @@ qx.Class.define("proxmox.Application", {
       this.setRouteParams(defaultRouteParams);
       this._buildRoutes();
 
-      this._services = {
-        resources: new proxmox.service.Resources(),
-        tasks: new proxmox.service.Tasks()
-      };
+      /**
+       * ServiceManager
+       */
+      var sm = this._serviceManager = new proxmox.service.Manager();
+      sm.registerEndpoint("cluster/resources", "cluster/resources", proxmox.service.cluster.Resources);
+      sm.registerEndpoint("cluster/tasks", "cluster/tasks", proxmox.service.SimpleService);
+      sm.registerEndpoint("access/domains", "access/domains", proxmox.service.SimpleService);
+
+
+      /**
+       * Timers
+       */
       var st = this._servicesTimer = new qx.event.Timer(3000);
       st.addListener("interval", () => {
-        this._services.resources.fetch();
-        this._services.tasks.fetch();
+        this._serviceManager.getService("cluster/resources").fetch();
+        this._serviceManager.getService("cluster/tasks").fetch();
       });
 
       var main_container = new qx.ui.container.Composite(new qx.ui.layout.Dock());
@@ -104,15 +119,20 @@ qx.Class.define("proxmox.Application", {
       var srTable = sr.getContainer();
       var searchWindow = new proxmox.window.SearchTable(srTable);
       srTable.addListener("cellTap", (e) => {
+        sr.stopListening();
         searchWindow.close();
       });
       srf.addListener("focusin", (e) => {
         var srfBounds = srf.getBounds();
         searchWindow.moveTo(srfBounds.left - 10, srfBounds.top + srfBounds.height - 10);
+
+        sr.startListening();
+
         searchWindow.show();
       });
       srf.addListener("focusout", (e) => {
         qx.event.Timer.once(() => {
+          sr.stopListening();
           searchWindow.close();
         }, this, 100);
       });
@@ -151,8 +171,8 @@ qx.Class.define("proxmox.Application", {
         var data = e.getData();
 
         if (data.login) {
-          this._services.resources.fetch();
-          this._services.tasks.fetch();
+          this._serviceManager.getService("cluster/resources").fetch();
+          this._serviceManager.getService("cluster/tasks").fetch();
 
           // Timer
           this._servicesTimer.start();
@@ -197,16 +217,18 @@ qx.Class.define("proxmox.Application", {
       application_root.add(main_container, { edge: 0 });
 
       // TODO: REMOVE ME!!!!
-      if (qx.core.Environment.get("qx.debug")) {
-        this.fireDataEvent("changeLogin", {
-          username: "root",
-          password: "root",
-          realm: "pam",
-          login: true
-        });
-      } else {
-        this.fireDataEvent("changeLogin", {login: false});
-      }
+      // if (qx.core.Environment.get("qx.debug")) {
+      //   this.getServiceManager().setBaseUrl("proxmox/json");
+      //   this.fireDataEvent("changeLogin", {
+      //     username: "root",
+      //     password: "root",
+      //     realm: "pam",
+      //     login: true,
+      //   });
+      // } else {
+      //   this.fireDataEvent("changeLogin", {login: false});
+      // }
+      this.fireDataEvent("changeLogin", {login: false});
     },
 
     setPageView: function (clazz, routeParams) {
@@ -222,7 +244,10 @@ qx.Class.define("proxmox.Application", {
         if (this._contentContainerHolder._indexOf(this._contentContainer) !== -1) {
           this._contentContainerHolder.remove(this._contentContainer);
           this._contentContainer = null;
-          this._contentView = null;
+          if (this._contentView != null) {
+            this._contentView.dispose();
+            this._contentView = null;
+          }
         }
       }
 
@@ -241,8 +266,8 @@ qx.Class.define("proxmox.Application", {
       });
     },
 
-    getService: function(service) {
-      return this._services[service];
+    getServiceManager: function() {
+      return this._serviceManager;
     },
 
     getRouter: function() {
@@ -328,5 +353,9 @@ qx.Class.define("proxmox.Application", {
         this.setPageView(clazz, routeParams);
       });
     }
+  },
+
+  destruct: function() {
+    this._disposeObjects("_serviceManager");
   }
 });

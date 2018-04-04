@@ -64,7 +64,6 @@ qx.Class.define("proxmox.service.core.JsonStore", {
          */
         url: {
             check: "String",
-            apply: "_applyUrl",
             event: "changeUrl",
             nullable: true
         }
@@ -76,17 +75,6 @@ qx.Class.define("proxmox.service.core.JsonStore", {
         _delegate: null,
 
         __request: null,
-
-        // apply function
-        _applyUrl: function (value, old) {
-            if (value != null) {
-                // take care of the resource management
-                value = qx.util.AliasManager.getInstance().resolve(value);
-                value = qx.util.ResourceManager.getInstance().toUri(value);
-
-                this._createRequest(value);
-            }
-        },
 
         /**
          * Creates and sends a GET request with the given url.
@@ -103,10 +91,15 @@ qx.Class.define("proxmox.service.core.JsonStore", {
                 this.__request = null;
             }
 
+            // take care of the resource management
+            url = qx.util.AliasManager.getInstance().resolve(url);
+            url = qx.util.ResourceManager.getInstance().toUri(url);
+
             this.__request = qxc.require.Init.require(["fetch"])
                 .catch(ex => {
                     this.setState("failed");
                     this.fireDataEvent("error", {request: url, error: ex});
+                    throw ex;
                 }).spread((fetchpoly) => {
                     var fetcher;
                     if (fetchpoly) {
@@ -149,10 +142,15 @@ qx.Class.define("proxmox.service.core.JsonStore", {
                     this.fireDataEvent("loaded", this.getModel());
 
                     this.setState("completed");
+
+                    return this.getModel();
                 }).catch((ex) => {
                     this.setState("failed");
                     this.fireDataEvent("parseError", {request: url, error: ex});
+                    throw ex;
                 });
+
+            return this.__request;
         },
 
         /**
@@ -160,9 +158,13 @@ qx.Class.define("proxmox.service.core.JsonStore", {
          */
         reload: function () {
             var url = this.getUrl();
-            if (url != null) {
-                this._createRequest(url);
+            if (url === null) {
+                return new qx.Promise((resolve, reject) => {
+                    reject(Error("URL is null"));
+                });
             }
+
+            return this._createRequest(url);
         }
     },
 

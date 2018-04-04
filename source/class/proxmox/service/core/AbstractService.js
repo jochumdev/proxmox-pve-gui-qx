@@ -11,31 +11,73 @@ qx.Class.define("proxmox.service.core.AbstractService", {
         this.base(arguments);
     },
 
+    events: {
+        /**
+         * Data event fired after the model has been created. The data will be the
+         * created model.
+         */
+        "loaded": "qx.event.type.Data",
+
+        /**
+         * Fired when a parse error (i.e. broken JSON) occurred
+         * during the load. The data contains a hash of the original
+         * response and the parser error (exception object).
+         */
+        "parseError": "qx.event.type.Data",
+
+        /**
+         * Fired when an error (aborted, timeout or failed) occurred
+         * during the load. The data contains the response of the request.
+         * If you want more details, use the {@link #changeState} event.
+         */
+        "error": "qx.event.type.Data"
+    },
+
+    properties: {
+        // Overwrite or set me!
+        url: {
+            check: "String",
+        }
+    },
+
     members: {
         __store: null,
-
-        getUrl: function () {
-            throw new Error("Abstract method call.");
-        },
 
         getDelegate: function() {
             return undefined;
         },
 
+        /**
+         * @return {Promise} From the fetch Request.
+         */
         fetch: function () {
             if (this.__store) {
-                this.__store.reload();
-                return;
+                return this.__store.reload();
             }
 
             this.__store = new proxmox.service.core.JsonStore(this.getUrl(), this.getDelegate());
             this.__store.addListener("error", (e) => {
-                console.log(e.getData());
+                var data = e.getData();
+                this.fireDataEvent("loaded", data);
+                console.log(data);
             });
             this.__store.addListener("parseError", (e) => {
-                console.log(e.getData());
+                var data = e.getData();
+                this.fireDataEvent("parseError", data);
+                console.log(data);
             });
+            this.__store.addListener("loaded", (e) => {
+                var data = e.getData();
+                this.fireDataEvent("loaded", data);
+            });
+
             this.__store.bind("model", this, "model");
+
+            return this.__store.reload();
         }
+    },
+
+    destruct: function () {
+        this._disposeObjects("__store");
     }
 });
