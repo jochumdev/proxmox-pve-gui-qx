@@ -17,7 +17,8 @@ qx.Class.define("proxmox.window.Login", {
             showMaximize: false,
             showClose: false,
             width: 400,
-            height: 200
+            height: 200,
+            centerOnAppear: true
         });
 
         this.add(new qx.ui.basic.Label().set({

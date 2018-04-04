@@ -5,17 +5,57 @@ qx.Class.define("proxmox.part.SearchResources", {
         qx.locale.MTranslation,
     ],
 
-    construct: function (mode) {
+    construct: function (tableClickMode, columns) {
         this.base(arguments);
+
+        if (!tableClickMode) {
+            tableClickMode = "cellDbltap";
+        }
+
+        if (!columns) {
+            columns = ["type", "description", "disk", "memory", "cpu", "uptime"];
+        }
+        this._columns = columns;
 
         var app = qx.core.Init.getApplication();
 
         var tableModel = this._tableModel = new qx.ui.table.model.Simple();
-        tableModel.setColumns([this.tr("Type"), this.tr("Description"), this.tr("Disk usage %"), this.tr("Memory usage %"), this.tr("CPU usage"), this.tr("Uptime")]);
+
+        var headers = [];
+        columns.forEach((column) => {
+            switch (column) {
+                case "type":
+                    headers.push(this.tr("Type"));
+                    break;
+                case "description":
+                    headers.push(this.tr("Description"));
+                    break;
+                case "disk":
+                    headers.push(this.tr("Disk usage %"));
+                    break;
+                case "memory":
+                    headers.push(this.tr("Memory usage %"));
+                    break;
+                case "cpu":
+                    headers.push(this.tr("CPU usage"));
+                    break;
+                case "uptime":
+                    headers.push(this.tr("Uptime"));
+                    break;
+                case "pool":
+                    headers.push(this.tr("Pool"));
+                    break;
+                default:
+                    throw Error(qx.lang.String.format("Unknown column key %1 given", column));
+            }
+        });
+
+        tableModel.setColumns(headers);
 
         var table = this._table = new qx.ui.table.Table(tableModel);
-        table.addListener("cellDbltap", (e) => {
-            app.navigateTo(tableModel.getRowData(e.getRow())[6], "");
+        table.addListener(tableClickMode, (e) => {
+            var data = tableModel.getRowData(e.getRow());
+            app.navigateTo(data[data.length - 1], "");
         });
 
         table.set({
@@ -61,6 +101,7 @@ qx.Class.define("proxmox.part.SearchResources", {
         _table: null,
         _tableModel: null,
         _searchField: null,
+        _columns: null,
 
         getSearchField: function () {
             if (this._searchField !== null) {
@@ -75,10 +116,6 @@ qx.Class.define("proxmox.part.SearchResources", {
             return this._table;
         },
 
-        _createTable: function () {
-
-        },
-
         _updateData: function () {
             var model = this.getModel();
             if (!model) {
@@ -87,6 +124,7 @@ qx.Class.define("proxmox.part.SearchResources", {
 
             var limitType = this.getLimitType();
             var searchValue = this.getSearchValue();
+            var columns = this._columns;
 
             var data = [];
             model.forEach((node) => {
@@ -99,19 +137,40 @@ qx.Class.define("proxmox.part.SearchResources", {
                     return;
                 }
 
-                var disk = node.getDiskUsagePercent();
-                var memory = node.getMemoryUsagePercent();
-                var cpu = node.getCPUUsagePercent();
+                var rowData = [];
+                columns.forEach((column) => {
+                    switch (column) {
+                        case "type":
+                            rowData.push(type);
+                            break;
+                        case "description":
+                            rowData.push(node.getDescription());
+                            break;
+                        case "disk":
+                            var disk = node.getDiskUsagePercent();
+                            rowData.push(disk > 0 ? disk.toString() + " %" : "");
+                            break;
+                        case "memory":
+                            var memory = node.getMemoryUsagePercent();
+                            rowData.push(memory > 0 ? memory.toString() + " %" : "");
+                            break;
+                        case "cpu":
+                            var cpu = node.getCPUUsagePercent();
+                            rowData.push(cpu > 0 ? cpu.toString() + "% of " + node.getMaxcpu().toString() + "CPUs" : "");
+                            break;
+                        case "uptime":
+                            rowData.push(node.getDisplayUptime());
+                            break;
+                        case "pool":
+                            rowData.push("");
+                            break;
+                        default:
+                            throw Error(qx.lang.String.format("Unknown column key %1 given", column));
+                    }
+                });
 
-                data.push([
-                    type,
-                    node.getDescription(),
-                    disk > 0 ? disk.toString() + " %" : "",
-                    memory > 0 ? memory.toString() + " %" : "",
-                    cpu > 0 ? cpu.toString() + "% of " + node.getMaxcpu().toString() + "CPUs" : "",
-                    node.getDisplayUptime(),
-                    node.getId()
-                ]);
+                rowData.push(node.getId());
+                data.push(rowData);
             });
 
             this._tableModel.setData(data);

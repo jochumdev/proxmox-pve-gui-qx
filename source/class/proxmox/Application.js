@@ -97,10 +97,26 @@ qx.Class.define("proxmox.Application", {
       loginWindow.addListener("changeLogin", (e) => {
         this.fireDataEvent("changeLogin", e.getData());
       });
-      loginWindow.moveTo(
-        Math.round((qx.bom.Viewport.getWidth() - loginWindow.getWidth()) / 2),
-        Math.round((qx.bom.Viewport.getHeight() - loginWindow.getHeight()) / 2)
-      );
+
+      // Search Field
+      var sr = new proxmox.part.SearchResources("cellTap", ["type", "description", "pool"]);
+      var srf = sr.getSearchField();
+      var srTable = sr.getContainer();
+      var searchWindow = new proxmox.window.SearchTable(srTable);
+      srTable.addListener("cellTap", (e) => {
+        searchWindow.close();
+      });
+      srf.addListener("focusin", (e) => {
+        var srfBounds = srf.getBounds();
+        searchWindow.moveTo(srfBounds.left - 10, srfBounds.top + srfBounds.height - 10);
+        searchWindow.show();
+      });
+      srf.addListener("focusout", (e) => {
+        qx.event.Timer.once(() => {
+          searchWindow.close();
+        }, this, 100);
+      });
+
 
       // Header
       var headerColumn = new qx.ui.container.Composite(new qx.ui.layout.HBox(5));
@@ -110,8 +126,7 @@ qx.Class.define("proxmox.Application", {
       headerColumn.add(new qx.ui.basic.Image("proxmox/proxmox_logo.png"));
       var versionLabel = new qx.ui.basic.Label("").set({ appearance: "header-label", rich: true });
       headerColumn.add(versionLabel);
-      var searchField = new qx.ui.form.TextField().set({ placeholder: this.tr("Search"), height: 22 }).set({ width: 168, appearance: "search" });
-      headerColumn.add(searchField);
+      headerColumn.add(srf);
       headerColumn.add(new qx.ui.basic.Atom(), { flex: 1 });
       var loginLabel = new qx.ui.basic.Label("").set({ appearance: "header-label" });
       headerColumn.add(loginLabel);
