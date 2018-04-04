@@ -6,8 +6,8 @@ qx.Class.define("proxmox.page.Type", {
     ],
 
     statics: {
-        SUBPAGES: ["summary"],
-        DEFAULT_PAGE_ID: "summary"
+        SUBPAGES: ["search"],
+        DEFAULT_PAGE_ID: "search"
     },
 
     properties: {

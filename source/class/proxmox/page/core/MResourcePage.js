@@ -55,7 +55,7 @@ qx.Mixin.define("proxmox.page.core.MResourcePage", {
             var nodeId = this.getId();
             model.forEach((node) => {
                 if (node.getId() == nodeId) {
-                    this.setResourceDataAsync(node);
+                    this.setResourceDataAsync(node).then(() => { return null; });
                 }
             });
         },
