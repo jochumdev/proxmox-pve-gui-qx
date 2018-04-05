@@ -1,3 +1,13 @@
+class HttpError extends Error { // (1)
+    constructor(ex, response) {
+        super(`${response.status} for ${response.url}` + ", error was: " + ex);
+        this.name = 'HttpError';
+        this.exception = ex;
+        this.response = response;
+    }
+}
+
+
 qx.Class.define("proxmox.service.core.AbstractService", {
     extend: qx.core.Object,
     type: "abstract",
@@ -152,7 +162,7 @@ qx.Class.define("proxmox.service.core.AbstractService", {
             this.__requestPromise = qxc.require.Init.require(["fetch"])
                 .catch(ex => {
                     this.setState("failed");
-                    this.fireDataEvent("error", { request: url, error: ex });
+                    this.fireDataEvent("error", { request: url, error: ex, response: null });
                     throw ex;
                 }).spread((fetchpoly) => {
                     var fetchImpl;
@@ -209,15 +219,21 @@ qx.Class.define("proxmox.service.core.AbstractService", {
                                         return model;
                                     }).catch((ex) => {
                                         this.setState("failed");
-                                        this.fireDataEvent("parseError", { request: url, error: ex });
-                                        this.fireDataEvent("error", { request: url, error: ex });
-                                        throw ex;
+                                        this.fireDataEvent("parseError", {
+                                            request: url, error: ex, response: response
+                                        });
+                                        this.fireDataEvent("error", {
+                                            request: url, error: ex, response: response
+                                        });
+                                        throw new HttpError(ex, response);
                                     });
                             } else {
                                 var ex = new Error("Request failed");
                                 this.setState("failed");
-                                this.fireDataEvent("error", { request: url, error: ex});
-                                throw ex;
+                                this.fireDataEvent("error", {
+                                    request: url, error: ex, response: response
+                                });
+                                throw new HttpError(ex, response);
                             }
                         });
                 });
