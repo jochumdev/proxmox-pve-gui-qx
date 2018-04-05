@@ -107,8 +107,10 @@ qx.Class.define("proxmox.part.ServerBrowser", {
         app.addListener("changeLogin", (e) => {
             var data = e.getData();
 
-            if (data.login && this._savedMode != null) {
-                this.setMode(this._savedMode);
+            if (data.login) {
+                if (this._savedMode != null) {
+                    this.setMode(this._savedMode);
+                }
                 return;
             }
 
