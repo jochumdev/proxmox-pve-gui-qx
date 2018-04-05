@@ -43,6 +43,9 @@ qx.Class.define("proxmox.service.Manager", {
          * @param method {String?} HTTP Method - default GET.
          */
         registerEndpoint: function(name, pattern, serviceClazz, method) {
+            if (!method) {
+                method = proxmox.service.Manager.GET;
+            }
             name = this._translateServiceName(name, method);
             this._endpoints[name] = {
                 pattern: pattern,
@@ -56,12 +59,15 @@ qx.Class.define("proxmox.service.Manager", {
          * @param method {String?} HTTP Method - default GET.
          */
         getService: function(name, method) {
+            if (!method) {
+                method = proxmox.service.Manager.GET;
+            }
             name = this._translateServiceName(name, method);
             if (name in this._services) {
                 return this._services[name];
             }
 
-            var sv = this._services[name] = this._createService(name, null);
+            var sv = this._services[name] = this._createService(name, null, method);
             return sv;
         },
 
@@ -71,6 +77,9 @@ qx.Class.define("proxmox.service.Manager", {
          * @param method {String?} HTTP Method - default GET.
          */
         getResourceService: function(name, args, method) {
+            if (!method) {
+                method = proxmox.service.Manager.GET;
+            }
             name = this._translateServiceName(name, method);
             if (name in this._resourceServices) {
                 var sv = this._resourceServices[name]
@@ -83,7 +92,7 @@ qx.Class.define("proxmox.service.Manager", {
                 }
             }
 
-            var sv = this._createService(name, args);
+            var sv = this._createService(name, args, method);
             this._resourceServices[name] = {sv: sv, args: qx.data.Array(args)};
             return sv;
         },
@@ -106,7 +115,7 @@ qx.Class.define("proxmox.service.Manager", {
             this.fireEvent("disposedResourceServices");
         },
 
-        _createService: function(name, args) {
+        _createService: function(name, args, method) {
             if (!(name in this._endpoints)) {
                 throw Error("Register the endpoint with registerEndpoint first");
             }
@@ -119,17 +128,12 @@ qx.Class.define("proxmox.service.Manager", {
                 url = this.getBaseUrl() + "/" + endpoint.pattern;
             }
 
-            var sv = new (endpoint.serviceClazz)
-            sv.setUrl(url);
+            var sv = new (endpoint.serviceClazz)(url, method);
 
             return sv;
         },
 
         _translateServiceName: function(name, method) {
-            if (!method) {
-                method = proxmox.service.Manager.GET;
-            }
-
             return name + "|" + method;
         },
 

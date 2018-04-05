@@ -1,19 +1,11 @@
-/**
- * TODO: Remove when we remove the "mock" endpoint.
- * @asset(proxmox/json/*)
- */
 qx.Class.define("proxmox.window.Login", {
     extend: qx.ui.window.Window,
-
-    events: {
-        changeLogin: "qx.event.type.Data"
-    },
 
     construct: function () {
         this.base(arguments, this.tr("Proxmox VE Login"));
 
         var app = qx.core.Init.getApplication();
-        var sm = app.getServiceManager();
+        var sm = this._serviceManager = app.getServiceManager();
 
         var layout = new qx.ui.layout.VBox();
         layout.setSpacing(4);
@@ -28,23 +20,9 @@ qx.Class.define("proxmox.window.Login", {
             centerOnAppear: true
         });
 
-        this.add(new qx.ui.basic.Label().set({
-            value: 'Any login will work with "Mock Data".',
-            rich: false
-        }));
-
         var form = new qx.ui.form.Form();
 
         var host = new qx.ui.form.SelectBox();
-        form.add(host, this.tr("Host"), null, "host");
-        host.add(new qx.ui.form.ListItem(this.tr("Mock Data")).set({model: "proxmox/json"}));
-        host.add(new qx.ui.form.ListItem("srv01").set({model: "https://srv01.pcdummy.lan:8006/api2"}));
-        host.add(new qx.ui.form.ListItem("srv02").set({model: "https://srv02.pcdummy.lan:8006/api2"}));
-        host.add(new qx.ui.form.ListItem("srv03").set({model: "https://srv03.pcdummy.lan:8006/api2"}));
-
-        host.addListener("changeValue", (e) => {
-            sm.setBaseUrl(e.getData().getModel());
-        });
 
         var username = new qx.ui.form.TextField();
         username.setRequired(true);
@@ -54,16 +32,14 @@ qx.Class.define("proxmox.window.Login", {
         password.setRequired(true);
         form.add(password, this.tr("Password"), null, "password");
 
-        var realm = new qx.ui.form.SelectBox();
-        var realmPam = new qx.ui.form.ListItem(this.tr("Linux PAM standard authentication")).set({model: "pam"});
-        realm.add(new qx.ui.form.ListItem(this.tr("Proxmox VE authentication server")).set({model: "pve"}));
-        realm.add(realmPam);
-        realm.setValue(realmPam);
+        var realm = this._realmSelectbox = new qx.ui.form.SelectBox();
         form.add(realm, this.tr("Realm"), null, "realm");
+        this._fetchRealms();
+        this._serviceManager.addListener("disposedServices", this._fetchRealms, this);
 
         var language = new qx.ui.form.SelectBox();
-        language.add(new qx.ui.form.ListItem("English").set({model: "en"}));
-        language.add(new qx.ui.form.ListItem("German").set({model: "de"}));
+        language.add(new qx.ui.form.ListItem("English").set({ model: "en" }));
+        language.add(new qx.ui.form.ListItem("German").set({ model: "de" }));
         form.add(language, this.tr("Language"), null, "language");
 
         language.addListener("changeValue", (e) => {
@@ -80,20 +56,36 @@ qx.Class.define("proxmox.window.Login", {
         var loginbutton = new qx.ui.form.Button(this.tr("Login"));
         loginbutton.addListener("execute", function () {
             if (form.validate()) {
-                var loginData = {
-                    username: controller.getModel().getUsername(),
-                    password: controller.getModel().getPassword(),
-                    realm: controller.getModel().getRealm(),
-                    login: true
-                };
-                sm.setBaseUrl(controller.getModel().getHost());
-                this.fireDataEvent("changeLogin", loginData);
-                this.close();
+                var service = sm.getService("internal:login").login(
+                    controller.getModel().getUsername(),
+                    controller.getModel().getPassword(),
+                    controller.getModel().getRealm(),
+                    controller.getModel().getLanguage()
+                ).then(() => this.close()
+                ).catch((ex) => {
+                    console.log(ex);
+                    console.log("Login failed");
+                });
             }
         }, this);
         form.addButton(loginbutton);
 
         var renderer = new qx.ui.form.renderer.Single(form);
         this.add(renderer);
+    },
+
+    members: {
+        _serviceManager: null,
+        _realmSelectbox: null,
+
+        _fetchRealms: function () {
+            var service = this._serviceManager.getService("access/domains");
+            service.fetch().then((model) => {
+                this._realmSelectbox.removeAll();
+                model.forEach((node) => {
+                    this._realmSelectbox.add(new qx.ui.form.ListItem(node.getComment()).set({model: node.getRealm()}));
+                });
+            });
+        }
     }
 });

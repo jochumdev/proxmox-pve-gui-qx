@@ -23,6 +23,11 @@ qx.Class.define("proxmox.Application", {
   properties: {
     routeParams: {
       event: "changeRouteParams"
+    },
+
+    csrfPreventionToken: {
+      init: null,
+      nullable: true
     }
   },
 
@@ -88,10 +93,21 @@ qx.Class.define("proxmox.Application", {
        * ServiceManager
        */
       var sm = this._serviceManager = new proxmox.service.Manager();
+      sm.setBaseUrl("/api2/json");
       sm.registerEndpoint("cluster/resources", "cluster/resources", proxmox.service.cluster.Resources);
       sm.registerEndpoint("cluster/tasks", "cluster/tasks", proxmox.service.SimpleService);
       sm.registerEndpoint("access/domains", "access/domains", proxmox.service.SimpleService);
-
+      sm.registerEndpoint(
+          "access/ticket",
+          "access/ticket",
+          proxmox.service.SimpleService,
+          proxmox.service.Manager.POST
+      );
+      sm.registerEndpoint(
+        "internal:login",
+        "access/ticket",
+        proxmox.service.LoginService
+      );
 
       /**
        * Timers
@@ -106,11 +122,6 @@ qx.Class.define("proxmox.Application", {
       var blocker = this._blocker = new qx.ui.core.Blocker(main_container).set({
         color: "white",
         opacity: 0.4
-      });
-
-      var loginWindow = this._loginWindow = new proxmox.window.Login();
-      loginWindow.addListener("changeLogin", (e) => {
-        this.fireDataEvent("changeLogin", e.getData());
       });
 
       // Search Field
@@ -164,7 +175,7 @@ qx.Class.define("proxmox.Application", {
       headerColumn.add(logoutButton);
 
       logoutButton.addListener("execute", (e) => {
-        this.fireDataEvent("changeLogin", { login: false });
+        this.getServiceManager().getService("internal:login").logout();
       });
 
       this.addListener("changeLogin", (e) => {
@@ -178,11 +189,14 @@ qx.Class.define("proxmox.Application", {
           this._servicesTimer.start();
 
           versionLabel.setValue(this.tr("Virtual Environment %1", "5.1-46"));
-          loginLabel.setValue(this.tr("You are logged in as '%1'", data.username + "@" + data.realm));
+          loginLabel.setValue(this.tr("You are logged in as '%1'", data.username));
 
           blocker.unblock();
 
           this.getRouter().init();
+
+          this._loginWindow.dispose();
+          this._loginWindow = null;
         } else {
           // Timer
           this._servicesTimer.stop();
@@ -191,7 +205,9 @@ qx.Class.define("proxmox.Application", {
           loginLabel.setValue("");
           this.setPageView(proxmox.page.Empty, defaultRouteParams);
           blocker.block();
-          loginWindow.open();
+
+          this._loginWindow = new proxmox.window.Login();
+          this._loginWindow.open();
         }
       });
 
