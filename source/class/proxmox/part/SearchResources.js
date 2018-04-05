@@ -42,6 +42,9 @@ qx.Class.define("proxmox.part.SearchResources", {
                 case "uptime":
                     headers.push(this.tr("Uptime"));
                     break;
+                case "node":
+                    headers.push(this.tr("Node"));
+                    break;
                 case "pool":
                     headers.push(this.tr("Pool"));
                     break;
@@ -75,7 +78,7 @@ qx.Class.define("proxmox.part.SearchResources", {
         limitType: {
             init: null,
             nullable: true,
-            check: ["lxc", "qemu", "node", "storage"],
+            check: ["lxc", "qemu", "node", "storage", "pool"],
             apply: "_updateData"
         },
 
@@ -180,8 +183,11 @@ qx.Class.define("proxmox.part.SearchResources", {
                         case "uptime":
                             rowData.push(node.getDisplayUptime());
                             break;
+                        case "node":
+                            rowData.push(node.getNode());
+                            break;
                         case "pool":
-                            rowData.push("");
+                            rowData.push(node.getPool());
                             break;
                         default:
                             throw Error(qx.lang.String.format("Unknown column key %1 given", column));

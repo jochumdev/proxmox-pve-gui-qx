@@ -9,7 +9,6 @@ qx.Class.define("proxmox.page.Empty", {
 
     properties: {
         id: {},
-        pageId: {}
     },
 
     members: {

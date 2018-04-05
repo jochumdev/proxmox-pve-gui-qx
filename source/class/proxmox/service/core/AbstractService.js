@@ -43,7 +43,9 @@ qx.Class.define("proxmox.service.core.AbstractService", {
          * during the load. The data contains the response of the request.
          * If you want more details, use the {@link #changeState} event.
          */
-        "error": "qx.event.type.Data"
+        "error": "qx.event.type.Data",
+
+        "changePromise": "qx.event.type.Data"
     },
 
     properties: {
@@ -237,6 +239,8 @@ qx.Class.define("proxmox.service.core.AbstractService", {
                             }
                         });
                 });
+
+            this.fireDataEvent("changePromise", this.__requestPromise);
 
             return this.__requestPromise;
         },

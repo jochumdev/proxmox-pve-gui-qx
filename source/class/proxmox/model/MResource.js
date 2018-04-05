@@ -4,23 +4,6 @@ qx.Mixin.define("proxmox.model.MResource", {
     ],
 
     members: {
-        getShortId: function() {
-            var idParts = this.getId().split("/");
-            return idParts[1];
-        },
-
-        getDisplayName: function() {
-            switch (this.getType()) {
-                case "lxc":
-                case "qemu":
-                    return this.getName();
-                case "storage":
-                    return this.getStorage();
-            }
-
-            return "";
-        },
-
         getHeadline: function() {
             switch (this.getType()) {
                 case "node":
@@ -31,45 +14,39 @@ qx.Mixin.define("proxmox.model.MResource", {
                     return this.tr("Virtual Machine %1 (%2) on node '%3'", this.getShortId(), this.getName(), this.getNode());
                 case "storage":
                     return this.tr("Storage '%1' on node '%2'", this.getStorage(), this.getNode());
-            }
-            return "";
-        },
-
-        getDescription: function() {
-            switch (this.getType()) {
-                case "node":
-                    return this.getNode();
-                case "lxc":
-                case "qemu":
-                    return this.getShortId() + " (" + this.getName() + ")";
-                    break;
-                case "storage":
-                    return this.getStorage() + " (" + this.getNode() + ")";
-                    break;
+                case "pool":
+                    return this.tr("Resource Pool: %1", this.getPool());
             }
             return "";
         },
 
         getDiskUsagePercent: function() {
+            var type = this.getType();
+            if (type == "pool") {
+                return -1;
+            }
             return Math.round(this.getDisk() / this.getMaxdisk() * 100 * 10) / 10;
         },
 
         getMemoryUsagePercent: function() {
-            if (this.getType() === "storage") {
+            var type = this.getType();
+            if (type === "storage") {
                 return -1;
             }
             return Math.round(this.getMem() / this.getMaxmem() * 100 * 10) / 10;
         },
 
         getCPUUsagePercent: function() {
-            if (this.getType() === "storage") {
+            var type = this.getType();
+            if (type === "storage") {
                 return -1;
             }
             return Math.round(this.getCpu() * 100 * 10) / 10;
         },
 
         getDisplayUptime: function() {
-            if (this.getType() === "storage") {
+            var type = this.getType();
+            if (type === "storage" || type == "pool") {
                 return "-";
             }
             return proxmox.Utils.secondsToHHMMSS(this.getUptime());
@@ -84,7 +61,7 @@ qx.Mixin.define("proxmox.model.MResource", {
                 return true;
             }
 
-            if (this.getDisplayName().includes(value)) {
+            if (this.getName().includes(value)) {
                 return true;
             }
 
@@ -99,7 +76,8 @@ qx.Mixin.define("proxmox.model.MResource", {
                 fullId: this.getId(),
                 node: this.getNode(),
                 id: this.getShortId(),
-                name: this.getDisplayName()
+                name: this.getName(),
+                pool: this.getPool()
             };
 
             return object;

@@ -45,6 +45,11 @@ qx.Class.define("proxmox.page.Type", {
                     case "storage":
                         var headline = new qx.ui.basic.Label(this.tr("Storage")).set({ appearance: "actionsbar-label" });
                         break;
+                    case "pool":
+                        var headline = new qx.ui.basic.Label(this.tr("Pool")).set({ appearance: "actionsbar-label" });
+                        break;
+                    default:
+                        var headline = new qx.ui.basic.Label(this.tr("Unknown")).set({ appearance: "actionsbar-label" });
                 }
 
                 actionsBar.add(headline);

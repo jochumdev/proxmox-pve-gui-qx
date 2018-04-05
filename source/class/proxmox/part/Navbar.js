@@ -125,6 +125,29 @@ qx.Class.define("proxmox.part.Navbar", {
                     }
                     break;
 
+                case "pool":
+                    data = {
+                        label: "root",
+                        children: [
+                            {
+                                label: this.tr("Summary"),
+                                icon: "@FontAwesome/book",
+                                id: "summary"
+                            },
+                            {
+                                label: this.tr("Members"),
+                                icon: "@FontAwesome/th",
+                                id: "content"
+                            },
+                            {
+                                label: this.tr("Permissions"),
+                                icon: "@FontAwesome/unlock",
+                                id: "permissions"
+                            },
+                        ]
+                    }
+                    break;
+
                 case "lxc":
                     data = {
                         label: "root",

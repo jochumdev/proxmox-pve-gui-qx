@@ -132,7 +132,7 @@ qx.Class.define("proxmox.Application", {
       });
 
       // Search Field
-      var sr = new proxmox.part.SearchResources("cellTap", ["type", "description", "pool"]);
+      var sr = new proxmox.part.SearchResources("cellTap", ["type", "description", "node", "pool"]);
       var srf = sr.getSearchField();
       var srTable = sr.getContainer();
       var searchWindow = new proxmox.window.SearchTable(srTable);
@@ -324,7 +324,7 @@ qx.Class.define("proxmox.Application", {
       qx.application.Routing.DEFAULT_PATH = '/datacenter/search';
       var r = this._router = new qx.application.Routing();
 
-      r.onGet("^\/datacenter\/?(?:([a-z0-9\-\/]*))$", (data) => {
+      r.onGet("^\/datacenter\/?(?:([a-zA-Z0-9\-\/]*))$", (data) => {
         var oldParams = this.getRouteParams();
         var routeParams = {
           method: "GET",
@@ -335,7 +335,7 @@ qx.Class.define("proxmox.Application", {
         this.setPageView(proxmox.page.Datacenter, routeParams);
       });
 
-      r.onGet('/storage/{node}/{storage}\/?(?:([a-z0-9\-\/]*))$', (data) => {
+      r.onGet('/storage/{node}/{storage}\/?(?:([a-zA-Z0-9\-\/]*))$', (data) => {
         var id = "storage/" + data.params.node + "/" + data.params.storage;
         var oldParams = this.getRouteParams();
         var routeParams = {
@@ -348,7 +348,7 @@ qx.Class.define("proxmox.Application", {
         this.setPageView(proxmox.page.Storage, routeParams);
       });
 
-      r.onGet('^\/(node|lxc|qemu|type)+\/([a-z0-9]+)\/?(?:([a-z0-9\-\/]*))$', (data) => {
+      r.onGet('^\/(node|lxc|qemu|type|pool)+\/([a-zA-Z0-9]+)\/?(?:([a-zA-Z0-9\-\/]*))$', (data) => {
         var id = data.params[0] + "/" + data.params[1];
         var oldParams = this.getRouteParams();
         var routeParams = {
@@ -371,6 +371,9 @@ qx.Class.define("proxmox.Application", {
             break;
           case "type":
             clazz = proxmox.page.Type;
+            break;
+          case "pool":
+            clazz = proxmox.page.Pool;
             break;
           default:
             clazz = proxmox.page.Empty;

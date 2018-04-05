@@ -16,8 +16,8 @@ qx.Class.define("proxmox.part.ServerBrowser", {
             // delegate implementation
             bindItem: function (controller, item, id) {
                 controller.bindDefaultProperties(item, id);
-                controller.bindProperty("type", "type", null, item, id);
                 controller.bindProperty("id", "id", null, item, id);
+                controller.bindProperty("type", "type", null, item, id);
                 controller.bindProperty("type", "iconClasses", {
                     converter: function (data) {
                         switch (data) {
@@ -35,6 +35,9 @@ qx.Class.define("proxmox.part.ServerBrowser", {
                                 break;
                             case "qemu":
                                 return ["fa", "fa-desktop", "x-tree-icon-custom"];
+                                break;
+                            case "pool":
+                                return ["fa", "fa-tags", "x-tree-icon-custom"];
                                 break;
                             default:
                                 return ["fa", "fa-server", "x-tree-icon-custom"];
@@ -94,8 +97,12 @@ qx.Class.define("proxmox.part.ServerBrowser", {
             var sr = sm.getService("cluster/resources");
             that.setModel(sr.getModel());
 
-            sr.addListener("changeModel", (e) => {
-                that.setModel(e.getData());
+            sr.addListener("changePromise", (e) => {
+                e.getData().then((model) => {
+                    that.setModel(model);
+                }).catch((ex) => {
+                    console.log(ex);
+                });
             });
         }
         listenToService();
@@ -204,7 +211,7 @@ qx.Class.define("proxmox.part.ServerBrowser", {
                             nodes[info.node] = { children: [] };
                         }
 
-                        if (info.type == "node") {
+                        if (info.type == "node" || info.type == "pool") {
                             nodes[info.node] = Object.assign({ label: info.description, type: info.type, status: info.status, id: info.fullId }, nodes[info.node]);
                         } else {
                             nodes[info.node].children.push({ label: info.description, type: info.type, status: info.status, id: info.fullId });
@@ -241,6 +248,9 @@ qx.Class.define("proxmox.part.ServerBrowser", {
                                 case "storage":
                                     folders[info.type] = { label: this.tr("Storage"), type: "storage", id: "type/storage", children: [] }
                                     break;
+                                case "pool":
+                                    folders[info.type] = { label: this.tr("Resource Pool"), type: "pool", id: "type/pool", children: [] }
+                                    break;
                             }
                         }
 
@@ -262,7 +272,7 @@ qx.Class.define("proxmox.part.ServerBrowser", {
 
                     model.forEach((node) => {
                         var info = node.toJSObject();
-                        if (!(info.node in nodes)) {
+                        if (info.node !== "" && !(info.node in nodes)) {
                             nodes[info.node] = { children: [] };
                         }
                         if (info.type == "storage") {
@@ -284,16 +294,37 @@ qx.Class.define("proxmox.part.ServerBrowser", {
                     break;
 
                 case "pool":
-                    var children = [];
+                    var nopool = [];
+                    var pools = {};
 
                     model.forEach((node) => {
                         var info = node.toJSObject();
-                        if (info.type == "lxc" || info.type == "qemu") {
-                            children.push({ label: info.description, type: info.type, status: info.status, id: info.fullId });
+                        if (info.type == "lxc" || info.type == "qemu" || info.type == "pool") {
+                            if (info.pool === "") {
+                                nopool.push({ label: info.description, type: info.type, status: info.status, id: info.fullId });
+                            } else {
+                                if (!(info.pool in pools)) {
+                                    pools[info.pool] = { children: [] };
+                                }
+
+                                if (info.type == "pool") {
+                                    pools[info.pool] = Object.assign({ label: info.description, type: info.type, status: info.status, id: info.fullId }, pools[info.pool]);
+                                } else {
+                                    pools[info.pool].children.push({ label: info.description, type: info.type, status: info.status, id: info.fullId });
+                                }
+                            }
                         }
                     });
 
+                    var children = [];
+                    Object.keys(pools).forEach((key) => {
+                        pools[key].children.sort(this.__sortById);
+                        children.push(pools[key]);
+                    });
                     children.sort(this.__sortById);
+
+                    nopool.sort(this.__sortById);
+                    children.push(...nopool);
 
                     data.children = children;
                     break;
