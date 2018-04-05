@@ -61,7 +61,6 @@ qx.Class.define("proxmox.window.Login", {
                     controller.getModel().getPassword(),
                     controller.getModel().getRealm(),
                     controller.getModel().getLanguage()
-                ).then(() => this.close()
                 ).catch((ex) => {
                     console.log(ex);
                     console.log("Login failed");

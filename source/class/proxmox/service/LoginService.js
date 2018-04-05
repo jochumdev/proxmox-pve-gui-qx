@@ -35,6 +35,7 @@ qx.Class.define("proxmox.service.LoginService", {
                     };
 
                     var app = qx.core.Init.getApplication();
+                    app.getLocalStore().setItem("qx-username", model.getUsername());
                     app.setCsrfPreventionToken(model.getCSRFPreventionToken());
                     app.fireDataEvent("changeLogin", loginData);
                 })
@@ -46,6 +47,24 @@ qx.Class.define("proxmox.service.LoginService", {
 
             var app = qx.core.Init.getApplication();
             app.fireDataEvent("changeLogin", { login: false });
+        },
+
+        checkLoggedIn: function() {
+            var app = qx.core.Init.getApplication();
+            var username = app.getLocalStore().getItem("qx-username");
+            if (!username) {
+                app.fireDataEvent("changeLogin", { login: false });
+                return;
+            }
+
+            this.fetch({
+                username: username,
+                password: qx.module.Cookie.get("PVEAuthCookie")
+            }).then((model) => {
+                app.fireDataEvent("changeLogin", { username: username, login: true });
+            }).catch((ex) => {
+                app.fireDataEvent("changeLogin", { login: false });
+            });
         }
     }
 });

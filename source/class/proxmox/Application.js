@@ -42,6 +42,8 @@ qx.Class.define("proxmox.Application", {
     _serviceManager: null,
     _servicesTimer: null,
 
+    _localStore: null,
+
     _router: null,
 
     /**
@@ -88,6 +90,11 @@ qx.Class.define("proxmox.Application", {
       };
       this.setRouteParams(defaultRouteParams);
       this._buildRoutes();
+
+      /**
+       * Localstore
+       */
+      this._localStore = new qx.bom.Storage.getLocal();
 
       /**
        * ServiceManager
@@ -195,8 +202,10 @@ qx.Class.define("proxmox.Application", {
 
           this.getRouter().init();
 
-          this._loginWindow.dispose();
-          this._loginWindow = null;
+          if (this._loginWindow) {
+            this._loginWindow.dispose();
+            this._loginWindow = null;
+          }
         } else {
           // Timer
           this._servicesTimer.stop();
@@ -244,7 +253,7 @@ qx.Class.define("proxmox.Application", {
       // } else {
       //   this.fireDataEvent("changeLogin", {login: false});
       // }
-      this.fireDataEvent("changeLogin", {login: false});
+      this.getServiceManager().getService("internal:login").checkLoggedIn();
     },
 
     setPageView: function (clazz, routeParams) {
@@ -284,6 +293,10 @@ qx.Class.define("proxmox.Application", {
 
     getServiceManager: function() {
       return this._serviceManager;
+    },
+
+    getLocalStore: function() {
+      return this._localStore;
     },
 
     getRouter: function() {
