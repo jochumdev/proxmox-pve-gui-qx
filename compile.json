@@ -27,7 +27,6 @@
 
   "libraries": [
     "../qooxdoo/framework",
-    "node_modules/qxc.require",
     "."
   ]
 }

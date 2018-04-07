@@ -76,15 +76,6 @@ qx.Class.define("proxmox.Application", {
       */
 
       /**
-       * qxc.require
-       */
-      var r = qxc.require.Init.getInstance();
-      r.addResourceManagerPath("fetch", "proxmox/js/fetch.min.js");
-
-      // Must be last
-      r.init();
-
-      /**
        * Routing
        */
       var defaultRouteParams = {
@@ -126,8 +117,12 @@ qx.Class.define("proxmox.Application", {
        */
       var st = this._servicesTimer = new qx.event.Timer(3000);
       st.addListener("interval", () => {
-        this._serviceManager.getService("cluster/resources").fetch();
-        this._serviceManager.getService("cluster/tasks").fetch();
+        this._serviceManager.getService("cluster/resources").fetch(null, true).catch((ex) => {
+          console.error(ex);
+        });
+        this._serviceManager.getService("cluster/tasks").fetch(null, true).catch((ex) => {
+          console.error(ex);
+        });
       });
 
       var main_container = new qx.ui.container.Composite(new qx.ui.layout.Dock());
@@ -166,7 +161,13 @@ qx.Class.define("proxmox.Application", {
       headerColumn.setPadding(5);
       main_container.add(headerColumn, { edge: "north", width: "100%" });
 
-      headerColumn.add(new qx.ui.basic.Image("proxmox/proxmox_logo.png"));
+      var proxmoxLogo = new qx.ui.basic.Image("proxmox/proxmox_logo.png");
+      headerColumn.add(proxmoxLogo);
+      proxmoxLogo.addListener("click", (e) => {
+        var win = window.open("https://www.proxmox.com", '_blank');
+        win.focus();
+      });
+
       var versionLabel = new qx.ui.basic.Label("").set({ appearance: "header-label", rich: true });
       headerColumn.add(versionLabel);
       headerColumn.add(srf);
@@ -194,8 +195,12 @@ qx.Class.define("proxmox.Application", {
         var data = e.getData();
 
         if (data.login) {
-          this._serviceManager.getService("cluster/resources").fetch();
-          this._serviceManager.getService("cluster/tasks").fetch();
+          this._serviceManager.getService("cluster/resources").fetch(null, true).catch((ex) => {
+            console.error(ex);
+          });
+          this._serviceManager.getService("cluster/tasks").fetch(null, true).catch((ex) => {
+            console.error(ex);
+          });
 
           // Timer
           this._servicesTimer.start();
