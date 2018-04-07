@@ -204,21 +204,25 @@ qx.Class.define("proxmox.part.ServerBrowser", {
             switch (mode) {
                 case "server":
                     var nodes = {};
+                    var children = [];
 
                     model.forEach((node) => {
                         var info = node.toJSObject();
-                        if (!(info.node in nodes)) {
-                            nodes[info.node] = { children: [] };
-                        }
-
-                        if (info.type == "node" || info.type == "pool") {
-                            nodes[info.node] = Object.assign({ label: info.description, type: info.type, status: info.status, id: info.fullId }, nodes[info.node]);
+                        if (info.type === "pool") {
+                            children.push({ label: info.description, type: info.type, status: info.status, id: info.fullId });
                         } else {
-                            nodes[info.node].children.push({ label: info.description, type: info.type, status: info.status, id: info.fullId });
+                            if (!(info.node in nodes)) {
+                                nodes[info.node] = { children: [] };
+                            }
+
+                            if (info.type == "node") {
+                                nodes[info.node] = Object.assign({ label: info.description, type: info.type, status: info.status, id: info.fullId }, nodes[info.node]);
+                            } else {
+                                nodes[info.node].children.push({ label: info.description, type: info.type, status: info.status, id: info.fullId });
+                            }
                         }
                     });
 
-                    var children = [];
                     Object.keys(nodes).forEach((key) => {
                         nodes[key].children.sort(this.__sortById);
                         children.push(nodes[key]);
