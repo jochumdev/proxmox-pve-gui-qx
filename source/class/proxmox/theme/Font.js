@@ -8,7 +8,7 @@
 
 ************************************************************************ */
 
-qx.Theme.define("proxmox.ve.desktop.theme.Font",
+qx.Theme.define("proxmox.theme.Font",
   {
     extend : qx.theme.indigo.Font,
 

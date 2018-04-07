@@ -8,7 +8,7 @@
 
 ************************************************************************ */
 
-qx.Theme.define("proxmox.ve.desktop.theme.Appearance",
+qx.Theme.define("proxmox.theme.Appearance",
   {
     extend: qx.theme.indigo.Appearance,
 
