@@ -9,7 +9,7 @@
 ************************************************************************ */
 
 qx.Theme.define("proxmox.theme.Decoration", {
-  extend: qx.theme.indigo.Decoration,
+  extend: qx.theme.simple.Decoration,
 
   decorations: {
     /*

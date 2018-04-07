@@ -10,7 +10,7 @@
 
 qx.Theme.define("proxmox.theme.Font",
   {
-    extend : qx.theme.indigo.Font,
+    extend : qx.theme.simple.Font,
 
     fonts :
     {
@@ -29,7 +29,7 @@ qx.Theme.define("proxmox.theme.Font",
         size : 12,
         family : ["helvetica", "arial", "verdana", "sans-serif"],
         bold : true,
-        color: "font",
+        color: "black",
         lineHeight: 1.8
       },
 
@@ -44,7 +44,7 @@ qx.Theme.define("proxmox.theme.Font",
       {
         size : 11,
         family : ["helvetica", "arial", "verdana", "sans-serif"],
-        color: "font",
+        color: "black",
         lineHeight: 1.8
       },
 
