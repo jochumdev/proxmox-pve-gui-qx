@@ -125,13 +125,40 @@ qx.Theme.define("proxmox.theme.Appearance",
        * Own appearances
        */
       "cssatom": {
-        include: "atom",
-        alias: "atom"
       },
 
       "cssbutton": {
-        include: "button",
-        alias: "atom"
+        alias: "cssatom",
+
+        style: function (states) {
+          var decorator = "button-box";
+
+          if (!states.disabled) {
+            if (states.hovered && !states.pressed && !states.checked) {
+              decorator = "button-box-hovered";
+            } else if (states.hovered && (states.pressed || states.checked)) {
+              decorator = "button-box-pressed-hovered";
+            } else if (states.pressed || states.checked) {
+              decorator = "button-box-pressed";
+            }
+          }
+
+          if (states.invalid && !states.disabled) {
+            decorator += "-invalid";
+          } else if (states.focused) {
+            decorator += "-focused";
+          }
+
+          return {
+            font: "button",
+            decorator: decorator,
+            padding: [0, 5, 0, 2],
+            cursor: states.disabled ? undefined : "pointer",
+            minWidth: 5,
+            minHeight: 5,
+            maxHeight: 22,
+          };
+        }
       },
 
       "header-label": {
@@ -165,7 +192,7 @@ qx.Theme.define("proxmox.theme.Appearance",
       },
 
       "blue-button-frame": {
-        include: "button-frame",
+        include: "cssbutton",
 
         style: function (states) {
           var decorator = "blue-button-box";
@@ -196,6 +223,7 @@ qx.Theme.define("proxmox.theme.Appearance",
 
       "blue-button-header": {
         include: "blue-button-frame",
+        alias: "blue-button-frame",
 
         style: function (states) {
           return {

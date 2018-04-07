@@ -126,6 +126,56 @@ qx.Theme.define("proxmox.theme.Decoration", {
       }
     },
 
+    "blue-button-box-pressed": {
+      include: "blue-button-box",
+
+      style: {
+        gradientStart: ["button-box-bright-pressed", 40],
+        gradientEnd: ["button-box-dark-pressed", 70],
+        backgroundColor: "button-box-bright-pressed"
+      }
+    },
+
+    "blue-button-box-pressed-hovered": {
+      include: "blue-button-box-pressed",
+
+      style: {
+        color: "button-border-hovered"
+      }
+    },
+
+    "blue-button-box-hovered": {
+      include: "blue-button-box",
+
+      style: {
+        color: "button-border-hovered"
+      }
+    },
+
+    "blue-button-box-focused":
+      {
+        include: "blue-button-box",
+
+        style:
+          {
+            color: "background-selected"
+          }
+      },
+
+    "blue-button-box-pressed-focused":
+      {
+        include: "blue-button-box-pressed",
+
+        style:
+          {
+            color: "background-selected"
+          }
+      },
+
+    "blue-button-box-hovered-focused": { include: "blue-button-box-focused" },
+
+    "blue-button-box-pressed-hovered-focused": { include: "blue-button-box-pressed-focused" },
+
     /* white button */
     "flat-white-button-box": {
       style: {
