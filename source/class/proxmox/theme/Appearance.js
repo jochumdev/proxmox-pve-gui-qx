@@ -91,14 +91,14 @@ qx.Theme.define("proxmox.theme.Appearance",
         }
       },
 
-      "tree-folder/open":
-        {
-          style: function (states) {
-            return {
-              source: states.opened ? "@FontAwesome/angle-down" : "@FontAwesome/angle-right"
-            };
-          }
-        },
+      // "tree-folder/open":
+      //   {
+      //     style: function (states) {
+      //       return {
+      //         source: states.opened ? "@FontAwesome/angle-down" : "@FontAwesome/angle-right"
+      //       };
+      //     }
+      //   },
 
       "splitpane/splitter":
         {
@@ -124,6 +124,16 @@ qx.Theme.define("proxmox.theme.Appearance",
       /*
        * Own appearances
        */
+      "cssatom": {
+        include: "atom",
+        alias: "atom"
+      },
+
+      "cssbutton": {
+        include: "button",
+        alias: "atom"
+      },
+
       "header-label": {
         style: function (states) {
           return {

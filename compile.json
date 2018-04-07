@@ -21,7 +21,11 @@
       "class": "proxmox.Application",
       "theme": "proxmox.theme.Theme",
       "name": "proxmox",
-      "writeIndexHtmlToRoot": true
+      "writeIndexHtmlToRoot": true,
+      "environment": {
+        "qx.debug": true,
+        "proxmox.debug-routing": false
+      }
     }
   ],
 

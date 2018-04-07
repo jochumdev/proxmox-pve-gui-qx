@@ -18,15 +18,22 @@ qx.Class.define("proxmox.part.Navbar", {
 
         tree.setDelegate({
             bindItem: function (controller, item, id) {
-                controller.bindDefaultProperties(item, id);
+                controller.bindProperty("label", "label", null, item, id);
+                controller.bindProperty("icon", "cssClasses", {
+                    converter: function (data) {
+                        if (data.slice(0, 6) === "image:") {
+                            return data.slice(6);
+                        }
+
+                        return ["fa", `fa-${data}`, "x-treelist-item-icon"];
+                    }
+                }, item, id);
                 controller.bindProperty("id", "id", null, item, id);
             },
 
             // delegate implementation
             createItem: function () {
-                return new proxmox.widget.IdTreeItem().set({
-                    appearance: "navbar-tree-item"
-                });
+                return new proxmox.ui.NavbarTreeItem();
             }
         });
 
@@ -95,7 +102,7 @@ qx.Class.define("proxmox.part.Navbar", {
                         children: [
                             {
                                 label: this.tr("Search"),
-                                icon: "@FontAwesome/search",
+                                icon: "search",
                                 id: "search"
                             }
                         ]
@@ -108,17 +115,17 @@ qx.Class.define("proxmox.part.Navbar", {
                         children: [
                             {
                                 label: this.tr("Summary"),
-                                icon: "@FontAwesome/book",
+                                icon: "book",
                                 id: "summary"
                             },
                             {
                                 label: this.tr("Content"),
-                                icon: "@FontAwesome/th",
+                                icon: "th",
                                 id: "content"
                             },
                             {
                                 label: this.tr("Permissions"),
-                                icon: "@FontAwesome/unlock",
+                                icon: "unlock",
                                 id: "permissions"
                             },
                         ]
@@ -131,17 +138,17 @@ qx.Class.define("proxmox.part.Navbar", {
                         children: [
                             {
                                 label: this.tr("Summary"),
-                                icon: "@FontAwesome/book",
+                                icon: "book",
                                 id: "summary"
                             },
                             {
                                 label: this.tr("Members"),
-                                icon: "@FontAwesome/th",
+                                icon: "th",
                                 id: "content"
                             },
                             {
                                 label: this.tr("Permissions"),
-                                icon: "@FontAwesome/unlock",
+                                icon: "unlock",
                                 id: "permissions"
                             },
                         ]
@@ -154,84 +161,84 @@ qx.Class.define("proxmox.part.Navbar", {
                         children: [
                             {
                                 label: this.tr("Summary"),
-                                icon: "@FontAwesome/book",
+                                icon: "book",
                                 id: "summary"
                             },
                             {
                                 label: this.tr("Console"),
-                                icon: "@FontAwesome/terminal",
+                                icon: "terminal",
                                 id: "console"
                             },
                             {
                                 label: this.tr("Resources"),
-                                icon: "@FontAwesome/cube",
+                                icon: "cube",
                                 id: "resources"
                             },
                             {
                                 label: this.tr("Network"),
-                                icon: "@FontAwesome/exchange",
+                                icon: "exchange",
                                 id: "network"
                             },
                             {
                                 label: this.tr("DNS"),
-                                icon: "@FontAwesome/globe",
+                                icon: "globe",
                                 id: "dns"
                             },
                             {
                                 label: this.tr("Options"),
-                                icon: "@FontAwesome/cog",
+                                icon: "cog",
                                 id: "options"
                             },
                             {
                                 label: this.tr("Task History"),
-                                icon: "@FontAwesome/list",
+                                icon: "list",
                                 id: "task-history"
                             },
                             {
                                 label: this.tr("Backup"),
-                                icon: "@FontAwesome/floppy-o",
+                                icon: "floppy-o",
                                 id: "backup"
                             },
                             {
                                 label: this.tr("Replication"),
-                                icon: "@FontAwesome/retweet",
+                                icon: "retweet",
                                 id: "replication"
                             },
                             {
                                 label: this.tr("Snapshots"),
-                                icon: "@FontAwesome/history",
+                                icon: "history",
                                 id: "snapshots"
                             },
                             {
                                 label: this.tr("Firewall"),
-                                icon: "@FontAwesome/shield",
+                                icon: "shield",
                                 id: "firewall",
                                 children: [
                                     {
                                         label: this.tr("Options"),
-                                        icon: "@FontAwesome/cog",
+                                        icon: "cog",
                                         id: "firewall/options"
                                     },
                                     {
                                         label: this.tr("Alias"),
-                                        icon: "@FontAwesome/external-link",
+                                        icon: "external-link",
                                         id: "firewall/alias"
                                     },
                                     {
                                         label: this.tr("IPSet"),
-                                        icon: "@FontAwesome/list-ol",
+                                        icon: "list-ol",
                                         id: "firewall/ipset"
                                     },
                                     {
                                         label: this.tr("Log"),
-                                        icon: "@FontAwesome/list",
+                                        icon: "list",
                                         id: "firewall/log"
                                     }
                                 ]
                             },
                             {
                                 label: this.tr("Permissions"),
-                                icon: "@FontAwesome/unlock",
+                                icon: "unlock",
                                 id: "firewall/permissions"
                             }
                         ]
@@ -244,79 +251,79 @@ qx.Class.define("proxmox.part.Navbar", {
                         children: [
                             {
                                 label: this.tr("Summary"),
-                                icon: "@FontAwesome/book",
+                                icon: "book",
                                 id: "summary"
                             },
                             {
                                 label: this.tr("Console"),
-                                icon: "@FontAwesome/terminal",
+                                icon: "terminal",
                                 id: "console"
                             },
                             {
                                 label: this.tr("Hardware"),
-                                icon: "@FontAwesome/desktop",
+                                icon: "desktop",
                                 id: "hardware"
                             },
                             {
                                 label: this.tr("Options"),
-                                icon: "@FontAwesome/cog",
+                                icon: "cog",
                                 id: "options"
                             },
                             {
                                 label: this.tr("Task History"),
-                                icon: "@FontAwesome/list",
+                                icon: "list",
                                 id: "task-history"
                             },
                             {
                                 label: this.tr("Monitor"),
-                                icon: "@FontAwesome/eye",
+                                icon: "eye",
                                 id: "monitor"
                             },
                             {
                                 label: this.tr("Backup"),
-                                icon: "@FontAwesome/floppy-o",
+                                icon: "floppy-o",
                                 id: "backup"
                             },
                             {
                                 label: this.tr("Replication"),
-                                icon: "@FontAwesome/retweet",
+                                icon: "retweet",
                                 id: "replication"
                             },
                             {
                                 label: this.tr("Snapshots"),
-                                icon: "@FontAwesome/history",
+                                icon: "history",
                                 id: "snapshots"
                             },
                             {
                                 label: this.tr("Firewall"),
-                                icon: "@FontAwesome/shield",
+                                icon: "shield",
                                 id: "firewall",
                                 children: [
                                     {
                                         label: this.tr("Options"),
-                                        icon: "@FontAwesome/cog",
+                                        icon: "cog",
                                         id: "firewall/options"
                                     },
                                     {
                                         label: this.tr("Alias"),
-                                        icon: "@FontAwesome/external-link",
+                                        icon: "external-link",
                                         id: "firewall/alias"
                                     },
                                     {
                                         label: this.tr("IPSet"),
-                                        icon: "@FontAwesome/list-ol",
+                                        icon: "list-ol",
                                         id: "firewall/ipset"
                                     },
                                     {
                                         label: this.tr("Log"),
-                                        icon: "@FontAwesome/list",
+                                        icon: "list",
                                         id: "firewall/log"
                                     }
                                 ]
                             },
                             {
                                 label: this.tr("Permissions"),
-                                icon: "@FontAwesome/unlock",
+                                icon: "unlock",
                                 id: "permissions"
                             }
                         ]
@@ -329,114 +336,114 @@ qx.Class.define("proxmox.part.Navbar", {
                         children: [
                             {
                                 label: this.tr("Summary"),
-                                icon: "@FontAwesome/book",
+                                icon: "book",
                                 id: "summary"
                             },
                             {
                                 label: this.tr("Shell"),
-                                icon: "@FontAwesome/terminal",
+                                icon: "terminal",
                                 id: "shell"
                             },
                             {
                                 label: this.tr("System"),
-                                icon: "@FontAwesome/cogs",
+                                icon: "cogs",
                                 id: "system",
                                 children: [
                                     {
                                         label: this.tr("Network"),
-                                        icon: "@FontAwesome/exchange",
+                                        icon: "exchange",
                                         id: "system/network"
                                     },
                                     {
                                         label: this.tr("DNS"),
-                                        icon: "@FontAwesome/globe",
+                                        icon: "globe",
                                         id: "system/dns"
                                     },
                                     {
                                         label: this.tr("Time"),
-                                        icon: "@FontAwesome/clock-o",
+                                        icon: "clock-o",
                                         id: "system/time"
                                     },
                                     {
                                         label: this.tr("Syslog"),
-                                        icon: "@FontAwesome/list",
+                                        icon: "list",
                                         id: "system/syslog"
                                     }
                                 ]
                             },
                             {
                                 label: this.tr("Updates"),
-                                icon: "@FontAwesome/refresh",
+                                icon: "refresh",
                                 id: "updates"
                             },
                             {
                                 label: this.tr("Firewall"),
-                                icon: "@FontAwesome/shield",
+                                icon: "shield",
                                 id: "firewall",
                                 children: [
                                     {
                                         label: this.tr("Options"),
-                                        icon: "@FontAwesome/cog",
+                                        icon: "cog",
                                         id: "firewall/options"
                                     },
                                     {
                                         label: this.tr("Log"),
-                                        icon: "@FontAwesome/list",
+                                        icon: "list",
                                         id: "firewall/log"
                                     }
                                 ]
                             },
                             {
                                 label: this.tr("Disks"),
-                                icon: "@FontAwesome/hdd-o",
+                                icon: "hdd-o",
                                 id: "disks"
                             },
                             {
                                 label: this.tr("Ceph"),
-                                icon: "proxmox/logo-ceph.png",
+                                icon: "image:proxmox/logo-ceph.png",
                                 id: "ceph",
                                 children: [
                                     {
                                         label: this.tr("Configuration"),
-                                        icon: "@FontAwesome/cog",
+                                        icon: "cog",
                                         id: "ceph/configuration"
                                     },
                                     {
                                         label: this.tr("Monitor"),
-                                        icon: "@FontAwesome/television",
+                                        icon: "television",
                                         id: "ceph/monitor"
                                     },
                                     {
                                         label: this.tr("OSD"),
-                                        icon: "@FontAwesome/hdd-o",
+                                        icon: "hdd-o",
                                         id: "ceph/osd"
                                     },
                                     {
                                         label: this.tr("Pools"),
-                                        icon: "@FontAwesome/sitemap",
+                                        icon: "sitemap",
                                         id: "ceph/pools"
                                     },
                                     {
                                         label: this.tr("Log"),
-                                        icon: "@FontAwesome/list",
+                                        icon: "list",
                                         id: "ceph/log"
                                     }
                                 ]
                             },
                             {
                                 label: this.tr("Replication"),
-                                icon: "@FontAwesome/retweet",
+                                icon: "retweet",
                                 id: "replication"
                             },
                             {
                                 label: this.tr("Task History"),
-                                icon: "@FontAwesome/list",
+                                icon: "list",
                                 id: "task-history"
                             },
 
                             {
                                 label: this.tr("Subscription"),
-                                icon: "@FontAwesome/life-ring",
+                                icon: "life-ring",
                                 id: "subscription"
                             }
                         ]
@@ -449,101 +456,101 @@ qx.Class.define("proxmox.part.Navbar", {
                         children: [
                             {
                                 label: this.tr("Search"),
-                                icon: "@FontAwesome/search",
+                                icon: "search",
                                 id: "search"
                             },
                             {
                                 label: this.tr("Summary"),
-                                icon: "@FontAwesome/book",
+                                icon: "book",
                                 id: "summary"
                             },
                             {
                                 label: this.tr("Options"),
-                                icon: "@FontAwesome/cog",
+                                icon: "cog",
                                 id: "options"
                             },
                             {
                                 label: this.tr("Storage"),
-                                icon: "@FontAwesome/database",
+                                icon: "database",
                                 id: "storage"
                             },
                             {
                                 label: this.tr("Backup"),
-                                icon: "@FontAwesome/floppy-o",
+                                icon: "floppy-o",
                                 id: "backup"
                             },
                             {
                                 label: this.tr("Replication"),
-                                icon: "@FontAwesome/retweet",
+                                icon: "retweet",
                                 id: "replication"
                             },
                             {
                                 label: this.tr("Permissions"),
-                                icon: "@FontAwesome/unlock",
+                                icon: "unlock",
                                 id: "permissions",
                                 children: [
                                     {
                                         label: this.tr("Users"),
-                                        icon: "@FontAwesome/user",
+                                        icon: "user",
                                         id: "permissions/users"
                                     },
                                     {
                                         label: this.tr("Groups"),
-                                        icon: "@FontAwesome/users",
+                                        icon: "users",
                                         id: "permissions/groups"
                                     },
                                     {
                                         label: this.tr("Pools"),
-                                        icon: "@FontAwesome/tags",
+                                        icon: "tags",
                                         id: "permissions/pools"
                                     },
                                     {
                                         label: this.tr("Roles"),
-                                        icon: "@FontAwesome/male",
+                                        icon: "male",
                                         id: "permissions/roles"
                                     },
                                     {
                                         label: this.tr("Authentication"),
-                                        icon: "@FontAwesome/key",
+                                        icon: "key",
                                         id: "permissions/authentication"
                                     }
                                 ]
                             },
                             {
                                 label: this.tr("HA"),
-                                icon: "@FontAwesome/heartbeat",
+                                icon: "heartbeat",
                                 id: "ha"
                             },
                             {
                                 label: this.tr("Firewall"),
-                                icon: "@FontAwesome/shield",
+                                icon: "shield",
                                 id: "firewall",
                                 children: [
                                     {
                                         label: this.tr("Options"),
-                                        icon: "@FontAwesome/cog",
+                                        icon: "cog",
                                         id: "firewall/options"
                                     },
                                     {
                                         label: this.tr("Security Group"),
-                                        icon: "@FontAwesome/users",
+                                        icon: "users",
                                         id: "firewall/security-group"
                                     },
                                     {
                                         label: this.tr("Alias"),
-                                        icon: "@FontAwesome/external-link",
+                                        icon: "external-link",
                                         id: "firewall/alias"
                                     },
                                     {
                                         label: this.tr("IPSet"),
-                                        icon: "@FontAwesome/list-ol",
+                                        icon: "list-ol",
                                         id: "firewall/ipset"
                                     }
                                 ]
                             },
                             {
                                 label: this.tr("Support"),
-                                icon: "@FontAwesome/comments-o",
+                                icon: "comments-o",
                                 id: "support"
                             },
                         ]

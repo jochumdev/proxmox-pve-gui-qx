@@ -174,17 +174,17 @@ qx.Class.define("proxmox.Application", {
       headerColumn.add(new qx.ui.basic.Atom(), { flex: 1 });
       var loginLabel = new qx.ui.basic.Label("").set({ appearance: "header-label" });
       headerColumn.add(loginLabel);
-      headerColumn.add(new qx.ui.basic.Image("@FontAwesome/cog").set({ appearance: "header-label" }));
-      var docButton = new qx.ui.form.Button(this.tr("Documentation"), "@FontAwesome/book").set({ appearance: "white-button-header" });
+      headerColumn.add(new proxmox.ui.basic.CssImage(["fa", "fa-gear"]).set({ appearance: "header-label" }));
+      var docButton = new proxmox.ui.form.CssButton(this.tr("Documentation"), ["fa", "fa-book"]).set({ appearance: "white-button-header" });
       docButton.addListener("execute", (e) => {
         var win = window.open("/pve-docs/index.html", '_blank');
         win.focus();
       });
       headerColumn.add(docButton);
-      headerColumn.add(new qx.ui.form.Button(this.tr("Create VM"), "@FontAwesome/desktop").set({ appearance: "blue-button-header" }));
-      var buttonCreateCT = new qx.ui.form.Button(this.tr("Create CT"), "@FontAwesome/cube").set({ appearance: "blue-button-header" });
+      headerColumn.add(new proxmox.ui.form.CssButton(this.tr("Create VM"), ["fa", "fa-desktop"]).set({ appearance: "blue-button-header" }));
+      var buttonCreateCT = new proxmox.ui.form.CssButton(this.tr("Create CT"), ["fa", "fa-cube"]).set({ appearance: "blue-button-header" });
       headerColumn.add(buttonCreateCT);
-      var logoutButton = new qx.ui.form.Button(this.tr("Logout"), "@FontAwesome/sign-out").set({ appearance: "blue-button-header" });
+      var logoutButton = new proxmox.ui.form.CssButton(this.tr("Logout"), ["fa", "fa-sign-out"]).set({ appearance: "blue-button-header" });
       headerColumn.add(logoutButton);
 
       logoutButton.addListener("execute", (e) => {
@@ -271,12 +271,23 @@ qx.Class.define("proxmox.Application", {
     },
 
     setPageView: function (clazz, routeParams) {
-      if (this._contentViewClazz === clazz && this._contentView.getId() == routeParams.id) {
+      if (this._contentViewClazz === clazz && this._contentView.getId() === routeParams.id) {
+          if (qx.core.Environment.get("proxmox.debug-routing")) {
+            console.debug(`Navigating to ("${routeParams.id}" -> "${routeParams.pageId}")`);
+          }
+
           this._contentView.navigateToPageId(routeParams.pageId);
           this.setRouteParams(routeParams);
           return;
       }
 
+      if (qx.core.Environment.get("proxmox.debug-routing")) {
+        if (this._contentView) {
+          console.debug(`Switching view from ("${this._contentView.getId()}") to ("${routeParams.id}" -> "${routeParams.pageId}")`);
+        } else {
+          console.debug(`Setting view to "${routeParams.id}" -> "${routeParams.pageId}"`);
+        }
+      }
       this._contentViewClazz = clazz;
 
       if (this._contentContainer != null) {
@@ -319,7 +330,8 @@ qx.Class.define("proxmox.Application", {
 
     navigateTo: function(id, pageId) {
       if (!id && !pageId) {
-        return;
+        id = "datacenter";
+        pageId = "search";
       }
 
       var routeParams = this.getRouteParams();
@@ -331,7 +343,11 @@ qx.Class.define("proxmox.Application", {
         pageId = routeParams.pageId;
       }
 
-      this._router.executeGet("/" + id + "/" + pageId);
+      var route = "/" + id + "/" + pageId;
+      if (qx.core.Environment.get("proxmox.debug-routing")) {
+        console.debug(`Executing GET route: "${route}"`);
+      }
+      this._router.executeGet(route);
     },
 
     _buildRoutes: function() {

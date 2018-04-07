@@ -24,8 +24,7 @@ qx.Mixin.define("proxmox.page.core.MResourcePage", {
         id: {
             check: "String",
             apply: "_applyId",
-            nullable: true,
-            init: null
+            nullable: true
         },
 
         resourceData: {
@@ -87,7 +86,9 @@ qx.Mixin.define("proxmox.page.core.MResourcePage", {
             }
 
             subPage.setPage(this);
-            subPage.bind("id", this, "id");
+            subPage.set({
+                id: this.getId(),
+            });
 
             if (this._currentSubPageContainer != null) {
                 this._contentContainer.remove(this._currentSubPageContainer);

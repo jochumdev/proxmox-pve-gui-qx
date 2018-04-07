@@ -1,4 +1,4 @@
-qx.Class.define("proxmox.widget.Tree", {
+qx.Class.define("proxmox.ui.Tree", {
     extend: qx.ui.tree.VirtualTree,
 
     members: {
@@ -27,7 +27,7 @@ qx.Class.define("proxmox.widget.Tree", {
          * Restores the tree state from the getTreeState results.
          *
          * @param idProperty Property that identifies a tree node.
-         * @param state State result from {proxmox.widget.Tree.getTreeState}
+         * @param state State result from {proxmox.ui.Tree.getTreeState}
          */
         restoreTreeState: function(idProperty, state) {
             var table = this.getLookupTable();

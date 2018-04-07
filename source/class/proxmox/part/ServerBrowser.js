@@ -10,7 +10,7 @@ qx.Class.define("proxmox.part.ServerBrowser", {
 
         var app = qx.core.Init.getApplication();
 
-        var tree = this._tree = new proxmox.widget.Tree(null, "label", "children");
+        var tree = this._tree = new proxmox.ui.Tree(null, "label", "children");
         tree.setOpenMode("tap");
         tree.setDelegate({
             // delegate implementation
@@ -69,7 +69,7 @@ qx.Class.define("proxmox.part.ServerBrowser", {
 
             // delegate implementation
             createItem: function () {
-                return new proxmox.widget.CssTreeItem();
+                return new proxmox.ui.ServerBrowserTreeItem();
             }
         });
 

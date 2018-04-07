@@ -54,7 +54,7 @@ qx.Class.define("proxmox.page.Type", {
 
                 actionsBar.add(headline);
                 actionsBar.add(new qx.ui.basic.Atom(), { flex: 1 });
-                actionsBar.add(new qx.ui.form.Button(this.tr("Help"), "@FontAwesome/question-circle"));
+                actionsBar.add(new qx.ui.form.CssButton(this.tr("Help"), ["fa", "fa-question-circle"]));
 
                 var navbar = new proxmox.part.Navbar("searchOnly");
                 ct.add(navbar.getContainer(), {edge: "west", height: "100%"});

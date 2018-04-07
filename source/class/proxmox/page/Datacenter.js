@@ -32,7 +32,7 @@ qx.Class.define("proxmox.page.Datacenter", {
                 var headline = new qx.ui.basic.Label(this.tr("Datacenter")).set({ appearance: "actionsbar-label" });
                 actionsBar.add(headline);
                 actionsBar.add(new qx.ui.basic.Atom(), { flex: 1 });
-                actionsBar.add(new qx.ui.form.Button(this.tr("Help"), "@FontAwesome/question-circle"));
+                actionsBar.add(new proxmox.ui.form.CssButton(this.tr("Help"), ["fa", "fa-question-circle"]));
 
                 var navbar = new proxmox.part.Navbar("datacenter");
                 ct.add(navbar.getContainer(), {edge: "west", height: "100%"});

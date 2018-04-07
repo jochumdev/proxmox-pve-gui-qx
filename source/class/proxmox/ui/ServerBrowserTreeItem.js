@@ -1,24 +1,18 @@
-qx.Class.define("proxmox.widget.CssTreeItem", {
-    extend: qx.ui.tree.VirtualTreeItem,
+qx.Class.define("proxmox.ui.ServerBrowserTreeItem", {
+    extend: proxmox.ui.tree.CssVirtualTreeItem,
 
     properties: {
         iconClasses: {
             check: "Array",
             event: "changeIconClasses",
-            apply: "_applyCssClasses",
+            apply: "_updateCssClasses",
             nullable: true
         },
 
         statusClasses: {
             check: "Array",
             event: "changeStatusClasses",
-            apply: "_applyCssClasses",
-            nullable: true
-        },
-
-        cssClasses: {
-            check: "Array",
-            event: "changeCssClasses",
+            apply: "_updateCssClasses",
             nullable: true
         },
 
@@ -34,23 +28,7 @@ qx.Class.define("proxmox.widget.CssTreeItem", {
     },
 
     members: {
-        // overridden
-        _createChildControlImpl: function (id, hash) {
-            var control;
-
-            switch (id) {
-                case "icon":
-                    control = new proxmox.widget.CssImage().set({
-                        anonymous: true
-                    });
-                    this.bind("cssClasses", control, "cssClasses");
-                    break;
-            }
-
-            return control || this.base(arguments, id);
-        },
-
-        _applyCssClasses: function() {
+        _updateCssClasses: function() {
             var ic = this.getIconClasses();
             var sc = this.getStatusClasses();
 

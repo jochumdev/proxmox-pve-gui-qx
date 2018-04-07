@@ -8,7 +8,7 @@
 
 ************************************************************************ */
 
-qx.Class.define("proxmox.widget.CssImage",
+qx.Class.define("proxmox.ui.basic.CssImage",
 {
   extend : qx.ui.core.Widget,
 
@@ -16,7 +16,7 @@ qx.Class.define("proxmox.widget.CssImage",
     this.base(arguments);
 
     if (cssClasses) {
-      this.setSetCssClasses(cssClasses);
+      this.setCssClasses(cssClasses);
     }
   },
 

@@ -53,7 +53,7 @@ qx.Class.define("proxmox.window.Login", {
         var saveUsername = new qx.ui.form.CheckBox(this.tr("Save User name"));
         form.addButton(saveUsername);
 
-        var loginbutton = new qx.ui.form.Button(this.tr("Login"));
+        var loginbutton = new proxmox.ui.form.CssButton(this.tr("Login"));
         loginbutton.addListener("execute", function () {
             if (form.validate()) {
                 var service = sm.getService("internal:login").login(

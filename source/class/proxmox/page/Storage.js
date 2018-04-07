@@ -22,7 +22,7 @@ qx.Class.define("proxmox.page.Storage", {
             var headline = new qx.ui.basic.Label(this.getResourceData().getHeadline()).set({ appearance: "actionsbar-label" });
             actionsBar.add(headline);
             actionsBar.add(new qx.ui.basic.Atom(), { flex: 1 });
-            actionsBar.add(new qx.ui.form.Button(this.tr("Help"), "@FontAwesome/question-circle"));
+            actionsBar.add(new proxmox.ui.form.CssButton(this.tr("Help"), ["fa", "fa-question-circle"]));
 
             var navbar = new proxmox.part.Navbar("storage");
             container.add(navbar.getContainer(), {edge: "west", height: "100%"});
