@@ -24,7 +24,7 @@
   },
   "externalResources": {
     "css": [
-      "proxmox/css/proxmox.css",
+      "proxmox.ve.desktop/css/proxmox.css",
       "../../pve2/fa/css/font-awesome.css"
     ]
   }

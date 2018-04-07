@@ -12,6 +12,7 @@
  * This is the main application class of "proxmox"
  *
  * @asset(proxmox/*)
+ * @asset(proxmox.ve.destkop/*)
  */
 qx.Class.define("proxmox.ve.desktop.Application", {
   extend: qx.application.Standalone,
