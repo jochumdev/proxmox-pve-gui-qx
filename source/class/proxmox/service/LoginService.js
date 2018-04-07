@@ -4,10 +4,16 @@ qx.Class.define("proxmox.service.LoginService", {
     construct: function (url, method) {
         this.base(arguments, url, method);
 
-        this.setMethod(proxmox.service.Manager.POST);
+        this.set({
+            method: proxmox.service.Manager.POST,
+        });
+
+        this._app = qx.core.Init.getApplication();
     },
 
     members: {
+        _app: null,
+
         _configureRequest: function (data) {
             var cfg = this.base(arguments, data);
             return cfg;
@@ -24,25 +30,43 @@ qx.Class.define("proxmox.service.LoginService", {
             }
         },
 
-        login: function (username, password, realm) {
+        getUserInfo: function() {
+            var userInfo = this._app.getLocalStore().getItem("qx-userinfo");
+            if (userInfo === null || userInfo === "") {
+                return {
+                    username: "",
+                    fullusername: "",
+                    realm: "pam",
+                    csrfPreventionToken: "",
+                    locale: this._app.getLanguage(),
+                    saveUsername: false,
+                }
+            }
+
+            return userInfo;
+        },
+
+        login: function (username, password, realm, saveUsername) {
             return this.fetch({ username: username, password: password, realm: realm })
                 .then((model) => {
-                    var app = qx.core.Init.getApplication();
                     qx.module.Cookie.set("PVEAuthCookie", model.getTicket(), null, "/");
-                    qx.module.Cookie.set("PVELangCookie", app.getLanguage(), null, "/");
+                    qx.module.Cookie.set("PVELangCookie", this._app.getLanguage(), null, "/");
                     var loginData = {
-                        username: model.getUsername(),
+                        fullusername: model.getUsername(),
                         login: true
                     };
 
-                    var app = qx.core.Init.getApplication();
+                    this._app.getLocalStore().setItem("qx-userinfo", {
+                        username: username,
+                        fullusername: model.getUsername(),
+                        realm: realm,
+                        csrfPreventionToken: model.getCSRFPreventionToken(),
+                        locale: this._app.getLanguage(),
+                        saveUsername: saveUsername,
+                    });
 
-                    app.getLocalStore().setItem("qx-username", model.getUsername());
-
-                    app.setCsrfPreventionToken(model.getCSRFPreventionToken());
-                    app.getLocalStore().setItem("qx-csrfpreventiontoken", model.getCSRFPreventionToken());
-
-                    app.fireDataEvent("changeLogin", loginData);
+                    this._app.setCsrfPreventionToken(model.getCSRFPreventionToken());
+                    this._app.fireDataEvent("changeLogin", loginData);
                 })
         },
 
@@ -50,27 +74,27 @@ qx.Class.define("proxmox.service.LoginService", {
             qx.module.Cookie.del("PVEAuthCookie", "/");
             qx.module.Cookie.del("PVELangCookie", "/");
 
-            var app = qx.core.Init.getApplication();
-            app.fireDataEvent("changeLogin", { login: false });
+            this._app.fireDataEvent("changeLogin", { login: false });
         },
 
         checkLoggedIn: function() {
-            var app = qx.core.Init.getApplication();
-            var username = app.getLocalStore().getItem("qx-username");
-            if (!username) {
-                app.fireDataEvent("changeLogin", { login: false });
+            var userInfo = this.getUserInfo();
+
+            if (userInfo.fullusername === "") {
+                this._app.fireDataEvent("changeLogin", { login: false });
                 return;
             }
 
             this.fetch({
-                username: username,
+                username: userInfo.fullusername,
                 password: qx.module.Cookie.get("PVEAuthCookie")
-            }).then((model) => {
-                app.setLanguage(qx.module.Cookie.get("PVELangCookie"));
-                app.setCsrfPreventionToken(app.getLocalStore().getItem("qx-csrfpreventiontoken"));
-                app.fireDataEvent("changeLogin", { username: username, login: true });
+            }, true).then((model) => {
+
+                this._app.setLanguage(userInfo.locale);
+                this._app.setCsrfPreventionToken(userInfo.csrfPreventionToken);
+                this._app.fireDataEvent("changeLogin", { fullusername: userInfo.fullusername, login: true });
             }).catch((ex) => {
-                app.fireDataEvent("changeLogin", { login: false });
+                this._app.fireDataEvent("changeLogin", { login: false });
             });
         }
     }

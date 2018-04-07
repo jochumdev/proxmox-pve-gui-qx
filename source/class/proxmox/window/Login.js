@@ -6,6 +6,8 @@ qx.Class.define("proxmox.window.Login", {
 
         var app = qx.core.Init.getApplication();
         var sm = this._serviceManager = app.getServiceManager();
+        var loginService = sm.getService("internal:login");
+        var userInfo = loginService.getUserInfo();
 
         var layout = new qx.ui.layout.VBox();
         layout.setSpacing(4);
@@ -22,44 +24,78 @@ qx.Class.define("proxmox.window.Login", {
 
         var form = new qx.ui.form.Form();
 
-        var host = new qx.ui.form.SelectBox();
 
+        var saveUsername = userInfo.saveUsername;
+
+        /**
+         * Username
+         */
         var username = new qx.ui.form.TextField();
         username.setRequired(true);
+        if (saveUsername) {
+            username.setValue(userInfo.username);
+        }
         form.add(username, this.tr("Username"), null, "username");
 
         var password = new qx.ui.form.PasswordField();
         password.setRequired(true);
         form.add(password, this.tr("Password"), null, "password");
 
+        /**
+         * realm
+         */
         var realm = this._realmSelectbox = new qx.ui.form.SelectBox();
         form.add(realm, this.tr("Realm"), null, "realm");
         this._fetchRealms();
         this._serviceManager.addListener("disposedServices", this._fetchRealms, this);
 
-        var language = new qx.ui.form.SelectBox();
-        language.add(new qx.ui.form.ListItem("English").set({ model: "en" }));
-        language.add(new qx.ui.form.ListItem("German").set({ model: "de" }));
-        form.add(language, this.tr("Language"), null, "language");
+        /**
+         * Language
+         */
+        var languages = [
+            { name: "English", shortname: "en" },
+            { name: "German", shortname: "de" },
+        ];
 
-        language.addListener("changeValue", (e) => {
+        var languageBox = new qx.ui.form.SelectBox();
+        languages.forEach((lang) => {
+            var item = new qx.ui.form.ListItem(lang.name).set({ model: lang.shortname });
+            languageBox.add(item);
+            if (userInfo.locale === lang.shortname) {
+                languageBox.setSelection([item]);
+            }
+        });
+
+        form.add(languageBox, this.tr("Language"), null, "language");
+
+        languageBox.addListener("changeValue", (e) => {
             app.setLanguage(e.getData().getModel());
         });
 
+        /**
+         * Save username checkbox
+         */
+        var saveUsernameCheckbox = new qx.ui.form.CheckBox(this.tr("Save User name"));
+        saveUsernameCheckbox.setValue(saveUsername);
+        form.addButton(saveUsernameCheckbox);
+        saveUsernameCheckbox.addListener("changeValue", (e) => {
+            saveUsername = e.getData();
+        });
 
+        /**
+         * Form handling
+         */
         var controller = new qx.data.controller.Form(null, form);
         controller.createModel();
-
-        var saveUsername = new qx.ui.form.CheckBox(this.tr("Save User name"));
-        form.addButton(saveUsername);
 
         var loginbutton = new proxmox.ui.form.CssButton(this.tr("Login"));
         loginbutton.addListener("execute", function () {
             if (form.validate()) {
-                var service = sm.getService("internal:login").login(
+                loginService.login(
                     controller.getModel().getUsername(),
                     controller.getModel().getPassword(),
-                    controller.getModel().getRealm()
+                    controller.getModel().getRealm(),
+                    saveUsername,
                 ).catch((ex) => {
                     console.log(ex);
                     console.log("Login failed");
@@ -79,9 +115,20 @@ qx.Class.define("proxmox.window.Login", {
         _fetchRealms: function () {
             var service = this._serviceManager.getService("access/domains");
             service.fetch().then((model) => {
+                if (!model) {
+                    return;
+                }
+
+                var userInfo = this._serviceManager.getService("internal:login").getUserInfo();
+
                 this._realmSelectbox.removeAll();
                 model.forEach((node) => {
-                    this._realmSelectbox.add(new qx.ui.form.ListItem(node.getComment()).set({model: node.getRealm()}));
+                    var item = new qx.ui.form.ListItem(node.getComment()).set({ model: node.getRealm() });
+                    this._realmSelectbox.add(item);
+
+                    if (userInfo.realm === node.getRealm()) {
+                        this._realmSelectbox.setSelection([item]);
+                    }
                 });
             });
         }

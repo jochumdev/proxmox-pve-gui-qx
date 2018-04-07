@@ -32,6 +32,7 @@ qx.Class.define("proxmox.Application", {
 
     language: {
       nullable: true,
+      init: "en",
       apply: "_appyLanguage"
     }
   },
@@ -115,7 +116,7 @@ qx.Class.define("proxmox.Application", {
       /**
        * Timers
        */
-      var st = this._servicesTimer = new qx.event.Timer(3000);
+      var st = this._servicesTimer = new qx.event.Timer(5000);
       st.addListener("interval", () => {
         this._serviceManager.getService("cluster/resources").fetch(null, true).catch((ex) => {
           console.error(ex);
@@ -206,7 +207,7 @@ qx.Class.define("proxmox.Application", {
           this._servicesTimer.start();
 
           versionLabel.setValue(this.tr("Virtual Environment %1", "5.1-46"));
-          loginLabel.setValue(this.tr("You are logged in as '%1'", data.username));
+          loginLabel.setValue(this.tr("You are logged in as '%1'", data.fullusername));
 
           blocker.unblock();
 
@@ -417,7 +418,9 @@ qx.Class.define("proxmox.Application", {
     },
 
     _appyLanguage: function(value) {
-      qx.locale.Manager.getInstance().setLocale(value);
+      if (value !== null) {
+        qx.locale.Manager.getInstance().setLocale(value);
+      }
     }
   },
 
