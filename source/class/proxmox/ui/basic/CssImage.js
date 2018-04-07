@@ -65,6 +65,16 @@ qx.Class.define("proxmox.ui.basic.CssImage",
             cElem.addClass(sc);
         });
       }
-    }
+    },
+
+    // overridden
+    _applyTextColor : function(value, old)
+    {
+      if (value) {
+        this.getContentElement().setStyle("color", qx.theme.manager.Color.getInstance().resolve(value));
+      } else {
+        this.getContentElement().removeStyle("color");
+      }
+    },
   }
 });
