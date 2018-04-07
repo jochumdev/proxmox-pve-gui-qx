@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-07 21:48+0200\n"
+"POT-Creation-Date: 2018-04-08 01:01+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,10 +67,10 @@ msgid "Firewall"
 msgstr "Firewall"
 
 msgid "Alias"
-msgstr ""
+msgstr "Alias"
 
 msgid "IPSet"
-msgstr ""
+msgstr "IPSet"
 
 msgid "Log"
 msgstr ""
@@ -126,12 +126,14 @@ msgstr "Anmelden"
 msgid "This field is required"
 msgstr "Diese Feld darf nicht leer sein"
 
+#
 msgid "Linux PAM standard authentication"
 msgstr ""
 
 msgid "Realm"
 msgstr "Bereich"
 
+#
 msgid "Proxmox VE authentication server"
 msgstr "Proxmox VE authentication server"
 
@@ -262,9 +264,11 @@ msgstr[1] ""
 msgid "Pool"
 msgstr ""
 
+#
 msgid "Host"
 msgstr ""
 
+#
 msgid "Mock Data"
 msgstr ""
 
