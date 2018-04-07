@@ -18,8 +18,8 @@
 
     "applications": [
       {
-        "class": "proxmox.Application",
-        "theme": "proxmox.theme.Theme",
+        "class": "proxmox.ve.desktop.Application",
+        "theme": "proxmox.ve.desktop.theme.Theme",
         "name": "proxmox",
         "writeIndexHtmlToRoot": true,
         "environment": {
