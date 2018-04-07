@@ -13,7 +13,8 @@ qx.Class.define("proxmox.part.Navbar", {
         var tree = this._tree = new qx.ui.tree.VirtualTree(null, "label", "children").set({
             appearance: "navbar-tree",
             iconPath: "icon",
-            hideRoot: true
+            hideRoot: true,
+            width: 137
         });
 
         tree.setDelegate({
