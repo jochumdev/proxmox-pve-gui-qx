@@ -1,1 +1,0 @@
-{"data":[{"type":"pam","comment":"Linux PAM standard authentication","realm":"pam"},{"type":"pve","comment":"Proxmox VE authentication server","realm":"pve"}]}
