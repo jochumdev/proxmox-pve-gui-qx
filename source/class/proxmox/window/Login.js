@@ -43,7 +43,7 @@ qx.Class.define("proxmox.window.Login", {
         form.add(language, this.tr("Language"), null, "language");
 
         language.addListener("changeValue", (e) => {
-            qx.locale.Manager.getInstance().setLocale(e.getData().getModel());
+            app.setLanguage(e.getData().getModel());
         });
 
 
@@ -59,8 +59,7 @@ qx.Class.define("proxmox.window.Login", {
                 var service = sm.getService("internal:login").login(
                     controller.getModel().getUsername(),
                     controller.getModel().getPassword(),
-                    controller.getModel().getRealm(),
-                    controller.getModel().getLanguage()
+                    controller.getModel().getRealm()
                 ).catch((ex) => {
                     console.log(ex);
                     console.log("Login failed");

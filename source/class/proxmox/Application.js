@@ -28,6 +28,11 @@ qx.Class.define("proxmox.Application", {
     csrfPreventionToken: {
       init: null,
       nullable: true
+    },
+
+    language: {
+      nullable: true,
+      apply: "_appyLanguage"
     }
   },
 
@@ -171,7 +176,7 @@ qx.Class.define("proxmox.Application", {
       headerColumn.add(new qx.ui.basic.Image("@FontAwesome/cog").set({ appearance: "header-label" }));
       var docButton = new qx.ui.form.Button(this.tr("Documentation"), "@FontAwesome/book").set({ appearance: "white-button-header" });
       docButton.addListener("execute", (e) => {
-        var win = window.open("https://pve.proxmox.com/pve-docs/", '_blank');
+        var win = window.open("/pve-docs/index.html", '_blank');
         win.focus();
       });
       headerColumn.add(docButton);
@@ -225,12 +230,16 @@ qx.Class.define("proxmox.Application", {
       main_container.add(vspane, { edge: "north", width: "100%" });
 
       // Horizontal splitpane for Navigation + Content
-      var hspane = this._contentContainerHolder = new qx.ui.splitpane.Pane("horizontal");
+      var hspane = new qx.ui.splitpane.Pane("horizontal");
       vspane.add(hspane, 1)
 
       // Left tree column
       var serverBrowser = new proxmox.part.ServerBrowser();
       hspane.add(serverBrowser.getContainer(), 0);
+
+      // Container holder
+      this._contentContainerHolder = new qx.ui.container.Composite(new qx.ui.layout.Canvas());
+      hspane.add(this._contentContainerHolder, 1)
 
       this.setPageView(proxmox.page.Empty, defaultRouteParams);
 
@@ -285,7 +294,7 @@ qx.Class.define("proxmox.Application", {
       this._contentContainerPromise.then((ct) => {
         this._contentContainer = ct;
         view.navigateToPageId(routeParams.pageId);
-        this._contentContainerHolder.add(ct, 1);
+        this._contentContainerHolder.add(ct, {edge: 0});
 
         this.setRouteParams(routeParams);
       });
@@ -384,6 +393,10 @@ qx.Class.define("proxmox.Application", {
         }
         this.setPageView(clazz, routeParams);
       });
+    },
+
+    _appyLanguage: function(value) {
+      qx.locale.Manager.getInstance().setLocale(value);
     }
   },
 
