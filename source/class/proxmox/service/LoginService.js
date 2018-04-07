@@ -47,8 +47,8 @@ qx.Class.define("proxmox.service.LoginService", {
         },
 
         logout: function () {
-            qx.module.Cookie.del("PVEAuthCookie");
-            qx.module.Cookie.del("PVELangCookie");
+            qx.module.Cookie.del("PVEAuthCookie", "/");
+            qx.module.Cookie.del("PVELangCookie", "/");
 
             var app = qx.core.Init.getApplication();
             app.fireDataEvent("changeLogin", { login: false });
