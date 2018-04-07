@@ -1,1583 +1,284 @@
-#: proxmox/content/lxc/View.js:29 proxmox/content/lxc/Summary.js:31
-#: proxmox/page/lxc/Summary.js:31 proxmox/page/lxc/Summary.js:28
-#: proxmox/page/lxc/Summary.js:24 proxmox/page/lxc/Summary.js:25
-#: proxmox/page/qemu/Summary.js:24 proxmox/page/node/Summary.js:24
-#: proxmox/page/datacenter/Search.js:16 proxmox/page/datacenter/Search.js:19
-#: proxmox/page/lxc/AbstractLxc.js:25 proxmox/page/Lxc.js:27
-#: proxmox/page/Lxc.js:31 proxmox/page/Lxc.js:24 proxmox/page/Lxc.js:28
-#: proxmox/page/Lxc.js:25 proxmox/page/Node.js:28 proxmox/page/Node.js:24
-#: proxmox/page/Node.js:25 proxmox/page/Qemu.js:28 proxmox/page/Qemu.js:24
-#: proxmox/page/Qemu.js:25
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-04-07 21:48+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
 msgid "Start"
 msgstr "Start"
 
-#: proxmox/content/lxc/View.js:30 proxmox/content/lxc/Summary.js:32
-#: proxmox/page/lxc/Summary.js:32 proxmox/page/lxc/Summary.js:29
-#: proxmox/page/lxc/Summary.js:25 proxmox/page/lxc/Summary.js:26
-#: proxmox/page/qemu/Summary.js:25 proxmox/page/node/Summary.js:25
-#: proxmox/page/datacenter/Search.js:17 proxmox/page/datacenter/Search.js:20
-#: proxmox/page/lxc/AbstractLxc.js:26 proxmox/page/Lxc.js:28
-#: proxmox/page/Lxc.js:32 proxmox/page/Lxc.js:25 proxmox/page/Lxc.js:29
-#: proxmox/page/Lxc.js:26 proxmox/page/Node.js:29 proxmox/page/Node.js:25
-#: proxmox/page/Node.js:26 proxmox/page/Qemu.js:29 proxmox/page/Qemu.js:25
-#: proxmox/page/Qemu.js:26
 msgid "Shutdown"
 msgstr "Herunterfahren"
 
-#: proxmox/content/lxc/View.js:31 proxmox/content/lxc/Summary.js:33
-#: proxmox/page/lxc/Summary.js:33 proxmox/page/lxc/Summary.js:30
-#: proxmox/page/lxc/Summary.js:26 proxmox/page/lxc/Summary.js:27
-#: proxmox/page/qemu/Summary.js:26 proxmox/page/node/Summary.js:26
-#: proxmox/page/datacenter/Search.js:18 proxmox/page/datacenter/Search.js:21
-#: proxmox/page/lxc/AbstractLxc.js:27 proxmox/page/Lxc.js:29
-#: proxmox/page/Lxc.js:33 proxmox/page/Lxc.js:26 proxmox/page/Lxc.js:30
-#: proxmox/page/Lxc.js:27 proxmox/page/Node.js:30 proxmox/page/Node.js:26
-#: proxmox/page/Node.js:27 proxmox/page/Qemu.js:30 proxmox/page/Qemu.js:26
-#: proxmox/page/Qemu.js:27
 msgid "Migrate"
 msgstr "Migration"
 
-#: proxmox/content/lxc/View.js:32 proxmox/part/Navbar.js:62
-#: proxmox/part/Navbar.js:136 proxmox/part/Navbar.js:64
-#: proxmox/part/Navbar.js:138 proxmox/part/Navbar.js:208
-#: proxmox/part/Navbar.js:74 proxmox/part/Navbar.js:148
-#: proxmox/part/Navbar.js:96 proxmox/part/Navbar.js:170
-#: proxmox/part/Navbar.js:101 proxmox/part/Navbar.js:183
-#: proxmox/part/Navbar.js:191 proxmox/part/Navbar.js:106
-#: proxmox/part/Navbar.js:196 proxmox/part/Navbar.js:123
-#: proxmox/part/Navbar.js:213 proxmox/part/Navbar.js:124
-#: proxmox/part/Navbar.js:214 proxmox/part/Navbar.js:126
-#: proxmox/part/Navbar.js:216 proxmox/part/Navbar.js:127
-#: proxmox/part/Navbar.js:217 proxmox/part/Navbar.js:139
-#: proxmox/part/Navbar.js:229 proxmox/part/Navbar.js:228
-#: proxmox/part/Navbar.js:161 proxmox/part/Navbar.js:251
-#: proxmox/part/ServerBrowser.js:62 proxmox/part/ServerBrowser.js:136
-#: proxmox/part/ServerBrowser.js:175 proxmox/part/ServerBrowser.js:249
-#: proxmox/part/ServerBrowser.js:168 proxmox/part/ServerBrowser.js:165
-#: proxmox/content/lxc/Summary.js:34 proxmox/page/lxc/Summary.js:34
-#: proxmox/page/lxc/Summary.js:31 proxmox/page/lxc/Summary.js:27
-#: proxmox/page/lxc/Summary.js:28 proxmox/page/qemu/Summary.js:27
-#: proxmox/page/node/Summary.js:27 proxmox/page/datacenter/Search.js:19
-#: proxmox/page/datacenter/Search.js:22 proxmox/page/lxc/AbstractLxc.js:28
-#: proxmox/page/Lxc.js:30 proxmox/page/Lxc.js:34 proxmox/page/Lxc.js:27
-#: proxmox/page/Lxc.js:31 proxmox/page/Lxc.js:28 proxmox/page/Node.js:31
-#: proxmox/page/Node.js:27 proxmox/page/Node.js:28 proxmox/page/Qemu.js:31
-#: proxmox/page/Qemu.js:27 proxmox/page/Qemu.js:28
 msgid "Console"
 msgstr "Konsole"
 
-#: proxmox/content/lxc/View.js:33 proxmox/content/lxc/Summary.js:35
-#: proxmox/page/lxc/Summary.js:35 proxmox/page/lxc/Summary.js:32
-#: proxmox/page/lxc/Summary.js:28 proxmox/page/lxc/Summary.js:29
-#: proxmox/page/qemu/Summary.js:28 proxmox/page/node/Summary.js:28
-#: proxmox/page/datacenter/Search.js:20 proxmox/page/datacenter/Search.js:23
-#: proxmox/page/lxc/AbstractLxc.js:29 proxmox/page/Lxc.js:31
-#: proxmox/page/Lxc.js:35 proxmox/page/Lxc.js:28 proxmox/page/Lxc.js:32
-#: proxmox/page/Lxc.js:29 proxmox/page/Node.js:32 proxmox/page/Node.js:28
-#: proxmox/page/Node.js:29 proxmox/page/Qemu.js:32 proxmox/page/Qemu.js:28
-#: proxmox/page/Qemu.js:29
 msgid "More"
 msgstr "Mehr"
 
-#: proxmox/content/lxc/View.js:34 proxmox/content/lxc/Summary.js:36
-#: proxmox/page/lxc/Summary.js:36 proxmox/page/lxc/Summary.js:33
-#: proxmox/page/lxc/Summary.js:29 proxmox/page/lxc/Summary.js:30
-#: proxmox/page/qemu/Summary.js:29 proxmox/page/node/Summary.js:29
-#: proxmox/page/datacenter/Search.js:21 proxmox/page/datacenter/Search.js:24
-#: proxmox/page/datacenter/Search.js:19 proxmox/page/type/Search.js:44
-#: proxmox/page/type/Search.js:46 proxmox/page/lxc/AbstractLxc.js:30
-#: proxmox/page/Lxc.js:32 proxmox/page/Lxc.js:36 proxmox/page/Lxc.js:29
-#: proxmox/page/Lxc.js:33 proxmox/page/Lxc.js:30 proxmox/page/Node.js:33
-#: proxmox/page/Node.js:29 proxmox/page/Node.js:30 proxmox/page/Qemu.js:33
-#: proxmox/page/Qemu.js:29 proxmox/page/Qemu.js:30 proxmox/page/Type.js:44
-#: proxmox/page/Type.js:45 proxmox/page/Type.js:50 proxmox/page/Type.js:52
-#: proxmox/page/Type.js:57 proxmox/page/Datacenter.js:27
-#: proxmox/page/Datacenter.js:28 proxmox/page/Datacenter.js:33
-#: proxmox/page/Datacenter.js:35 proxmox/page/Storage.js:24
-#: proxmox/page/Storage.js:25 proxmox/page/Pool.js:25
 msgid "Help"
 msgstr "Hilfe"
 
-#: proxmox/part/Navbar.js:58 proxmox/part/Navbar.js:132
-#: proxmox/part/Navbar.js:60 proxmox/part/Navbar.js:134
-#: proxmox/part/Navbar.js:204 proxmox/part/Navbar.js:303
-#: proxmox/part/Navbar.js:70 proxmox/part/Navbar.js:144
-#: proxmox/part/Navbar.js:214 proxmox/part/Navbar.js:313
-#: proxmox/part/Navbar.js:317 proxmox/part/Navbar.js:72
-#: proxmox/part/Navbar.js:92 proxmox/part/Navbar.js:166
-#: proxmox/part/Navbar.js:236 proxmox/part/Navbar.js:339
-#: proxmox/part/Navbar.js:340 proxmox/part/Navbar.js:73
-#: proxmox/part/Navbar.js:96 proxmox/part/Navbar.js:179
-#: proxmox/part/Navbar.js:249 proxmox/part/Navbar.js:353
-#: proxmox/part/Navbar.js:186 proxmox/part/Navbar.js:271
-#: proxmox/part/Navbar.js:375 proxmox/part/Navbar.js:396
-#: proxmox/part/Navbar.js:78 proxmox/part/Navbar.js:101
-#: proxmox/part/Navbar.js:191 proxmox/part/Navbar.js:276
-#: proxmox/part/Navbar.js:401 proxmox/part/Navbar.js:95
-#: proxmox/part/Navbar.js:118 proxmox/part/Navbar.js:208
-#: proxmox/part/Navbar.js:293 proxmox/part/Navbar.js:418
-#: proxmox/part/Navbar.js:119 proxmox/part/Navbar.js:209
-#: proxmox/part/Navbar.js:294 proxmox/part/Navbar.js:419
-#: proxmox/part/Navbar.js:98 proxmox/part/Navbar.js:121
-#: proxmox/part/Navbar.js:211 proxmox/part/Navbar.js:296
-#: proxmox/part/Navbar.js:421 proxmox/part/Navbar.js:99
-#: proxmox/part/Navbar.js:122 proxmox/part/Navbar.js:212
-#: proxmox/part/Navbar.js:297 proxmox/part/Navbar.js:422
-#: proxmox/part/Navbar.js:111 proxmox/part/Navbar.js:224
-#: proxmox/part/Navbar.js:309 proxmox/part/Navbar.js:434
-#: proxmox/part/Navbar.js:110 proxmox/part/Navbar.js:133
-#: proxmox/part/Navbar.js:223 proxmox/part/Navbar.js:308
-#: proxmox/part/Navbar.js:433 proxmox/part/Navbar.js:156
-#: proxmox/part/Navbar.js:246 proxmox/part/Navbar.js:331
-#: proxmox/part/Navbar.js:456 proxmox/part/ServerBrowser.js:58
-#: proxmox/part/ServerBrowser.js:132 proxmox/part/ServerBrowser.js:171
-#: proxmox/part/ServerBrowser.js:245 proxmox/part/ServerBrowser.js:164
-#: proxmox/part/ServerBrowser.js:161
 msgid "Summary"
 msgstr "Übersicht"
 
-#: proxmox/part/Navbar.js:66 proxmox/part/Navbar.js:68
-#: proxmox/part/Navbar.js:78 proxmox/part/Navbar.js:100
-#: proxmox/part/Navbar.js:106 proxmox/part/Navbar.js:111
-#: proxmox/part/Navbar.js:128 proxmox/part/Navbar.js:129
-#: proxmox/part/Navbar.js:131 proxmox/part/Navbar.js:132
-#: proxmox/part/Navbar.js:144 proxmox/part/Navbar.js:143
-#: proxmox/part/Navbar.js:166 proxmox/part/ServerBrowser.js:66
-#: proxmox/part/ServerBrowser.js:179
 msgid "Resources"
 msgstr "Ressourcen"
 
-#: proxmox/part/Navbar.js:70 proxmox/part/Navbar.js:72
-#: proxmox/part/Navbar.js:216 proxmox/part/Navbar.js:315
-#: proxmox/part/Navbar.js:82 proxmox/part/Navbar.js:226
-#: proxmox/part/Navbar.js:325 proxmox/part/Navbar.js:104
-#: proxmox/part/Navbar.js:248 proxmox/part/Navbar.js:111
-#: proxmox/part/Navbar.js:261 proxmox/part/Navbar.js:283
-#: proxmox/part/Navbar.js:286 proxmox/part/Navbar.js:116
-#: proxmox/part/Navbar.js:291 proxmox/part/Navbar.js:133
-#: proxmox/part/Navbar.js:308 proxmox/part/Navbar.js:134
-#: proxmox/part/Navbar.js:309 proxmox/part/Navbar.js:136
-#: proxmox/part/Navbar.js:311 proxmox/part/Navbar.js:137
-#: proxmox/part/Navbar.js:312 proxmox/part/Navbar.js:149
-#: proxmox/part/Navbar.js:324 proxmox/part/Navbar.js:148
-#: proxmox/part/Navbar.js:323 proxmox/part/Navbar.js:171
-#: proxmox/part/Navbar.js:346 proxmox/part/ServerBrowser.js:70
-#: proxmox/part/ServerBrowser.js:183
 msgid "Network"
 msgstr "Netzwerk"
 
-#: proxmox/part/Navbar.js:74 proxmox/part/Navbar.js:76
-#: proxmox/part/Navbar.js:220 proxmox/part/Navbar.js:319
-#: proxmox/part/Navbar.js:86 proxmox/part/Navbar.js:230
-#: proxmox/part/Navbar.js:329 proxmox/part/Navbar.js:108
-#: proxmox/part/Navbar.js:252 proxmox/part/Navbar.js:116
-#: proxmox/part/Navbar.js:265 proxmox/part/Navbar.js:287
-#: proxmox/part/Navbar.js:291 proxmox/part/Navbar.js:121
-#: proxmox/part/Navbar.js:296 proxmox/part/Navbar.js:138
-#: proxmox/part/Navbar.js:313 proxmox/part/Navbar.js:139
-#: proxmox/part/Navbar.js:314 proxmox/part/Navbar.js:141
-#: proxmox/part/Navbar.js:316 proxmox/part/Navbar.js:142
-#: proxmox/part/Navbar.js:317 proxmox/part/Navbar.js:154
-#: proxmox/part/Navbar.js:153 proxmox/part/Navbar.js:328
-#: proxmox/part/Navbar.js:176 proxmox/part/Navbar.js:351
-#: proxmox/part/ServerBrowser.js:74 proxmox/part/ServerBrowser.js:187
 msgid "DNS"
 msgstr "DNS"
 
-#: proxmox/part/Navbar.js:78 proxmox/part/Navbar.js:102
-#: proxmox/part/Navbar.js:144 proxmox/part/Navbar.js:172
-#: proxmox/part/Navbar.js:80 proxmox/part/Navbar.js:104
-#: proxmox/part/Navbar.js:146 proxmox/part/Navbar.js:174
-#: proxmox/part/Navbar.js:216 proxmox/part/Navbar.js:244
-#: proxmox/part/Navbar.js:234 proxmox/part/Navbar.js:262
-#: proxmox/part/Navbar.js:242 proxmox/part/Navbar.js:341
-#: proxmox/part/Navbar.js:90 proxmox/part/Navbar.js:114
-#: proxmox/part/Navbar.js:156 proxmox/part/Navbar.js:184
-#: proxmox/part/Navbar.js:252 proxmox/part/Navbar.js:351
-#: proxmox/part/Navbar.js:321 proxmox/part/Navbar.js:371
-#: proxmox/part/Navbar.js:112 proxmox/part/Navbar.js:136
-#: proxmox/part/Navbar.js:178 proxmox/part/Navbar.js:206
-#: proxmox/part/Navbar.js:274 proxmox/part/Navbar.js:343
-#: proxmox/part/Navbar.js:393 proxmox/part/Navbar.js:401
-#: proxmox/part/Navbar.js:402 proxmox/part/Navbar.js:345
-#: proxmox/part/Navbar.js:407 proxmox/part/Navbar.js:121
-#: proxmox/part/Navbar.js:149 proxmox/part/Navbar.js:191
-#: proxmox/part/Navbar.js:219 proxmox/part/Navbar.js:287
-#: proxmox/part/Navbar.js:358 proxmox/part/Navbar.js:420
-#: proxmox/part/Navbar.js:151 proxmox/part/Navbar.js:201
-#: proxmox/part/Navbar.js:236 proxmox/part/Navbar.js:309
-#: proxmox/part/Navbar.js:380 proxmox/part/Navbar.js:442
-#: proxmox/part/Navbar.js:318 proxmox/part/Navbar.js:463
-#: proxmox/part/Navbar.js:126 proxmox/part/Navbar.js:241
-#: proxmox/part/Navbar.js:323 proxmox/part/Navbar.js:406
-#: proxmox/part/Navbar.js:468 proxmox/part/Navbar.js:143
-#: proxmox/part/Navbar.js:173 proxmox/part/Navbar.js:223
-#: proxmox/part/Navbar.js:258 proxmox/part/Navbar.js:340
-#: proxmox/part/Navbar.js:423 proxmox/part/Navbar.js:485
-#: proxmox/part/Navbar.js:224 proxmox/part/Navbar.js:259
-#: proxmox/part/Navbar.js:424 proxmox/part/Navbar.js:486
-#: proxmox/part/Navbar.js:176 proxmox/part/Navbar.js:226
-#: proxmox/part/Navbar.js:261 proxmox/part/Navbar.js:426
-#: proxmox/part/Navbar.js:488 proxmox/part/Navbar.js:147
-#: proxmox/part/Navbar.js:177 proxmox/part/Navbar.js:227
-#: proxmox/part/Navbar.js:344 proxmox/part/Navbar.js:427
-#: proxmox/part/Navbar.js:489 proxmox/part/Navbar.js:159
-#: proxmox/part/Navbar.js:189 proxmox/part/Navbar.js:239
-#: proxmox/part/Navbar.js:356 proxmox/part/Navbar.js:439
-#: proxmox/part/Navbar.js:501 proxmox/part/Navbar.js:158
-#: proxmox/part/Navbar.js:188 proxmox/part/Navbar.js:238
-#: proxmox/part/Navbar.js:273 proxmox/part/Navbar.js:355
-#: proxmox/part/Navbar.js:438 proxmox/part/Navbar.js:500
-#: proxmox/part/Navbar.js:181 proxmox/part/Navbar.js:211
-#: proxmox/part/Navbar.js:296 proxmox/part/Navbar.js:378
-#: proxmox/part/Navbar.js:461 proxmox/part/Navbar.js:523
-#: proxmox/part/ServerBrowser.js:78 proxmox/part/ServerBrowser.js:102
-#: proxmox/part/ServerBrowser.js:144 proxmox/part/ServerBrowser.js:172
-#: proxmox/part/ServerBrowser.js:191 proxmox/part/ServerBrowser.js:215
-#: proxmox/part/ServerBrowser.js:257 proxmox/part/ServerBrowser.js:285
-#: proxmox/part/ServerBrowser.js:176 proxmox/part/ServerBrowser.js:204
-#: proxmox/part/ServerBrowser.js:173 proxmox/part/ServerBrowser.js:201
 msgid "Options"
 msgstr "Optionen"
 
-#: proxmox/part/Navbar.js:82 proxmox/part/Navbar.js:148
-#: proxmox/part/Navbar.js:84 proxmox/part/Navbar.js:150
-#: proxmox/part/Navbar.js:220 proxmox/part/Navbar.js:238
-#: proxmox/part/Navbar.js:286 proxmox/part/Navbar.js:385
-#: proxmox/part/Navbar.js:94 proxmox/part/Navbar.js:160
-#: proxmox/part/Navbar.js:296 proxmox/part/Navbar.js:395
-#: proxmox/part/Navbar.js:116 proxmox/part/Navbar.js:182
-#: proxmox/part/Navbar.js:318 proxmox/part/Navbar.js:126
-#: proxmox/part/Navbar.js:195 proxmox/part/Navbar.js:331
-#: proxmox/part/Navbar.js:206 proxmox/part/Navbar.js:353
-#: proxmox/part/Navbar.js:372 proxmox/part/Navbar.js:131
-#: proxmox/part/Navbar.js:211 proxmox/part/Navbar.js:377
-#: proxmox/part/Navbar.js:228 proxmox/part/Navbar.js:394
-#: proxmox/part/Navbar.js:149 proxmox/part/Navbar.js:229
-#: proxmox/part/Navbar.js:151 proxmox/part/Navbar.js:231
-#: proxmox/part/Navbar.js:397 proxmox/part/Navbar.js:152
-#: proxmox/part/Navbar.js:232 proxmox/part/Navbar.js:398
-#: proxmox/part/Navbar.js:164 proxmox/part/Navbar.js:244
-#: proxmox/part/Navbar.js:410 proxmox/part/Navbar.js:163
-#: proxmox/part/Navbar.js:243 proxmox/part/Navbar.js:409
-#: proxmox/part/Navbar.js:186 proxmox/part/Navbar.js:266
-#: proxmox/part/Navbar.js:432 proxmox/part/ServerBrowser.js:82
-#: proxmox/part/ServerBrowser.js:148 proxmox/part/ServerBrowser.js:195
-#: proxmox/part/ServerBrowser.js:261 proxmox/part/ServerBrowser.js:180
-#: proxmox/part/ServerBrowser.js:177
 msgid "Task History"
 msgstr "Aufgabenhistorie"
 
-#: proxmox/part/Navbar.js:86 proxmox/part/Navbar.js:156
-#: proxmox/part/Navbar.js:88 proxmox/part/Navbar.js:158
-#: proxmox/part/Navbar.js:228 proxmox/part/Navbar.js:246
-#: proxmox/part/Navbar.js:260 proxmox/part/Navbar.js:282
-#: proxmox/part/Navbar.js:98 proxmox/part/Navbar.js:168
-#: proxmox/part/Navbar.js:329 proxmox/part/Navbar.js:120
-#: proxmox/part/Navbar.js:190 proxmox/part/Navbar.js:351
-#: proxmox/part/Navbar.js:355 proxmox/part/Navbar.js:131
-#: proxmox/part/Navbar.js:203 proxmox/part/Navbar.js:368
-#: proxmox/part/Navbar.js:216 proxmox/part/Navbar.js:390
-#: proxmox/part/Navbar.js:411 proxmox/part/Navbar.js:136
-#: proxmox/part/Navbar.js:221 proxmox/part/Navbar.js:416
-#: proxmox/part/Navbar.js:153 proxmox/part/Navbar.js:238
-#: proxmox/part/Navbar.js:433 proxmox/part/Navbar.js:154
-#: proxmox/part/Navbar.js:239 proxmox/part/Navbar.js:434
-#: proxmox/part/Navbar.js:241 proxmox/part/Navbar.js:436
-#: proxmox/part/Navbar.js:157 proxmox/part/Navbar.js:242
-#: proxmox/part/Navbar.js:437 proxmox/part/Navbar.js:169
-#: proxmox/part/Navbar.js:254 proxmox/part/Navbar.js:449
-#: proxmox/part/Navbar.js:253 proxmox/part/Navbar.js:448
-#: proxmox/part/Navbar.js:191 proxmox/part/Navbar.js:276
-#: proxmox/part/Navbar.js:471 proxmox/part/ServerBrowser.js:86
-#: proxmox/part/ServerBrowser.js:156 proxmox/part/ServerBrowser.js:199
-#: proxmox/part/ServerBrowser.js:269 proxmox/part/ServerBrowser.js:188
-#: proxmox/part/ServerBrowser.js:185
 msgid "Backup"
 msgstr "Sicherung"
 
-#: proxmox/part/Navbar.js:90 proxmox/part/Navbar.js:160
-#: proxmox/part/Navbar.js:92 proxmox/part/Navbar.js:162
-#: proxmox/part/Navbar.js:232 proxmox/part/Navbar.js:250
-#: proxmox/part/Navbar.js:264 proxmox/part/Navbar.js:286
-#: proxmox/part/Navbar.js:282 proxmox/part/Navbar.js:381
-#: proxmox/part/Navbar.js:102 proxmox/part/Navbar.js:172
-#: proxmox/part/Navbar.js:292 proxmox/part/Navbar.js:391
-#: proxmox/part/Navbar.js:333 proxmox/part/Navbar.js:124
-#: proxmox/part/Navbar.js:194 proxmox/part/Navbar.js:314
-#: proxmox/part/Navbar.js:355 proxmox/part/Navbar.js:360
-#: proxmox/part/Navbar.js:136 proxmox/part/Navbar.js:207
-#: proxmox/part/Navbar.js:327 proxmox/part/Navbar.js:373
-#: proxmox/part/Navbar.js:221 proxmox/part/Navbar.js:349
-#: proxmox/part/Navbar.js:395 proxmox/part/Navbar.js:367
-#: proxmox/part/Navbar.js:416 proxmox/part/Navbar.js:141
-#: proxmox/part/Navbar.js:226 proxmox/part/Navbar.js:372
-#: proxmox/part/Navbar.js:421 proxmox/part/Navbar.js:158
-#: proxmox/part/Navbar.js:243 proxmox/part/Navbar.js:389
-#: proxmox/part/Navbar.js:438 proxmox/part/Navbar.js:159
-#: proxmox/part/Navbar.js:244 proxmox/part/Navbar.js:390
-#: proxmox/part/Navbar.js:439 proxmox/part/Navbar.js:161
-#: proxmox/part/Navbar.js:246 proxmox/part/Navbar.js:392
-#: proxmox/part/Navbar.js:441 proxmox/part/Navbar.js:247
-#: proxmox/part/Navbar.js:393 proxmox/part/Navbar.js:442
-#: proxmox/part/Navbar.js:174 proxmox/part/Navbar.js:259
-#: proxmox/part/Navbar.js:405 proxmox/part/Navbar.js:454
-#: proxmox/part/Navbar.js:173 proxmox/part/Navbar.js:258
-#: proxmox/part/Navbar.js:404 proxmox/part/Navbar.js:453
-#: proxmox/part/Navbar.js:196 proxmox/part/Navbar.js:281
-#: proxmox/part/Navbar.js:427 proxmox/part/Navbar.js:476
-#: proxmox/part/ServerBrowser.js:90 proxmox/part/ServerBrowser.js:160
-#: proxmox/part/ServerBrowser.js:203 proxmox/part/ServerBrowser.js:273
-#: proxmox/part/ServerBrowser.js:192 proxmox/part/ServerBrowser.js:189
 msgid "Replication"
 msgstr "Replizierung"
 
-#: proxmox/part/Navbar.js:94 proxmox/part/Navbar.js:164
-#: proxmox/part/Navbar.js:96 proxmox/part/Navbar.js:166
-#: proxmox/part/Navbar.js:236 proxmox/part/Navbar.js:254
-#: proxmox/part/Navbar.js:268 proxmox/part/Navbar.js:290
-#: proxmox/part/Navbar.js:286 proxmox/part/Navbar.js:106
-#: proxmox/part/Navbar.js:176 proxmox/part/Navbar.js:128
-#: proxmox/part/Navbar.js:198 proxmox/part/Navbar.js:141
-#: proxmox/part/Navbar.js:211 proxmox/part/Navbar.js:226
-#: proxmox/part/Navbar.js:146 proxmox/part/Navbar.js:231
-#: proxmox/part/Navbar.js:163 proxmox/part/Navbar.js:248
-#: proxmox/part/Navbar.js:249 proxmox/part/Navbar.js:251
-#: proxmox/part/Navbar.js:167 proxmox/part/Navbar.js:252
-#: proxmox/part/Navbar.js:179 proxmox/part/Navbar.js:264
-#: proxmox/part/Navbar.js:178 proxmox/part/Navbar.js:263
-#: proxmox/part/Navbar.js:201 proxmox/part/ServerBrowser.js:94
-#: proxmox/part/ServerBrowser.js:164 proxmox/part/ServerBrowser.js:207
-#: proxmox/part/ServerBrowser.js:277 proxmox/part/ServerBrowser.js:196
-#: proxmox/part/ServerBrowser.js:193
 msgid "Snapshots"
 msgstr "Snapshots"
 
-#: proxmox/part/Navbar.js:98 proxmox/part/Navbar.js:168
-#: proxmox/part/Navbar.js:100 proxmox/part/Navbar.js:170
-#: proxmox/part/Navbar.js:240 proxmox/part/Navbar.js:258
-#: proxmox/part/Navbar.js:238 proxmox/part/Navbar.js:337
-#: proxmox/part/Navbar.js:110 proxmox/part/Navbar.js:180
-#: proxmox/part/Navbar.js:248 proxmox/part/Navbar.js:347
-#: proxmox/part/Navbar.js:367 proxmox/part/Navbar.js:132
-#: proxmox/part/Navbar.js:202 proxmox/part/Navbar.js:270
-#: proxmox/part/Navbar.js:389 proxmox/part/Navbar.js:396
-#: proxmox/part/Navbar.js:397 proxmox/part/Navbar.js:402
-#: proxmox/part/Navbar.js:145 proxmox/part/Navbar.js:215
-#: proxmox/part/Navbar.js:283 proxmox/part/Navbar.js:415
-#: proxmox/part/Navbar.js:146 proxmox/part/Navbar.js:231
-#: proxmox/part/Navbar.js:305 proxmox/part/Navbar.js:437
-#: proxmox/part/Navbar.js:313 proxmox/part/Navbar.js:458
-#: proxmox/part/Navbar.js:151 proxmox/part/Navbar.js:236
-#: proxmox/part/Navbar.js:318 proxmox/part/Navbar.js:463
-#: proxmox/part/Navbar.js:253 proxmox/part/Navbar.js:335
-#: proxmox/part/Navbar.js:480 proxmox/part/Navbar.js:169
-#: proxmox/part/Navbar.js:254 proxmox/part/Navbar.js:336
-#: proxmox/part/Navbar.js:481 proxmox/part/Navbar.js:171
-#: proxmox/part/Navbar.js:256 proxmox/part/Navbar.js:338
-#: proxmox/part/Navbar.js:483 proxmox/part/Navbar.js:172
-#: proxmox/part/Navbar.js:257 proxmox/part/Navbar.js:339
-#: proxmox/part/Navbar.js:484 proxmox/part/Navbar.js:184
-#: proxmox/part/Navbar.js:269 proxmox/part/Navbar.js:351
-#: proxmox/part/Navbar.js:496 proxmox/part/Navbar.js:183
-#: proxmox/part/Navbar.js:268 proxmox/part/Navbar.js:350
-#: proxmox/part/Navbar.js:495 proxmox/part/Navbar.js:206
-#: proxmox/part/Navbar.js:291 proxmox/part/Navbar.js:373
-#: proxmox/part/Navbar.js:518 proxmox/part/ServerBrowser.js:98
-#: proxmox/part/ServerBrowser.js:168 proxmox/part/ServerBrowser.js:211
-#: proxmox/part/ServerBrowser.js:281 proxmox/part/ServerBrowser.js:200
-#: proxmox/part/ServerBrowser.js:197
 msgid "Firewall"
 msgstr "Firewall"
 
-#: proxmox/part/Navbar.js:106 proxmox/part/Navbar.js:176
-#: proxmox/part/Navbar.js:108 proxmox/part/Navbar.js:178
-#: proxmox/part/Navbar.js:248 proxmox/part/Navbar.js:266
-#: proxmox/part/Navbar.js:118 proxmox/part/Navbar.js:188
-#: proxmox/part/Navbar.js:379 proxmox/part/Navbar.js:140
-#: proxmox/part/Navbar.js:210 proxmox/part/Navbar.js:401
-#: proxmox/part/Navbar.js:411 proxmox/part/Navbar.js:412
-#: proxmox/part/Navbar.js:417 proxmox/part/Navbar.js:153
-#: proxmox/part/Navbar.js:223 proxmox/part/Navbar.js:430
-#: proxmox/part/Navbar.js:156 proxmox/part/Navbar.js:241
-#: proxmox/part/Navbar.js:452 proxmox/part/Navbar.js:473
-#: proxmox/part/Navbar.js:161 proxmox/part/Navbar.js:246
-#: proxmox/part/Navbar.js:478 proxmox/part/Navbar.js:263
-#: proxmox/part/Navbar.js:495 proxmox/part/Navbar.js:179
-#: proxmox/part/Navbar.js:264 proxmox/part/Navbar.js:496
-#: proxmox/part/Navbar.js:181 proxmox/part/Navbar.js:498
-#: proxmox/part/Navbar.js:182 proxmox/part/Navbar.js:267
-#: proxmox/part/Navbar.js:499 proxmox/part/Navbar.js:194
-#: proxmox/part/Navbar.js:279 proxmox/part/Navbar.js:511
-#: proxmox/part/Navbar.js:193 proxmox/part/Navbar.js:278
-#: proxmox/part/Navbar.js:510 proxmox/part/Navbar.js:216
-#: proxmox/part/Navbar.js:301 proxmox/part/Navbar.js:533
-#: proxmox/part/ServerBrowser.js:106 proxmox/part/ServerBrowser.js:176
-#: proxmox/part/ServerBrowser.js:219 proxmox/part/ServerBrowser.js:289
-#: proxmox/part/ServerBrowser.js:208 proxmox/part/ServerBrowser.js:205
 msgid "Alias"
 msgstr ""
 
-#: proxmox/part/Navbar.js:110 proxmox/part/Navbar.js:180
-#: proxmox/part/Navbar.js:112 proxmox/part/Navbar.js:182
-#: proxmox/part/Navbar.js:252 proxmox/part/Navbar.js:270
-#: proxmox/part/Navbar.js:122 proxmox/part/Navbar.js:192
-#: proxmox/part/Navbar.js:383 proxmox/part/Navbar.js:144
-#: proxmox/part/Navbar.js:214 proxmox/part/Navbar.js:405
-#: proxmox/part/Navbar.js:416 proxmox/part/Navbar.js:417
-#: proxmox/part/Navbar.js:422 proxmox/part/Navbar.js:157
-#: proxmox/part/Navbar.js:227 proxmox/part/Navbar.js:435
-#: proxmox/part/Navbar.js:161 proxmox/part/Navbar.js:246
-#: proxmox/part/Navbar.js:457 proxmox/part/Navbar.js:478
-#: proxmox/part/Navbar.js:166 proxmox/part/Navbar.js:251
-#: proxmox/part/Navbar.js:483 proxmox/part/Navbar.js:183
-#: proxmox/part/Navbar.js:268 proxmox/part/Navbar.js:500
-#: proxmox/part/Navbar.js:184 proxmox/part/Navbar.js:269
-#: proxmox/part/Navbar.js:501 proxmox/part/Navbar.js:186
-#: proxmox/part/Navbar.js:271 proxmox/part/Navbar.js:503
-#: proxmox/part/Navbar.js:187 proxmox/part/Navbar.js:272
-#: proxmox/part/Navbar.js:504 proxmox/part/Navbar.js:199
-#: proxmox/part/Navbar.js:284 proxmox/part/Navbar.js:516
-#: proxmox/part/Navbar.js:198 proxmox/part/Navbar.js:283
-#: proxmox/part/Navbar.js:515 proxmox/part/Navbar.js:221
-#: proxmox/part/Navbar.js:306 proxmox/part/Navbar.js:538
-#: proxmox/part/ServerBrowser.js:110 proxmox/part/ServerBrowser.js:180
-#: proxmox/part/ServerBrowser.js:223 proxmox/part/ServerBrowser.js:293
-#: proxmox/part/ServerBrowser.js:212 proxmox/part/ServerBrowser.js:209
 msgid "IPSet"
 msgstr ""
 
-#: proxmox/part/Navbar.js:114 proxmox/part/Navbar.js:184
-#: proxmox/part/Navbar.js:116 proxmox/part/Navbar.js:186
-#: proxmox/part/Navbar.js:256 proxmox/part/Navbar.js:274
-#: proxmox/part/Navbar.js:266 proxmox/part/Navbar.js:246
-#: proxmox/part/Navbar.js:276 proxmox/part/Navbar.js:345
-#: proxmox/part/Navbar.js:375 proxmox/part/Navbar.js:126
-#: proxmox/part/Navbar.js:196 proxmox/part/Navbar.js:286
-#: proxmox/part/Navbar.js:355 proxmox/part/Navbar.js:385
-#: proxmox/part/Navbar.js:148 proxmox/part/Navbar.js:218
-#: proxmox/part/Navbar.js:278 proxmox/part/Navbar.js:308
-#: proxmox/part/Navbar.js:161 proxmox/part/Navbar.js:231
-#: proxmox/part/Navbar.js:291 proxmox/part/Navbar.js:321
-#: proxmox/part/Navbar.js:166 proxmox/part/Navbar.js:251
-#: proxmox/part/Navbar.js:313 proxmox/part/Navbar.js:343
-#: proxmox/part/Navbar.js:323 proxmox/part/Navbar.js:360
-#: proxmox/part/Navbar.js:171 proxmox/part/Navbar.js:328
-#: proxmox/part/Navbar.js:365 proxmox/part/Navbar.js:188
-#: proxmox/part/Navbar.js:273 proxmox/part/Navbar.js:382
-#: proxmox/part/Navbar.js:189 proxmox/part/Navbar.js:346
-#: proxmox/part/Navbar.js:383 proxmox/part/Navbar.js:191
-#: proxmox/part/Navbar.js:348 proxmox/part/Navbar.js:192
-#: proxmox/part/Navbar.js:277 proxmox/part/Navbar.js:349
-#: proxmox/part/Navbar.js:386 proxmox/part/Navbar.js:204
-#: proxmox/part/Navbar.js:289 proxmox/part/Navbar.js:361
-#: proxmox/part/Navbar.js:398 proxmox/part/Navbar.js:203
-#: proxmox/part/Navbar.js:288 proxmox/part/Navbar.js:397
-#: proxmox/part/Navbar.js:226 proxmox/part/Navbar.js:311
-#: proxmox/part/Navbar.js:420 proxmox/part/ServerBrowser.js:114
-#: proxmox/part/ServerBrowser.js:184 proxmox/part/ServerBrowser.js:227
-#: proxmox/part/ServerBrowser.js:297 proxmox/part/ServerBrowser.js:216
-#: proxmox/part/ServerBrowser.js:213
 msgid "Log"
 msgstr ""
 
-#: proxmox/part/Navbar.js:120 proxmox/part/Navbar.js:190
-#: proxmox/part/Navbar.js:122 proxmox/part/Navbar.js:192
-#: proxmox/part/Navbar.js:262 proxmox/part/Navbar.js:280
-#: proxmox/part/Navbar.js:272 proxmox/part/Navbar.js:273
-#: proxmox/part/Navbar.js:295 proxmox/part/Navbar.js:291
-#: proxmox/part/Navbar.js:132 proxmox/part/Navbar.js:202
-#: proxmox/part/Navbar.js:337 proxmox/part/Navbar.js:80
-#: proxmox/part/Navbar.js:154 proxmox/part/Navbar.js:224
-#: proxmox/part/Navbar.js:359 proxmox/part/Navbar.js:360
-#: proxmox/part/Navbar.js:365 proxmox/part/Navbar.js:83
-#: proxmox/part/Navbar.js:167 proxmox/part/Navbar.js:237
-#: proxmox/part/Navbar.js:378 proxmox/part/Navbar.js:173
-#: proxmox/part/Navbar.js:258 proxmox/part/Navbar.js:400
-#: proxmox/part/Navbar.js:421 proxmox/part/Navbar.js:88
-#: proxmox/part/Navbar.js:178 proxmox/part/Navbar.js:263
-#: proxmox/part/Navbar.js:426 proxmox/part/Navbar.js:105
-#: proxmox/part/Navbar.js:195 proxmox/part/Navbar.js:443
-#: proxmox/part/Navbar.js:106 proxmox/part/Navbar.js:196
-#: proxmox/part/Navbar.js:281 proxmox/part/Navbar.js:444
-#: proxmox/part/Navbar.js:108 proxmox/part/Navbar.js:198
-#: proxmox/part/Navbar.js:283 proxmox/part/Navbar.js:446
-#: proxmox/part/Navbar.js:109 proxmox/part/Navbar.js:199
-#: proxmox/part/Navbar.js:284 proxmox/part/Navbar.js:447
-#: proxmox/part/Navbar.js:121 proxmox/part/Navbar.js:211
-#: proxmox/part/Navbar.js:296 proxmox/part/Navbar.js:459
-#: proxmox/part/Navbar.js:210 proxmox/part/Navbar.js:458
-#: proxmox/part/Navbar.js:143 proxmox/part/Navbar.js:233
-#: proxmox/part/Navbar.js:318 proxmox/part/Navbar.js:481
-#: proxmox/part/ServerBrowser.js:120 proxmox/part/ServerBrowser.js:190
-#: proxmox/part/ServerBrowser.js:233 proxmox/part/ServerBrowser.js:303
-#: proxmox/part/ServerBrowser.js:222 proxmox/part/ServerBrowser.js:219
 msgid "Permissions"
 msgstr "Rechte"
 
-#: proxmox/part/Navbar.js:140 proxmox/part/Navbar.js:142
-#: proxmox/part/Navbar.js:212 proxmox/part/Navbar.js:152
-#: proxmox/part/Navbar.js:174 proxmox/part/Navbar.js:187
-#: proxmox/part/Navbar.js:196 proxmox/part/Navbar.js:201
-#: proxmox/part/Navbar.js:218 proxmox/part/Navbar.js:219
-#: proxmox/part/Navbar.js:221 proxmox/part/Navbar.js:222
-#: proxmox/part/Navbar.js:234 proxmox/part/Navbar.js:233
-#: proxmox/part/Navbar.js:256 proxmox/part/ServerBrowser.js:140
-#: proxmox/part/ServerBrowser.js:253 proxmox/part/ServerBrowser.js:172
-#: proxmox/part/ServerBrowser.js:169
 msgid "Hardware"
 msgstr "Hardware"
 
-#: proxmox/part/Navbar.js:152 proxmox/part/Navbar.js:154
-#: proxmox/part/Navbar.js:224 proxmox/part/Navbar.js:242
-#: proxmox/part/Navbar.js:256 proxmox/part/Navbar.js:264
-#: proxmox/part/Navbar.js:363 proxmox/part/Navbar.js:164
-#: proxmox/part/Navbar.js:274 proxmox/part/Navbar.js:373
-#: proxmox/part/Navbar.js:186 proxmox/part/Navbar.js:296
-#: proxmox/part/Navbar.js:199 proxmox/part/Navbar.js:309
-#: proxmox/part/Navbar.js:211 proxmox/part/Navbar.js:331
-#: proxmox/part/Navbar.js:345 proxmox/part/Navbar.js:216
-#: proxmox/part/Navbar.js:350 proxmox/part/Navbar.js:233
-#: proxmox/part/Navbar.js:367 proxmox/part/Navbar.js:234
-#: proxmox/part/Navbar.js:368 proxmox/part/Navbar.js:236
-#: proxmox/part/Navbar.js:370 proxmox/part/Navbar.js:237
-#: proxmox/part/Navbar.js:371 proxmox/part/Navbar.js:249
-#: proxmox/part/Navbar.js:383 proxmox/part/Navbar.js:248
-#: proxmox/part/Navbar.js:382 proxmox/part/Navbar.js:271
-#: proxmox/part/Navbar.js:405 proxmox/part/ServerBrowser.js:152
-#: proxmox/part/ServerBrowser.js:265 proxmox/part/ServerBrowser.js:184
-#: proxmox/part/ServerBrowser.js:181
 msgid "Monitor"
 msgstr "Monitor"
 
-#: proxmox/Application.js:103 proxmox/Application.js:105
-#: proxmox/Application.js:106 proxmox/Application.js:107
-#: proxmox/Application.js:112 proxmox/Application.js:111
-#: proxmox/Application.js:109 proxmox/Application.js:113
-#: proxmox/Application.js:117 proxmox/Application.js:118
-#: proxmox/Application.js:122 proxmox/Application.js:120
-#: proxmox/Application.js:125 proxmox/Application.js:128
-#: proxmox/Application.js:132 proxmox/Application.js:133
-#: proxmox/Application.js:134 proxmox/Application.js:136
-#: proxmox/Application.js:137 proxmox/Application.js:139
-#: proxmox/Application.js:140 proxmox/Application.js:142
-#: proxmox/Application.js:143 proxmox/Application.js:145
-#: proxmox/Application.js:146 proxmox/Application.js:141
-#: proxmox/Application.js:144 proxmox/Application.js:149
-#: proxmox/Application.js:152 proxmox/Application.js:153
-#: proxmox/Application.js:151 proxmox/Application.js:154
-#: proxmox/part/ServerBrowser.js:48 proxmox/part/ServerBrowser.js:92
-#: proxmox/part/ServerBrowser.js:93 proxmox/part/ServerBrowser.js:101
-#: proxmox/part/ServerBrowser.js:100 proxmox/part/ServerBrowser.js:105
-#: proxmox/part/ServerBrowser.js:106 proxmox/part/ServerBrowser.js:108
-#: proxmox/part/ServerBrowser.js:112 proxmox/part/ServerBrowser.js:115
-#: proxmox/part/ServerBrowser.js:113 proxmox/part/ServerBrowser.js:117
-#: proxmox/part/ServerBrowser.js:121 proxmox/part/ServerBrowser.js:122
-#: proxmox/part/ServerBrowser.js:124 proxmox/part/ServerBrowser.js:118
-#: proxmox/part/ServerBrowser.js:119 proxmox/part/ServerBrowser.js:123
-#: proxmox/part/ServerBrowser.js:128 proxmox/part/ServerBrowser.js:134
-#: proxmox/part/ServerBrowser.js:135 proxmox/part/ServerBrowser.js:137
-#: proxmox/part/ServerBrowser.js:138 proxmox/part/ServerBrowser.js:139
-#: proxmox/part/ServerBrowser.js:140 proxmox/part/ServerBrowser.js:147
-#: proxmox/part/ServerBrowser.js:148 proxmox/part/ServerBrowser.js:151
-#: proxmox/part/ServerBrowser.js:150 proxmox/part/ServerBrowser.js:160
-#: proxmox/part/ServerBrowser.js:163 proxmox/part/ServerBrowser.js:161
-#: proxmox/part/ServerBrowser.js:162 proxmox/part/ServerBrowser.js:165
-#: proxmox/part/ServerBrowser.js:164 proxmox/part/ServerBrowser.js:168
-#: proxmox/part/ServerBrowser.js:169 proxmox/part/ServerBrowser.js:171
 msgid "Server View"
 msgstr "Server-Ansicht"
 
-#: proxmox/Application.js:104 proxmox/Application.js:106
-#: proxmox/Application.js:107 proxmox/Application.js:108
-#: proxmox/Application.js:113 proxmox/Application.js:112
-#: proxmox/Application.js:110 proxmox/Application.js:114
-#: proxmox/Application.js:118 proxmox/Application.js:119
-#: proxmox/Application.js:123 proxmox/Application.js:121
-#: proxmox/Application.js:126 proxmox/Application.js:129
-#: proxmox/Application.js:133 proxmox/Application.js:134
-#: proxmox/Application.js:135 proxmox/Application.js:137
-#: proxmox/Application.js:138 proxmox/Application.js:140
-#: proxmox/Application.js:141 proxmox/Application.js:143
-#: proxmox/Application.js:144 proxmox/Application.js:146
-#: proxmox/Application.js:147 proxmox/Application.js:142
-#: proxmox/Application.js:145 proxmox/Application.js:150
-#: proxmox/Application.js:153 proxmox/Application.js:154
-#: proxmox/Application.js:152 proxmox/Application.js:155
-#: proxmox/part/ServerBrowser.js:49 proxmox/part/ServerBrowser.js:93
-#: proxmox/part/ServerBrowser.js:94 proxmox/part/ServerBrowser.js:102
-#: proxmox/part/ServerBrowser.js:101 proxmox/part/ServerBrowser.js:106
-#: proxmox/part/ServerBrowser.js:107 proxmox/part/ServerBrowser.js:109
-#: proxmox/part/ServerBrowser.js:113 proxmox/part/ServerBrowser.js:116
-#: proxmox/part/ServerBrowser.js:114 proxmox/part/ServerBrowser.js:118
-#: proxmox/part/ServerBrowser.js:122 proxmox/part/ServerBrowser.js:123
-#: proxmox/part/ServerBrowser.js:125 proxmox/part/ServerBrowser.js:119
-#: proxmox/part/ServerBrowser.js:120 proxmox/part/ServerBrowser.js:124
-#: proxmox/part/ServerBrowser.js:129 proxmox/part/ServerBrowser.js:135
-#: proxmox/part/ServerBrowser.js:136 proxmox/part/ServerBrowser.js:138
-#: proxmox/part/ServerBrowser.js:139 proxmox/part/ServerBrowser.js:140
-#: proxmox/part/ServerBrowser.js:141 proxmox/part/ServerBrowser.js:148
-#: proxmox/part/ServerBrowser.js:149 proxmox/part/ServerBrowser.js:152
-#: proxmox/part/ServerBrowser.js:151 proxmox/part/ServerBrowser.js:161
-#: proxmox/part/ServerBrowser.js:164 proxmox/part/ServerBrowser.js:162
-#: proxmox/part/ServerBrowser.js:163 proxmox/part/ServerBrowser.js:166
-#: proxmox/part/ServerBrowser.js:165 proxmox/part/ServerBrowser.js:169
-#: proxmox/part/ServerBrowser.js:170 proxmox/part/ServerBrowser.js:172
 msgid "Folder View"
 msgstr "Ordner-Ansicht"
 
-#: proxmox/Application.js:105 proxmox/Application.js:107
-#: proxmox/Application.js:108 proxmox/Application.js:109
-#: proxmox/Application.js:114 proxmox/Application.js:113
-#: proxmox/Application.js:111 proxmox/Application.js:115
-#: proxmox/Application.js:119 proxmox/Application.js:120
-#: proxmox/Application.js:124 proxmox/Application.js:122
-#: proxmox/Application.js:127 proxmox/Application.js:130
-#: proxmox/Application.js:134 proxmox/Application.js:135
-#: proxmox/Application.js:136 proxmox/Application.js:138
-#: proxmox/Application.js:139 proxmox/Application.js:141
-#: proxmox/Application.js:142 proxmox/Application.js:144
-#: proxmox/Application.js:145 proxmox/Application.js:147
-#: proxmox/Application.js:148 proxmox/Application.js:143
-#: proxmox/Application.js:146 proxmox/Application.js:151
-#: proxmox/Application.js:154 proxmox/Application.js:155
-#: proxmox/Application.js:153 proxmox/Application.js:156
-#: proxmox/part/ServerBrowser.js:50 proxmox/part/ServerBrowser.js:94
-#: proxmox/part/ServerBrowser.js:95 proxmox/part/ServerBrowser.js:103
-#: proxmox/part/ServerBrowser.js:102 proxmox/part/ServerBrowser.js:107
-#: proxmox/part/ServerBrowser.js:108 proxmox/part/ServerBrowser.js:110
-#: proxmox/part/ServerBrowser.js:114 proxmox/part/ServerBrowser.js:117
-#: proxmox/part/ServerBrowser.js:115 proxmox/part/ServerBrowser.js:119
-#: proxmox/part/ServerBrowser.js:123 proxmox/part/ServerBrowser.js:124
-#: proxmox/part/ServerBrowser.js:126 proxmox/part/ServerBrowser.js:120
-#: proxmox/part/ServerBrowser.js:121 proxmox/part/ServerBrowser.js:125
-#: proxmox/part/ServerBrowser.js:130 proxmox/part/ServerBrowser.js:136
-#: proxmox/part/ServerBrowser.js:137 proxmox/part/ServerBrowser.js:139
-#: proxmox/part/ServerBrowser.js:140 proxmox/part/ServerBrowser.js:141
-#: proxmox/part/ServerBrowser.js:142 proxmox/part/ServerBrowser.js:149
-#: proxmox/part/ServerBrowser.js:150 proxmox/part/ServerBrowser.js:153
-#: proxmox/part/ServerBrowser.js:152 proxmox/part/ServerBrowser.js:162
-#: proxmox/part/ServerBrowser.js:165 proxmox/part/ServerBrowser.js:163
-#: proxmox/part/ServerBrowser.js:164 proxmox/part/ServerBrowser.js:167
-#: proxmox/part/ServerBrowser.js:166 proxmox/part/ServerBrowser.js:170
-#: proxmox/part/ServerBrowser.js:171 proxmox/part/ServerBrowser.js:173
 msgid "Storage View"
 msgstr "Storage-Ansicht"
 
-#: proxmox/Application.js:106 proxmox/Application.js:108
-#: proxmox/Application.js:109 proxmox/Application.js:110
-#: proxmox/Application.js:115 proxmox/Application.js:114
-#: proxmox/Application.js:112 proxmox/Application.js:116
-#: proxmox/Application.js:120 proxmox/Application.js:121
-#: proxmox/Application.js:125 proxmox/Application.js:123
-#: proxmox/Application.js:128 proxmox/Application.js:131
-#: proxmox/Application.js:135 proxmox/Application.js:136
-#: proxmox/Application.js:137 proxmox/Application.js:139
-#: proxmox/Application.js:140 proxmox/Application.js:142
-#: proxmox/Application.js:143 proxmox/Application.js:145
-#: proxmox/Application.js:146 proxmox/Application.js:148
-#: proxmox/Application.js:149 proxmox/Application.js:144
-#: proxmox/Application.js:147 proxmox/Application.js:152
-#: proxmox/Application.js:155 proxmox/Application.js:156
-#: proxmox/Application.js:154 proxmox/Application.js:157
-#: proxmox/part/ServerBrowser.js:51 proxmox/part/ServerBrowser.js:95
-#: proxmox/part/ServerBrowser.js:96 proxmox/part/ServerBrowser.js:104
-#: proxmox/part/ServerBrowser.js:103 proxmox/part/ServerBrowser.js:108
-#: proxmox/part/ServerBrowser.js:109 proxmox/part/ServerBrowser.js:111
-#: proxmox/part/ServerBrowser.js:115 proxmox/part/ServerBrowser.js:118
-#: proxmox/part/ServerBrowser.js:116 proxmox/part/ServerBrowser.js:120
-#: proxmox/part/ServerBrowser.js:124 proxmox/part/ServerBrowser.js:125
-#: proxmox/part/ServerBrowser.js:127 proxmox/part/ServerBrowser.js:121
-#: proxmox/part/ServerBrowser.js:122 proxmox/part/ServerBrowser.js:126
-#: proxmox/part/ServerBrowser.js:131 proxmox/part/ServerBrowser.js:137
-#: proxmox/part/ServerBrowser.js:138 proxmox/part/ServerBrowser.js:140
-#: proxmox/part/ServerBrowser.js:141 proxmox/part/ServerBrowser.js:142
-#: proxmox/part/ServerBrowser.js:143 proxmox/part/ServerBrowser.js:150
-#: proxmox/part/ServerBrowser.js:151 proxmox/part/ServerBrowser.js:154
-#: proxmox/part/ServerBrowser.js:153 proxmox/part/ServerBrowser.js:163
-#: proxmox/part/ServerBrowser.js:166 proxmox/part/ServerBrowser.js:164
-#: proxmox/part/ServerBrowser.js:165 proxmox/part/ServerBrowser.js:168
-#: proxmox/part/ServerBrowser.js:167 proxmox/part/ServerBrowser.js:171
-#: proxmox/part/ServerBrowser.js:172 proxmox/part/ServerBrowser.js:174
 msgid "Pool View"
 msgstr "Pool-Ansicht"
 
-#: proxmox/Application.js:66 proxmox/Application.js:68
-#: proxmox/Application.js:69 proxmox/Application.js:70
-#: proxmox/Application.js:75 proxmox/Application.js:74
-#: proxmox/Application.js:72 proxmox/Application.js:76
-#: proxmox/Application.js:78 proxmox/Application.js:79
-#: proxmox/Application.js:80 proxmox/Application.js:81
-#: proxmox/Application.js:83 proxmox/Application.js:84
-#: proxmox/Application.js:85 proxmox/Application.js:86
-#: proxmox/Application.js:87 proxmox/Application.js:82
-#: proxmox/Application.js:90 proxmox/Application.js:93
-#: proxmox/Application.js:97 proxmox/Application.js:98
-#: proxmox/Application.js:100 proxmox/Application.js:101
-#: proxmox/Application.js:99 proxmox/Application.js:94
-#: proxmox/Application.js:102 proxmox/Application.js:104
-#: proxmox/Application.js:110 proxmox/Application.js:116
-#: proxmox/Application.js:117 proxmox/Application.js:118
-#: proxmox/Application.js:119 proxmox/Application.js:121
-#: proxmox/Application.js:127 proxmox/Application.js:130
-#: proxmox/Application.js:133 proxmox/Application.js:128
-#: proxmox/Application.js:129 proxmox/Application.js:138
-#: proxmox/Application.js:140 proxmox/Application.js:139
-#: proxmox/Application.js:141 proxmox/Application.js:136
-#: proxmox/Application.js:137 proxmox/Application.js:123
-#: proxmox/Application.js:131 proxmox/Application.js:132
-#: proxmox/Application.js:134 proxmox/Application.js:148
-#: proxmox/Application.js:149 proxmox/Application.js:152
-#: proxmox/Application.js:154 proxmox/Application.js:160
-#: proxmox/Application.js:166 proxmox/Application.js:171
-#: proxmox/Application.js:169 proxmox/Application.js:172
-#: proxmox/Application.js:177
 msgid "Documentation"
 msgstr "Dokumentation"
 
-#: proxmox/Application.js:67 proxmox/Application.js:69
-#: proxmox/Application.js:70 proxmox/Application.js:71
-#: proxmox/Application.js:76 proxmox/Application.js:75
-#: proxmox/Application.js:73 proxmox/Application.js:77
-#: proxmox/Application.js:79 proxmox/Application.js:80
-#: proxmox/Application.js:81 proxmox/Application.js:82
-#: proxmox/Application.js:84 proxmox/Application.js:85
-#: proxmox/Application.js:86 proxmox/Application.js:87
-#: proxmox/Application.js:88 proxmox/Application.js:83
-#: proxmox/Application.js:90 proxmox/Application.js:93
-#: proxmox/Application.js:96 proxmox/Application.js:99
-#: proxmox/Application.js:103 proxmox/Application.js:104
-#: proxmox/Application.js:106 proxmox/Application.js:107
-#: proxmox/Application.js:105 proxmox/Application.js:100
-#: proxmox/Application.js:108 proxmox/Application.js:110
-#: proxmox/Application.js:116 proxmox/Application.js:122
-#: proxmox/Application.js:123 proxmox/Application.js:124
-#: proxmox/Application.js:125 proxmox/Application.js:127
-#: proxmox/Application.js:133 proxmox/Application.js:136
-#: proxmox/Application.js:139 proxmox/Application.js:134
-#: proxmox/Application.js:135 proxmox/Application.js:144
-#: proxmox/Application.js:146 proxmox/Application.js:145
-#: proxmox/Application.js:147 proxmox/Application.js:142
-#: proxmox/Application.js:143 proxmox/Application.js:129
-#: proxmox/Application.js:137 proxmox/Application.js:138
-#: proxmox/Application.js:140 proxmox/Application.js:154
-#: proxmox/Application.js:155 proxmox/Application.js:158
-#: proxmox/Application.js:160 proxmox/Application.js:166
-#: proxmox/Application.js:172 proxmox/Application.js:177
-#: proxmox/Application.js:175 proxmox/Application.js:178
-#: proxmox/Application.js:183
 msgid "Create VM"
 msgstr "Erstelle VM"
 
-#: proxmox/Application.js:68 proxmox/Application.js:70
-#: proxmox/Application.js:71 proxmox/Application.js:72
-#: proxmox/Application.js:77 proxmox/Application.js:76
-#: proxmox/Application.js:74 proxmox/Application.js:78
-#: proxmox/Application.js:80 proxmox/Application.js:81
-#: proxmox/Application.js:82 proxmox/Application.js:83
-#: proxmox/Application.js:85 proxmox/Application.js:86
-#: proxmox/Application.js:87 proxmox/Application.js:88
-#: proxmox/Application.js:89 proxmox/Application.js:84
-#: proxmox/Application.js:91 proxmox/Application.js:94
-#: proxmox/Application.js:97 proxmox/Application.js:100
-#: proxmox/Application.js:104 proxmox/Application.js:105
-#: proxmox/Application.js:107 proxmox/Application.js:108
-#: proxmox/Application.js:106 proxmox/Application.js:101
-#: proxmox/Application.js:109 proxmox/Application.js:111
-#: proxmox/Application.js:117 proxmox/Application.js:123
-#: proxmox/Application.js:124 proxmox/Application.js:125
-#: proxmox/Application.js:126 proxmox/Application.js:128
-#: proxmox/Application.js:134 proxmox/Application.js:137
-#: proxmox/Application.js:140 proxmox/Application.js:135
-#: proxmox/Application.js:136 proxmox/Application.js:145
-#: proxmox/Application.js:147 proxmox/Application.js:146
-#: proxmox/Application.js:148 proxmox/Application.js:143
-#: proxmox/Application.js:144 proxmox/Application.js:130
-#: proxmox/Application.js:138 proxmox/Application.js:139
-#: proxmox/Application.js:141 proxmox/Application.js:155
-#: proxmox/Application.js:156 proxmox/Application.js:159
-#: proxmox/Application.js:161 proxmox/Application.js:167
-#: proxmox/Application.js:173 proxmox/Application.js:178
-#: proxmox/Application.js:176 proxmox/Application.js:179
-#: proxmox/Application.js:184
 msgid "Create CT"
 msgstr "Erstelle CT"
 
-#: proxmox/Application.js:69 proxmox/Application.js:71
-#: proxmox/Application.js:72 proxmox/Application.js:73
-#: proxmox/Application.js:78 proxmox/Application.js:77
-#: proxmox/Application.js:75 proxmox/Application.js:79
-#: proxmox/Application.js:81 proxmox/Application.js:82
-#: proxmox/Application.js:83 proxmox/Application.js:84
-#: proxmox/Application.js:86 proxmox/Application.js:87
-#: proxmox/Application.js:88 proxmox/Application.js:89
-#: proxmox/Application.js:90 proxmox/Application.js:85
-#: proxmox/Application.js:92 proxmox/Application.js:95
-#: proxmox/Application.js:98 proxmox/Application.js:101
-#: proxmox/Application.js:105 proxmox/Application.js:106
-#: proxmox/Application.js:108 proxmox/Application.js:109
-#: proxmox/Application.js:107 proxmox/Application.js:110
-#: proxmox/Application.js:102 proxmox/Application.js:103
-#: proxmox/Application.js:111 proxmox/Application.js:113
-#: proxmox/Application.js:119 proxmox/Application.js:125
-#: proxmox/Application.js:126 proxmox/Application.js:127
-#: proxmox/Application.js:128 proxmox/Application.js:130
-#: proxmox/Application.js:136 proxmox/Application.js:139
-#: proxmox/Application.js:142 proxmox/Application.js:137
-#: proxmox/Application.js:138 proxmox/Application.js:147
-#: proxmox/Application.js:149 proxmox/Application.js:148
-#: proxmox/Application.js:150 proxmox/Application.js:145
-#: proxmox/Application.js:146 proxmox/Application.js:132
-#: proxmox/Application.js:140 proxmox/Application.js:141
-#: proxmox/Application.js:143 proxmox/Application.js:157
-#: proxmox/Application.js:158 proxmox/Application.js:161
-#: proxmox/Application.js:163 proxmox/Application.js:169
-#: proxmox/Application.js:175 proxmox/Application.js:180
-#: proxmox/Application.js:178 proxmox/Application.js:181
-#: proxmox/Application.js:186
 msgid "Logout"
 msgstr "Abmelden"
 
-#: proxmox/Application.js:62 proxmox/Application.js:64
-#: proxmox/Application.js:65 proxmox/Application.js:66
-#: proxmox/Application.js:71 proxmox/Application.js:70
-#: proxmox/Application.js:68 proxmox/Application.js:73
-#: proxmox/Application.js:74 proxmox/Application.js:75
-#: proxmox/Application.js:76 proxmox/Application.js:78
-#: proxmox/Application.js:79 proxmox/Application.js:80
-#: proxmox/Application.js:81 proxmox/Application.js:82
-#: proxmox/Application.js:77 proxmox/Application.js:85
-#: proxmox/Application.js:88 proxmox/Application.js:92
-#: proxmox/Application.js:93 proxmox/Application.js:95
-#: proxmox/Application.js:96 proxmox/Application.js:94
-#: proxmox/Application.js:89 proxmox/Application.js:97
-#: proxmox/Application.js:99 proxmox/Application.js:105
-#: proxmox/Application.js:111 proxmox/Application.js:112
-#: proxmox/Application.js:113 proxmox/part/Navbar.js:60
-#: proxmox/part/Navbar.js:313 proxmox/part/Navbar.js:335
-#: proxmox/part/Navbar.js:348 proxmox/part/Navbar.js:370
-#: proxmox/part/Navbar.js:391 proxmox/part/Navbar.js:65
-#: proxmox/part/Navbar.js:396 proxmox/part/Navbar.js:82
-#: proxmox/part/Navbar.js:413 proxmox/part/Navbar.js:83
-#: proxmox/part/Navbar.js:414 proxmox/part/Navbar.js:85
-#: proxmox/part/Navbar.js:416 proxmox/part/Navbar.js:86
-#: proxmox/part/Navbar.js:417 proxmox/part/Navbar.js:98
-#: proxmox/part/Navbar.js:429 proxmox/part/Navbar.js:97
-#: proxmox/part/Navbar.js:428 proxmox/part/Navbar.js:451
-#: proxmox/part/SearchResources.js:20 proxmox/part/SearchResources.js:21
-#: proxmox/part/SearchResources.js:24 proxmox/part/SearchResources.js:26
-#: proxmox/part/SearchResources.js:41 proxmox/part/SearchResources.js:48
-#: proxmox/part/SearchResources.js:52 proxmox/part/SearchResources.js:57
-#: proxmox/part/SearchResources.js:59 proxmox/part/SearchResources.js:60
-#: proxmox/part/SearchResources.js:58 proxmox/part/SearchResources.js:70
-#: proxmox/part/SearchResources.js:74 proxmox/part/SearchResources.js:75
-#: proxmox/part/SearchResources.js:79 proxmox/part/SearchResources.js:89
-#: proxmox/part/SearchResources.js:90 proxmox/part/SearchResources.js:91
-#: proxmox/part/SearchResources.js:112 proxmox/part/SearchResources.js:111
-#: proxmox/part/SearchResources.js:107 proxmox/part/SearchResources.js:108
-#: proxmox/part/SearchResources.js:110
 msgid "Search"
 msgstr "Suchen"
 
-#: proxmox/window/Login.js:9 proxmox/window/Login.js:13
-#: proxmox/window/Login.js:5
 msgid "Proxmox VE Login"
 msgstr "Proxmox VE Anmeldung"
 
-#: proxmox/window/Login.js:25 proxmox/window/Login.js:27
-#: proxmox/window/Login.js:28 proxmox/window/Login.js:29
-#: proxmox/window/Login.js:30 proxmox/window/Login.js:40
-#: proxmox/window/Login.js:32 proxmox/window/Login.js:33
-#: proxmox/window/Login.js:37 proxmox/window/Login.js:42
-#: proxmox/window/Login.js:41 proxmox/window/Login.js:44
-#: proxmox/window/Login.js:48 proxmox/window/Login.js:50
-#: proxmox/window/Login.js:51 proxmox/window/Login.js:47
-#: proxmox/window/Login.js:52 proxmox/window/Login.js:43
-#: proxmox/window/Login.js:38
 msgid "Username"
 msgstr "Benutzername"
 
-#: proxmox/window/Login.js:29 proxmox/window/Login.js:31
-#: proxmox/window/Login.js:32 proxmox/window/Login.js:33
-#: proxmox/window/Login.js:34 proxmox/window/Login.js:44
-#: proxmox/window/Login.js:36 proxmox/window/Login.js:37
-#: proxmox/window/Login.js:41 proxmox/window/Login.js:46
-#: proxmox/window/Login.js:45 proxmox/window/Login.js:48
-#: proxmox/window/Login.js:52 proxmox/window/Login.js:54
-#: proxmox/window/Login.js:55 proxmox/window/Login.js:51
-#: proxmox/window/Login.js:56 proxmox/window/Login.js:47
-#: proxmox/window/Login.js:42
 msgid "Password"
 msgstr "Kennwort"
 
-#: proxmox/window/Login.js:34 proxmox/window/Login.js:36
-#: proxmox/window/Login.js:39 proxmox/window/Login.js:40
-#: proxmox/window/Login.js:44 proxmox/window/Login.js:45
-#: proxmox/window/Login.js:49 proxmox/window/Login.js:50
-#: proxmox/window/Login.js:51 proxmox/window/Login.js:52
-#: proxmox/window/Login.js:53 proxmox/window/Login.js:54
-#: proxmox/window/Login.js:64 proxmox/window/Login.js:56
-#: proxmox/window/Login.js:59 proxmox/window/Login.js:60
-#: proxmox/window/Login.js:61 proxmox/window/Login.js:62
-#: proxmox/window/Login.js:66 proxmox/window/Login.js:71
-#: proxmox/window/Login.js:70 proxmox/window/Login.js:73
-#: proxmox/window/Login.js:77 proxmox/window/Login.js:79
-#: proxmox/window/Login.js:80 proxmox/window/Login.js:76
-#: proxmox/window/Login.js:78 proxmox/window/Login.js:65
 msgid "Login"
 msgstr "Anmelden"
 
-#: qx/ui/form/validation/Manager.js:37
 msgid "This field is required"
 msgstr "Diese Feld darf nicht leer sein"
 
-#: proxmox/window/Login.js:32 proxmox/window/Login.js:33
-#: proxmox/window/Login.js:35 proxmox/window/Login.js:36
-#: proxmox/window/Login.js:37 proxmox/window/Login.js:38
-#: proxmox/window/Login.js:48 proxmox/window/Login.js:40
-#: proxmox/window/Login.js:39 proxmox/window/Login.js:44
-#: proxmox/window/Login.js:49 proxmox/window/Login.js:51
-#: proxmox/window/Login.js:55 proxmox/window/Login.js:57
-#: proxmox/window/Login.js:58 proxmox/window/Login.js:54
 msgid "Linux PAM standard authentication"
 msgstr ""
 
-#: proxmox/window/Login.js:33 proxmox/window/Login.js:34
-#: proxmox/window/Login.js:36 proxmox/window/Login.js:37
-#: proxmox/window/Login.js:38 proxmox/window/Login.js:39
-#: proxmox/window/Login.js:49 proxmox/window/Login.js:41
-#: proxmox/window/Login.js:42 proxmox/window/Login.js:43
-#: proxmox/window/Login.js:44 proxmox/window/Login.js:48
-#: proxmox/window/Login.js:53 proxmox/window/Login.js:52
-#: proxmox/window/Login.js:55 proxmox/window/Login.js:59
-#: proxmox/window/Login.js:61 proxmox/window/Login.js:62
-#: proxmox/window/Login.js:58 proxmox/window/Login.js:50
-#: proxmox/window/Login.js:45
 msgid "Realm"
 msgstr "Bereich"
 
-#: proxmox/window/Login.js:32 proxmox/window/Login.js:34
-#: proxmox/window/Login.js:35 proxmox/window/Login.js:36
-#: proxmox/window/Login.js:37 proxmox/window/Login.js:47
-#: proxmox/window/Login.js:39 proxmox/window/Login.js:40
-#: proxmox/window/Login.js:41 proxmox/window/Login.js:45
-#: proxmox/window/Login.js:50 proxmox/window/Login.js:49
-#: proxmox/window/Login.js:52 proxmox/window/Login.js:56
-#: proxmox/window/Login.js:58 proxmox/window/Login.js:59
-#: proxmox/window/Login.js:55
 msgid "Proxmox VE authentication server"
 msgstr "Proxmox VE authentication server"
 
-#: proxmox/window/Login.js:39 proxmox/window/Login.js:41
-#: proxmox/window/Login.js:42 proxmox/window/Login.js:43
-#: proxmox/window/Login.js:44 proxmox/window/Login.js:54
-#: proxmox/window/Login.js:46 proxmox/window/Login.js:47
-#: proxmox/window/Login.js:48 proxmox/window/Login.js:49
-#: proxmox/window/Login.js:53 proxmox/window/Login.js:58
-#: proxmox/window/Login.js:57 proxmox/window/Login.js:60
-#: proxmox/window/Login.js:64 proxmox/window/Login.js:66
-#: proxmox/window/Login.js:67 proxmox/window/Login.js:63
-#: proxmox/window/Login.js:65 proxmox/window/Login.js:52
 msgid "Language"
 msgstr "Sprache"
 
-#: proxmox/Application.js:83 proxmox/Application.js:105
-#: proxmox/Application.js:85 proxmox/Application.js:86
-#: proxmox/Application.js:87 proxmox/Application.js:88
-#: proxmox/Application.js:90 proxmox/Application.js:91
-#: proxmox/Application.js:92 proxmox/Application.js:93
-#: proxmox/Application.js:95 proxmox/Application.js:96
-#: proxmox/Application.js:100 proxmox/Application.js:99
-#: proxmox/Application.js:98 proxmox/Application.js:97
-#: proxmox/Application.js:102 proxmox/Application.js:104
-#: proxmox/Application.js:107 proxmox/Application.js:110
-#: proxmox/Application.js:113 proxmox/Application.js:117
-#: proxmox/Application.js:118 proxmox/Application.js:120
-#: proxmox/Application.js:121 proxmox/Application.js:119
-#: proxmox/Application.js:122 proxmox/Application.js:114
-#: proxmox/Application.js:115 proxmox/Application.js:125
-#: proxmox/Application.js:127 proxmox/Application.js:129
-#: proxmox/Application.js:135 proxmox/Application.js:141
-#: proxmox/Application.js:142 proxmox/Application.js:143
-#: proxmox/Application.js:145 proxmox/Application.js:146
-#: proxmox/Application.js:148 proxmox/Application.js:154
-#: proxmox/Application.js:157 proxmox/Application.js:160
-#: proxmox/Application.js:155 proxmox/Application.js:156
-#: proxmox/Application.js:165 proxmox/Application.js:167
-#: proxmox/Application.js:166 proxmox/Application.js:168
-#: proxmox/Application.js:163 proxmox/Application.js:164
-#: proxmox/Application.js:150 proxmox/Application.js:158
-#: proxmox/Application.js:159 proxmox/Application.js:161
-#: proxmox/Application.js:175 proxmox/Application.js:177
-#: proxmox/Application.js:176 proxmox/Application.js:179
-#: proxmox/Application.js:181 proxmox/Application.js:187
-#: proxmox/Application.js:193 proxmox/Application.js:198
-#: proxmox/Application.js:196 proxmox/Application.js:199
-#: proxmox/Application.js:200 proxmox/Application.js:204
 msgid "You are logged in as '%1'"
 msgstr "Sie sind angemeldet als '%1'"
 
-#: proxmox/window/Login.js:56 proxmox/window/Login.js:57
-#: proxmox/window/Login.js:58 proxmox/window/Login.js:59
-#: proxmox/window/Login.js:63 proxmox/window/Login.js:68
-#: proxmox/window/Login.js:67 proxmox/window/Login.js:70
-#: proxmox/window/Login.js:74 proxmox/window/Login.js:76
-#: proxmox/window/Login.js:77 proxmox/window/Login.js:73
-#: proxmox/window/Login.js:75 proxmox/window/Login.js:62
-#: proxmox/window/Login.js:53
 msgid "Save User name"
 msgstr ""
 
-#: proxmox/Application.js:202 proxmox/Application.js:203
-#: proxmox/Application.js:204 proxmox/Application.js:206
-#: proxmox/Application.js:207 proxmox/Application.js:209
-#: proxmox/Application.js:210 proxmox/Application.js:212
-#: proxmox/Application.js:213 proxmox/Application.js:215
-#: proxmox/Application.js:216 proxmox/Application.js:211
-#: proxmox/Application.js:214 proxmox/Application.js:219
-#: proxmox/Application.js:222 proxmox/Application.js:223
-#: proxmox/Application.js:221 proxmox/Application.js:224
-#: proxmox/part/ServerBrowser.js:118 proxmox/part/ServerBrowser.js:119
-#: proxmox/part/ServerBrowser.js:116 proxmox/part/ServerBrowser.js:117
-#: proxmox/part/ServerBrowser.js:159 proxmox/part/ServerBrowser.js:166
-#: proxmox/part/ServerBrowser.js:190 proxmox/part/ServerBrowser.js:205
-#: proxmox/part/ServerBrowser.js:125 proxmox/part/ServerBrowser.js:167
-#: proxmox/part/ServerBrowser.js:174 proxmox/part/ServerBrowser.js:198
-#: proxmox/part/ServerBrowser.js:213 proxmox/part/ServerBrowser.js:124
-#: proxmox/part/ServerBrowser.js:173 proxmox/part/ServerBrowser.js:197
-#: proxmox/part/ServerBrowser.js:212 proxmox/part/ServerBrowser.js:129
-#: proxmox/part/ServerBrowser.js:171 proxmox/part/ServerBrowser.js:178
-#: proxmox/part/ServerBrowser.js:202 proxmox/part/ServerBrowser.js:217
-#: proxmox/part/ServerBrowser.js:137 proxmox/part/ServerBrowser.js:179
-#: proxmox/part/ServerBrowser.js:186 proxmox/part/ServerBrowser.js:210
-#: proxmox/part/ServerBrowser.js:225 proxmox/part/ServerBrowser.js:136
-#: proxmox/part/ServerBrowser.js:185 proxmox/part/ServerBrowser.js:209
-#: proxmox/part/ServerBrowser.js:224 proxmox/part/ServerBrowser.js:139
-#: proxmox/part/ServerBrowser.js:181 proxmox/part/ServerBrowser.js:188
-#: proxmox/part/ServerBrowser.js:227 proxmox/part/ServerBrowser.js:130
-#: proxmox/part/ServerBrowser.js:172 proxmox/part/ServerBrowser.js:203
-#: proxmox/part/ServerBrowser.js:218 proxmox/part/ServerBrowser.js:132
-#: proxmox/part/ServerBrowser.js:220 proxmox/part/ServerBrowser.js:141
-#: proxmox/part/ServerBrowser.js:183 proxmox/part/ServerBrowser.js:214
-#: proxmox/part/ServerBrowser.js:229 proxmox/part/ServerBrowser.js:145
-#: proxmox/part/ServerBrowser.js:187 proxmox/part/ServerBrowser.js:194
-#: proxmox/part/ServerBrowser.js:233 proxmox/part/ServerBrowser.js:146
-#: proxmox/part/ServerBrowser.js:195 proxmox/part/ServerBrowser.js:219
-#: proxmox/part/ServerBrowser.js:234 proxmox/part/ServerBrowser.js:148
-#: proxmox/part/ServerBrowser.js:221 proxmox/part/ServerBrowser.js:236
-#: proxmox/part/ServerBrowser.js:143 proxmox/part/ServerBrowser.js:152
-#: proxmox/part/ServerBrowser.js:201 proxmox/part/ServerBrowser.js:240
-#: proxmox/part/ServerBrowser.js:155 proxmox/part/ServerBrowser.js:204
-#: proxmox/part/ServerBrowser.js:228 proxmox/part/ServerBrowser.js:243
-#: proxmox/part/ServerBrowser.js:147 proxmox/part/ServerBrowser.js:189
-#: proxmox/part/ServerBrowser.js:196 proxmox/part/ServerBrowser.js:235
-#: proxmox/part/ServerBrowser.js:149 proxmox/part/ServerBrowser.js:191
-#: proxmox/part/ServerBrowser.js:222 proxmox/part/ServerBrowser.js:237
-#: proxmox/part/ServerBrowser.js:193 proxmox/part/ServerBrowser.js:144
-#: proxmox/part/ServerBrowser.js:151 proxmox/part/ServerBrowser.js:157
-#: proxmox/part/ServerBrowser.js:163 proxmox/part/ServerBrowser.js:164
-#: proxmox/part/ServerBrowser.js:168 proxmox/part/ServerBrowser.js:169
-#: proxmox/part/ServerBrowser.js:176 proxmox/part/ServerBrowser.js:177
-#: proxmox/part/ServerBrowser.js:180 proxmox/part/ServerBrowser.js:192
-#: proxmox/part/ServerBrowser.js:200 proxmox/page/datacenter/Search.js:16
-#: proxmox/page/Datacenter.js:24 proxmox/page/Datacenter.js:25
-#: proxmox/page/Datacenter.js:30 proxmox/page/Datacenter.js:32
 msgid "Datacenter"
 msgstr ""
 
-#: proxmox/Application.js:94 proxmox/Application.js:80
-#: proxmox/Application.js:95 proxmox/Application.js:99
-#: proxmox/Application.js:79 proxmox/Application.js:98
-#: proxmox/Application.js:71 proxmox/Application.js:90
-#: proxmox/Application.js:75 proxmox/Application.js:78
-#: proxmox/Application.js:97 proxmox/Application.js:104
-#: proxmox/Application.js:76 proxmox/Application.js:102
-#: proxmox/Application.js:96 proxmox/Application.js:101
-#: proxmox/Application.js:106 proxmox/Application.js:103
-#: proxmox/Application.js:108 proxmox/Application.js:111
-#: proxmox/Application.js:109 proxmox/Application.js:114
-#: proxmox/Application.js:112 proxmox/Application.js:117
-#: proxmox/Application.js:116 proxmox/Application.js:121
-#: proxmox/Application.js:122 proxmox/Application.js:119
-#: proxmox/Application.js:124 proxmox/Application.js:120
-#: proxmox/Application.js:125 proxmox/Application.js:118
-#: proxmox/Application.js:123 proxmox/Application.js:126
-#: proxmox/Application.js:113 proxmox/Application.js:132
-#: proxmox/Application.js:134 proxmox/Application.js:128
-#: proxmox/Application.js:136 proxmox/Application.js:140
-#: proxmox/Application.js:146 proxmox/Application.js:141
-#: proxmox/Application.js:147 proxmox/Application.js:149
-#: proxmox/Application.js:142 proxmox/Application.js:150
-#: proxmox/Application.js:144 proxmox/Application.js:152
-#: proxmox/Application.js:154 proxmox/Application.js:145
-#: proxmox/Application.js:155 proxmox/Application.js:157
-#: proxmox/Application.js:153 proxmox/Application.js:163
-#: proxmox/Application.js:156 proxmox/Application.js:166
-#: proxmox/Application.js:159 proxmox/Application.js:169
-#: proxmox/Application.js:164 proxmox/Application.js:165
-#: proxmox/Application.js:174 proxmox/Application.js:176
-#: proxmox/Application.js:175 proxmox/Application.js:167
-#: proxmox/Application.js:177 proxmox/Application.js:162
-#: proxmox/Application.js:172 proxmox/Application.js:173
-#: proxmox/Application.js:158 proxmox/Application.js:168
-#: proxmox/Application.js:160 proxmox/Application.js:170
-#: proxmox/Application.js:184 proxmox/Application.js:186
-#: proxmox/Application.js:185 proxmox/Application.js:178
-#: proxmox/Application.js:188 proxmox/Application.js:180
-#: proxmox/Application.js:190 proxmox/Application.js:196
-#: proxmox/Application.js:192 proxmox/Application.js:202
-#: proxmox/Application.js:197 proxmox/Application.js:207
-#: proxmox/Application.js:195 proxmox/Application.js:208
-#: proxmox/Application.js:198 proxmox/Application.js:211
-#: proxmox/Application.js:199 proxmox/Application.js:213
-#: proxmox/Application.js:215 proxmox/Application.js:203
-#: proxmox/Application.js:218
 msgid "Virtual Environment %1"
 msgstr ""
 
-#: proxmox/part/ServerBrowser.js:194 proxmox/part/ServerBrowser.js:182
-#: proxmox/part/ServerBrowser.js:183 proxmox/part/ServerBrowser.js:184
-#: proxmox/part/ServerBrowser.js:186 proxmox/part/ServerBrowser.js:187
-#: proxmox/part/ServerBrowser.js:188 proxmox/part/ServerBrowser.js:191
-#: proxmox/part/ServerBrowser.js:192 proxmox/part/ServerBrowser.js:197
-#: proxmox/part/ServerBrowser.js:203 proxmox/part/ServerBrowser.js:204
-#: proxmox/part/ServerBrowser.js:206 proxmox/part/ServerBrowser.js:207
-#: proxmox/part/ServerBrowser.js:208 proxmox/part/ServerBrowser.js:209
-#: proxmox/part/ServerBrowser.js:216 proxmox/part/ServerBrowser.js:217
-#: proxmox/part/ServerBrowser.js:220 proxmox/part/ServerBrowser.js:219
-#: proxmox/part/ServerBrowser.js:218 proxmox/part/ServerBrowser.js:221
-#: proxmox/part/ServerBrowser.js:229 proxmox/part/ServerBrowser.js:232
-#: proxmox/part/ServerBrowser.js:230 proxmox/part/ServerBrowser.js:231
-#: proxmox/part/ServerBrowser.js:235 proxmox/part/ServerBrowser.js:234
-#: proxmox/part/ServerBrowser.js:233 proxmox/part/ServerBrowser.js:237
-#: proxmox/part/ServerBrowser.js:238 proxmox/part/ServerBrowser.js:240
-#: proxmox/page/type/Search.js:35 proxmox/page/type/Search.js:37
-#: proxmox/page/Type.js:35 proxmox/page/Type.js:36 proxmox/page/Type.js:41
-#: proxmox/page/Type.js:43
 msgid "Nodes"
 msgstr ""
 
-#: proxmox/part/ServerBrowser.js:197 proxmox/part/ServerBrowser.js:185
-#: proxmox/part/ServerBrowser.js:186 proxmox/part/ServerBrowser.js:187
-#: proxmox/part/ServerBrowser.js:189 proxmox/part/ServerBrowser.js:190
-#: proxmox/part/ServerBrowser.js:191 proxmox/part/ServerBrowser.js:194
-#: proxmox/part/ServerBrowser.js:195 proxmox/part/ServerBrowser.js:200
-#: proxmox/part/ServerBrowser.js:206 proxmox/part/ServerBrowser.js:207
-#: proxmox/part/ServerBrowser.js:209 proxmox/part/ServerBrowser.js:210
-#: proxmox/part/ServerBrowser.js:211 proxmox/part/ServerBrowser.js:212
-#: proxmox/part/ServerBrowser.js:219 proxmox/part/ServerBrowser.js:220
-#: proxmox/part/ServerBrowser.js:223 proxmox/part/ServerBrowser.js:222
-#: proxmox/part/ServerBrowser.js:221 proxmox/part/ServerBrowser.js:224
-#: proxmox/part/ServerBrowser.js:232 proxmox/part/ServerBrowser.js:235
-#: proxmox/part/ServerBrowser.js:233 proxmox/part/ServerBrowser.js:234
-#: proxmox/part/ServerBrowser.js:238 proxmox/part/ServerBrowser.js:237
-#: proxmox/part/ServerBrowser.js:236 proxmox/part/ServerBrowser.js:240
-#: proxmox/part/ServerBrowser.js:241 proxmox/part/ServerBrowser.js:243
-#: proxmox/page/type/Search.js:29 proxmox/page/type/Search.js:31
-#: proxmox/page/Type.js:29 proxmox/page/Type.js:30 proxmox/page/Type.js:35
-#: proxmox/page/Type.js:37
 msgid "LXC Container"
 msgstr ""
 
-#: proxmox/part/ServerBrowser.js:200 proxmox/part/ServerBrowser.js:188
-#: proxmox/part/ServerBrowser.js:189 proxmox/part/ServerBrowser.js:190
-#: proxmox/part/ServerBrowser.js:192 proxmox/part/ServerBrowser.js:193
-#: proxmox/part/ServerBrowser.js:194 proxmox/part/ServerBrowser.js:197
-#: proxmox/part/ServerBrowser.js:198 proxmox/part/ServerBrowser.js:203
-#: proxmox/part/ServerBrowser.js:209 proxmox/part/ServerBrowser.js:210
-#: proxmox/part/ServerBrowser.js:212 proxmox/part/ServerBrowser.js:213
-#: proxmox/part/ServerBrowser.js:214 proxmox/part/ServerBrowser.js:215
-#: proxmox/part/ServerBrowser.js:222 proxmox/part/ServerBrowser.js:223
-#: proxmox/part/ServerBrowser.js:226 proxmox/part/ServerBrowser.js:225
-#: proxmox/part/ServerBrowser.js:224 proxmox/part/ServerBrowser.js:227
-#: proxmox/part/ServerBrowser.js:235 proxmox/part/ServerBrowser.js:238
-#: proxmox/part/ServerBrowser.js:236 proxmox/part/ServerBrowser.js:237
-#: proxmox/part/ServerBrowser.js:241 proxmox/part/ServerBrowser.js:240
-#: proxmox/part/ServerBrowser.js:239 proxmox/part/ServerBrowser.js:243
-#: proxmox/part/ServerBrowser.js:244 proxmox/part/ServerBrowser.js:246
-#: proxmox/page/type/Search.js:32 proxmox/page/type/Search.js:34
-#: proxmox/page/Type.js:32 proxmox/page/Type.js:33 proxmox/page/Type.js:38
-#: proxmox/page/Type.js:40
 msgid "Virtual Machine"
 msgstr ""
 
-#: proxmox/part/ServerBrowser.js:203 proxmox/part/ServerBrowser.js:191
-#: proxmox/part/ServerBrowser.js:192 proxmox/part/ServerBrowser.js:193
-#: proxmox/part/ServerBrowser.js:195 proxmox/part/ServerBrowser.js:196
-#: proxmox/part/ServerBrowser.js:197 proxmox/part/ServerBrowser.js:200
-#: proxmox/part/ServerBrowser.js:201 proxmox/part/ServerBrowser.js:206
-#: proxmox/part/ServerBrowser.js:212 proxmox/part/ServerBrowser.js:213
-#: proxmox/part/ServerBrowser.js:215 proxmox/part/ServerBrowser.js:216
-#: proxmox/part/ServerBrowser.js:217 proxmox/part/ServerBrowser.js:218
-#: proxmox/part/ServerBrowser.js:225 proxmox/part/ServerBrowser.js:226
-#: proxmox/part/ServerBrowser.js:229 proxmox/part/ServerBrowser.js:228
-#: proxmox/part/ServerBrowser.js:227 proxmox/part/ServerBrowser.js:230
-#: proxmox/part/ServerBrowser.js:238 proxmox/part/ServerBrowser.js:241
-#: proxmox/part/ServerBrowser.js:239 proxmox/part/ServerBrowser.js:240
-#: proxmox/part/ServerBrowser.js:244 proxmox/part/ServerBrowser.js:243
-#: proxmox/part/ServerBrowser.js:242 proxmox/part/ServerBrowser.js:246
-#: proxmox/part/ServerBrowser.js:247 proxmox/part/ServerBrowser.js:249
-#: proxmox/part/Navbar.js:325 proxmox/part/Navbar.js:347
-#: proxmox/part/Navbar.js:350 proxmox/part/Navbar.js:363
-#: proxmox/part/Navbar.js:385 proxmox/part/Navbar.js:406
-#: proxmox/part/Navbar.js:411 proxmox/part/Navbar.js:428
-#: proxmox/part/Navbar.js:429 proxmox/part/Navbar.js:431
-#: proxmox/part/Navbar.js:432 proxmox/part/Navbar.js:444
-#: proxmox/part/Navbar.js:443 proxmox/part/Navbar.js:466
-#: proxmox/page/type/Search.js:38 proxmox/page/type/Search.js:40
-#: proxmox/page/Type.js:38 proxmox/page/Type.js:39 proxmox/page/Type.js:44
-#: proxmox/page/Type.js:46
 msgid "Storage"
 msgstr ""
 
-#: proxmox/page/core/MResourcePage.js:26 proxmox/page/core/MResourcePage.js:25
-#: proxmox/page/core/MResourcePage.js:52 proxmox/page/core/MResourcePage.js:54
-#: proxmox/page/core/MResourcePage.js:55 proxmox/page/core/MResourcePage.js:69
-#: proxmox/page/core/MResourcePage.js:70 proxmox/page/core/MResourcePage.js:67
-#: proxmox/page/core/MResourcePage.js:65 proxmox/model/MResource.js:25
-#: proxmox/model/MResource.js:27 proxmox/model/MResource.js:29
-#: proxmox/model/MResource.js:34 proxmox/model/MResource.js:10
 msgid "Node '%1'"
 msgstr ""
 
-#: proxmox/page/core/MResourcePage.js:28 proxmox/page/core/MResourcePage.js:55
-#: proxmox/page/core/MResourcePage.js:57 proxmox/page/core/MResourcePage.js:58
-#: proxmox/page/core/MResourcePage.js:72 proxmox/page/core/MResourcePage.js:73
-#: proxmox/page/core/MResourcePage.js:70 proxmox/page/core/MResourcePage.js:68
-#: proxmox/model/MResource.js:28 proxmox/model/MResource.js:27
-#: proxmox/model/MResource.js:29 proxmox/model/MResource.js:31
-#: proxmox/model/MResource.js:36 proxmox/model/MResource.js:12
 msgid "Container %1 (%2) on node '%3'"
 msgstr ""
 
-#: proxmox/page/core/MResourcePage.js:31 proxmox/page/core/MResourcePage.js:58
-#: proxmox/page/core/MResourcePage.js:60 proxmox/page/core/MResourcePage.js:61
-#: proxmox/page/core/MResourcePage.js:75 proxmox/page/core/MResourcePage.js:76
-#: proxmox/page/core/MResourcePage.js:73 proxmox/page/core/MResourcePage.js:71
-#: proxmox/model/MResource.js:31 proxmox/model/MResource.js:29
-#: proxmox/model/MResource.js:33 proxmox/model/MResource.js:38
-#: proxmox/model/MResource.js:14
 msgid "Virtual Machine %1 (%2) on node '%3'"
 msgstr ""
 
-#: proxmox/page/core/MResourcePage.js:34 proxmox/page/core/MResourcePage.js:61
-#: proxmox/page/core/MResourcePage.js:63 proxmox/page/core/MResourcePage.js:64
-#: proxmox/page/core/MResourcePage.js:78 proxmox/page/core/MResourcePage.js:79
-#: proxmox/page/core/MResourcePage.js:76 proxmox/page/core/MResourcePage.js:74
-#: proxmox/model/MResource.js:34 proxmox/model/MResource.js:31
-#: proxmox/model/MResource.js:33 proxmox/model/MResource.js:35
-#: proxmox/model/MResource.js:40 proxmox/model/MResource.js:16
 msgid "Storage '%1' on node '%2'"
 msgstr ""
 
-#: proxmox/part/Navbar.js:208 proxmox/part/Navbar.js:307
-#: proxmox/part/Navbar.js:218 proxmox/part/Navbar.js:317
-#: proxmox/part/Navbar.js:240 proxmox/part/Navbar.js:253
-#: proxmox/part/Navbar.js:275 proxmox/part/Navbar.js:276
-#: proxmox/part/Navbar.js:281 proxmox/part/Navbar.js:298
-#: proxmox/part/Navbar.js:299 proxmox/part/Navbar.js:301
-#: proxmox/part/Navbar.js:302 proxmox/part/Navbar.js:314
-#: proxmox/part/Navbar.js:313 proxmox/part/Navbar.js:336
 msgid "Shell"
 msgstr ""
 
-#: proxmox/part/Navbar.js:212 proxmox/part/Navbar.js:311
-#: proxmox/part/Navbar.js:222 proxmox/part/Navbar.js:321
-#: proxmox/part/Navbar.js:244 proxmox/part/Navbar.js:257
-#: proxmox/part/Navbar.js:279 proxmox/part/Navbar.js:281
-#: proxmox/part/Navbar.js:286 proxmox/part/Navbar.js:303
-#: proxmox/part/Navbar.js:304 proxmox/part/Navbar.js:306
-#: proxmox/part/Navbar.js:307 proxmox/part/Navbar.js:319
-#: proxmox/part/Navbar.js:318 proxmox/part/Navbar.js:341
 msgid "System"
 msgstr ""
 
-#: proxmox/part/Navbar.js:224 proxmox/part/Navbar.js:323
-#: proxmox/part/Navbar.js:234 proxmox/part/Navbar.js:333
-#: proxmox/part/Navbar.js:256 proxmox/part/Navbar.js:269
-#: proxmox/part/Navbar.js:291 proxmox/part/Navbar.js:296
-#: proxmox/part/Navbar.js:301 proxmox/part/Navbar.js:318
-#: proxmox/part/Navbar.js:319 proxmox/part/Navbar.js:321
-#: proxmox/part/Navbar.js:322 proxmox/part/Navbar.js:334
-#: proxmox/part/Navbar.js:356
 msgid "Time"
 msgstr ""
 
-#: proxmox/part/Navbar.js:228 proxmox/part/Navbar.js:327
-#: proxmox/part/Navbar.js:238 proxmox/part/Navbar.js:337
-#: proxmox/part/Navbar.js:260 proxmox/part/Navbar.js:273
-#: proxmox/part/Navbar.js:295 proxmox/part/Navbar.js:301
-#: proxmox/part/Navbar.js:306 proxmox/part/Navbar.js:323
-#: proxmox/part/Navbar.js:324 proxmox/part/Navbar.js:326
-#: proxmox/part/Navbar.js:339 proxmox/part/Navbar.js:338
-#: proxmox/part/Navbar.js:361
 msgid "Syslog"
 msgstr ""
 
-#: proxmox/part/Navbar.js:234 proxmox/part/Navbar.js:333
-#: proxmox/part/Navbar.js:244 proxmox/part/Navbar.js:343
-#: proxmox/part/Navbar.js:266 proxmox/part/Navbar.js:279
-#: proxmox/part/Navbar.js:301 proxmox/part/Navbar.js:308
-#: proxmox/part/Navbar.js:313 proxmox/part/Navbar.js:330
-#: proxmox/part/Navbar.js:331 proxmox/part/Navbar.js:334
-#: proxmox/part/Navbar.js:346 proxmox/part/Navbar.js:345
-#: proxmox/part/Navbar.js:368
 msgid "Updates"
 msgstr ""
 
-#: proxmox/part/Navbar.js:252 proxmox/part/Navbar.js:351
-#: proxmox/part/Navbar.js:262 proxmox/part/Navbar.js:361
-#: proxmox/part/Navbar.js:284 proxmox/part/Navbar.js:297
-#: proxmox/part/Navbar.js:319 proxmox/part/Navbar.js:330
-#: proxmox/part/Navbar.js:335 proxmox/part/Navbar.js:352
-#: proxmox/part/Navbar.js:353 proxmox/part/Navbar.js:355
-#: proxmox/part/Navbar.js:356 proxmox/part/Navbar.js:368
-#: proxmox/part/Navbar.js:367 proxmox/part/Navbar.js:390
 msgid "Disks"
 msgstr ""
 
-#: proxmox/part/Navbar.js:256 proxmox/part/Navbar.js:355
-#: proxmox/part/Navbar.js:266 proxmox/part/Navbar.js:365
-#: proxmox/part/Navbar.js:288 proxmox/part/Navbar.js:301
-#: proxmox/part/Navbar.js:323 proxmox/part/Navbar.js:335
-#: proxmox/part/Navbar.js:340 proxmox/part/Navbar.js:357
-#: proxmox/part/Navbar.js:358 proxmox/part/Navbar.js:360
-#: proxmox/part/Navbar.js:361 proxmox/part/Navbar.js:373
-#: proxmox/part/Navbar.js:372 proxmox/part/Navbar.js:395
 msgid "Ceph"
 msgstr ""
 
-#: proxmox/part/Navbar.js:260 proxmox/part/Navbar.js:359
-#: proxmox/part/Navbar.js:270 proxmox/part/Navbar.js:369
-#: proxmox/part/Navbar.js:292 proxmox/part/Navbar.js:305
-#: proxmox/part/Navbar.js:327 proxmox/part/Navbar.js:340
-#: proxmox/part/Navbar.js:345 proxmox/part/Navbar.js:362
-#: proxmox/part/Navbar.js:363 proxmox/part/Navbar.js:365
-#: proxmox/part/Navbar.js:366 proxmox/part/Navbar.js:378
-#: proxmox/part/Navbar.js:377 proxmox/part/Navbar.js:400
 msgid "Configuration"
 msgstr ""
 
-#: proxmox/part/Navbar.js:268 proxmox/part/Navbar.js:367
-#: proxmox/part/Navbar.js:278 proxmox/part/Navbar.js:377
-#: proxmox/part/Navbar.js:300 proxmox/part/Navbar.js:313
-#: proxmox/part/Navbar.js:335 proxmox/part/Navbar.js:350
-#: proxmox/part/Navbar.js:355 proxmox/part/Navbar.js:372
-#: proxmox/part/Navbar.js:373 proxmox/part/Navbar.js:375
-#: proxmox/part/Navbar.js:376 proxmox/part/Navbar.js:388
-#: proxmox/part/Navbar.js:387 proxmox/part/Navbar.js:410
 msgid "OSD"
 msgstr ""
 
-#: proxmox/part/Navbar.js:272 proxmox/part/Navbar.js:371
-#: proxmox/part/Navbar.js:282 proxmox/part/Navbar.js:381
-#: proxmox/part/Navbar.js:349 proxmox/part/Navbar.js:304
-#: proxmox/part/Navbar.js:374 proxmox/part/Navbar.js:375
-#: proxmox/part/Navbar.js:380 proxmox/part/Navbar.js:317
-#: proxmox/part/Navbar.js:393 proxmox/part/Navbar.js:339
-#: proxmox/part/Navbar.js:415 proxmox/part/Navbar.js:355
-#: proxmox/part/Navbar.js:436 proxmox/part/Navbar.js:360
-#: proxmox/part/Navbar.js:441 proxmox/part/Navbar.js:377
-#: proxmox/part/Navbar.js:458 proxmox/part/Navbar.js:378
-#: proxmox/part/Navbar.js:459 proxmox/part/Navbar.js:461
-#: proxmox/part/Navbar.js:462 proxmox/part/Navbar.js:474
-#: proxmox/part/Navbar.js:392 proxmox/part/Navbar.js:473
-#: proxmox/part/Navbar.js:496
 msgid "Pools"
 msgstr ""
 
-#: proxmox/part/Navbar.js:291 proxmox/part/Navbar.js:390
-#: proxmox/part/Navbar.js:301 proxmox/part/Navbar.js:400
-#: proxmox/part/Navbar.js:323 proxmox/part/Navbar.js:336
-#: proxmox/part/Navbar.js:358 proxmox/part/Navbar.js:378
-#: proxmox/part/Navbar.js:383 proxmox/part/Navbar.js:401
-#: proxmox/part/Navbar.js:403 proxmox/part/Navbar.js:404
-#: proxmox/part/Navbar.js:416 proxmox/part/Navbar.js:415
-#: proxmox/part/Navbar.js:438
 msgid "Subscription"
 msgstr ""
 
-#: proxmox/part/Navbar.js:341 proxmox/part/Navbar.js:363
-#: proxmox/part/Navbar.js:364 proxmox/part/Navbar.js:365
-#: proxmox/part/Navbar.js:370 proxmox/part/Navbar.js:383
-#: proxmox/part/Navbar.js:405 proxmox/part/Navbar.js:426
-#: proxmox/part/Navbar.js:431 proxmox/part/Navbar.js:448
-#: proxmox/part/Navbar.js:449 proxmox/part/Navbar.js:451
-#: proxmox/part/Navbar.js:452 proxmox/part/Navbar.js:464
-#: proxmox/part/Navbar.js:463 proxmox/part/Navbar.js:486
 msgid "Users"
 msgstr ""
 
-#: proxmox/part/Navbar.js:345 proxmox/part/Navbar.js:367
-#: proxmox/part/Navbar.js:369 proxmox/part/Navbar.js:370
-#: proxmox/part/Navbar.js:375 proxmox/part/Navbar.js:388
-#: proxmox/part/Navbar.js:410 proxmox/part/Navbar.js:431
-#: proxmox/part/Navbar.js:436 proxmox/part/Navbar.js:453
-#: proxmox/part/Navbar.js:454 proxmox/part/Navbar.js:456
-#: proxmox/part/Navbar.js:457 proxmox/part/Navbar.js:469
-#: proxmox/part/Navbar.js:468 proxmox/part/Navbar.js:491
 msgid "Groups"
 msgstr ""
 
-#: proxmox/part/Navbar.js:353 proxmox/part/Navbar.js:375
-#: proxmox/part/Navbar.js:379 proxmox/part/Navbar.js:380
-#: proxmox/part/Navbar.js:385 proxmox/part/Navbar.js:398
-#: proxmox/part/Navbar.js:420 proxmox/part/Navbar.js:441
-#: proxmox/part/Navbar.js:446 proxmox/part/Navbar.js:463
-#: proxmox/part/Navbar.js:464 proxmox/part/Navbar.js:466
-#: proxmox/part/Navbar.js:467 proxmox/part/Navbar.js:479
-#: proxmox/part/Navbar.js:478 proxmox/part/Navbar.js:501
 msgid "Roles"
 msgstr ""
 
-#: proxmox/part/Navbar.js:357 proxmox/part/Navbar.js:379
-#: proxmox/part/Navbar.js:384 proxmox/part/Navbar.js:385
-#: proxmox/part/Navbar.js:390 proxmox/part/Navbar.js:403
-#: proxmox/part/Navbar.js:425 proxmox/part/Navbar.js:446
-#: proxmox/part/Navbar.js:451 proxmox/part/Navbar.js:468
-#: proxmox/part/Navbar.js:469 proxmox/part/Navbar.js:471
-#: proxmox/part/Navbar.js:472 proxmox/part/Navbar.js:484
-#: proxmox/part/Navbar.js:483 proxmox/part/Navbar.js:506
 msgid "Authentication"
 msgstr ""
 
-#: proxmox/part/Navbar.js:363 proxmox/part/Navbar.js:385
-#: proxmox/part/Navbar.js:391 proxmox/part/Navbar.js:392
-#: proxmox/part/Navbar.js:397 proxmox/part/Navbar.js:410
-#: proxmox/part/Navbar.js:432 proxmox/part/Navbar.js:453
-#: proxmox/part/Navbar.js:458 proxmox/part/Navbar.js:475
-#: proxmox/part/Navbar.js:476 proxmox/part/Navbar.js:478
-#: proxmox/part/Navbar.js:479 proxmox/part/Navbar.js:491
-#: proxmox/part/Navbar.js:490 proxmox/part/Navbar.js:513
 msgid "HA"
 msgstr ""
 
-#: proxmox/part/Navbar.js:375 proxmox/part/Navbar.js:397
-#: proxmox/part/Navbar.js:406 proxmox/part/Navbar.js:407
-#: proxmox/part/Navbar.js:412 proxmox/part/Navbar.js:425
-#: proxmox/part/Navbar.js:447 proxmox/part/Navbar.js:468
-#: proxmox/part/Navbar.js:473 proxmox/part/Navbar.js:490
-#: proxmox/part/Navbar.js:491 proxmox/part/Navbar.js:493
-#: proxmox/part/Navbar.js:494 proxmox/part/Navbar.js:506
-#: proxmox/part/Navbar.js:505 proxmox/part/Navbar.js:528
 msgid "Security Group"
 msgstr ""
 
-#: proxmox/part/Navbar.js:389 proxmox/part/Navbar.js:411
-#: proxmox/part/Navbar.js:423 proxmox/part/Navbar.js:424
-#: proxmox/part/Navbar.js:429 proxmox/part/Navbar.js:442
-#: proxmox/part/Navbar.js:464 proxmox/part/Navbar.js:485
-#: proxmox/part/Navbar.js:490 proxmox/part/Navbar.js:507
-#: proxmox/part/Navbar.js:508 proxmox/part/Navbar.js:510
-#: proxmox/part/Navbar.js:511 proxmox/part/Navbar.js:523
-#: proxmox/part/Navbar.js:522 proxmox/part/Navbar.js:545
 msgid "Support"
 msgstr ""
 
-#: proxmox/part/Navbar.js:76 proxmox/part/Navbar.js:78
-#: proxmox/part/Navbar.js:83 proxmox/part/Navbar.js:100
-#: proxmox/part/Navbar.js:101 proxmox/part/Navbar.js:103
-#: proxmox/part/Navbar.js:104 proxmox/part/Navbar.js:116
-#: proxmox/part/Navbar.js:115
 msgid "Content"
 msgstr ""
 
-#: proxmox/part/SearchResources.js:32 proxmox/part/SearchResources.js:30
-#: proxmox/part/SearchResources.js:31 proxmox/part/SearchResources.js:12
-#: proxmox/part/SearchResources.js:14 proxmox/part/SearchResources.js:18
-#: proxmox/part/SearchResources.js:22 proxmox/part/SearchResources.js:26
-#: proxmox/part/SearchResources.js:27 proxmox/part/SearchResources.js:29
-#: proxmox/part/SearchResources.js:28
 msgid "Type"
 msgstr ""
 
-#: proxmox/part/SearchResources.js:32 proxmox/part/SearchResources.js:30
-#: proxmox/part/SearchResources.js:31 proxmox/part/SearchResources.js:12
-#: proxmox/part/SearchResources.js:14 proxmox/part/SearchResources.js:18
-#: proxmox/part/SearchResources.js:22 proxmox/part/SearchResources.js:26
-#: proxmox/part/SearchResources.js:27
 msgid "Description"
 msgstr ""
 
-#: proxmox/part/SearchResources.js:32 proxmox/part/SearchResources.js:30
-#: proxmox/part/SearchResources.js:31 proxmox/part/SearchResources.js:12
-#: proxmox/part/SearchResources.js:14 proxmox/part/SearchResources.js:18
-#: proxmox/part/SearchResources.js:22 proxmox/part/SearchResources.js:26
-#: proxmox/part/SearchResources.js:27 proxmox/part/SearchResources.js:35
-#: proxmox/part/SearchResources.js:34
 msgid "Disk usage %"
 msgstr ""
 
-#: proxmox/part/SearchResources.js:32 proxmox/part/SearchResources.js:30
-#: proxmox/part/SearchResources.js:31 proxmox/part/SearchResources.js:12
-#: proxmox/part/SearchResources.js:14 proxmox/part/SearchResources.js:18
-#: proxmox/part/SearchResources.js:22 proxmox/part/SearchResources.js:26
-#: proxmox/part/SearchResources.js:27 proxmox/part/SearchResources.js:38
-#: proxmox/part/SearchResources.js:37
 msgid "Memory usage %"
 msgstr ""
 
-#: proxmox/part/SearchResources.js:32 proxmox/part/SearchResources.js:30
-#: proxmox/part/SearchResources.js:31 proxmox/part/SearchResources.js:12
-#: proxmox/part/SearchResources.js:14 proxmox/part/SearchResources.js:18
-#: proxmox/part/SearchResources.js:22 proxmox/part/SearchResources.js:26
-#: proxmox/part/SearchResources.js:27 proxmox/part/SearchResources.js:41
-#: proxmox/part/SearchResources.js:40
 msgid "CPU usage"
 msgstr ""
 
-#: proxmox/part/SearchResources.js:32 proxmox/part/SearchResources.js:30
-#: proxmox/part/SearchResources.js:31 proxmox/part/SearchResources.js:12
-#: proxmox/part/SearchResources.js:14 proxmox/part/SearchResources.js:18
-#: proxmox/part/SearchResources.js:22 proxmox/part/SearchResources.js:26
-#: proxmox/part/SearchResources.js:27 proxmox/part/SearchResources.js:44
-#: proxmox/part/SearchResources.js:43
 msgid "Uptime"
 msgstr ""
 
-#: qx/ui/table/Table.js:1974
 msgid "one row"
 msgid_plural "%1 rows"
 msgstr[0] ""
 msgstr[1] ""
 
-#: qx/ui/table/Table.js:1976
 msgid "one of one row"
 msgid_plural "%1 of %2 rows"
 msgstr[0] ""
 msgstr[1] ""
 
-#: proxmox/part/SearchResources.js:47 proxmox/part/SearchResources.js:46
-#: proxmox/part/SearchResources.js:49 proxmox/page/Type.js:49
 msgid "Pool"
 msgstr ""
 
-#: proxmox/window/Login.js:36 proxmox/window/Login.js:38
-#: proxmox/window/Login.js:39
 msgid "Host"
 msgstr ""
 
-#: proxmox/window/Login.js:37 proxmox/window/Login.js:39
-#: proxmox/window/Login.js:40
 msgid "Mock Data"
 msgstr ""
 
-#: proxmox/part/ServerBrowser.js:249 proxmox/part/ServerBrowser.js:252
 msgid "Resource Pool"
 msgstr ""
 
-#: proxmox/page/Type.js:52
 msgid "Unknown"
 msgstr ""
 
-#: proxmox/part/Navbar.js:138
 msgid "Members"
 msgstr ""
 
-#: proxmox/model/MResource.js:18
 msgid "Resource Pool: %1"
 msgstr ""
 
-#: proxmox/part/SearchResources.js:46
 msgid "Node"
 msgstr ""
