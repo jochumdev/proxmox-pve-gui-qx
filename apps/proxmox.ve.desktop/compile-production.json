@@ -1,0 +1,39 @@
+{
+  "targets": [
+    {
+      "type": "source",
+      "outputPath": "../../source-output"
+    },
+    {
+      "type": "hybrid",
+      "outputPath": "../../hybrid-output"
+    },
+    {
+      "type": "build",
+      "minify": "minify",
+      "outputPath": "../../build-output",
+      "environment": {
+        "qx.debug": false,
+        "proxmox.debug-routing": false
+      }
+    }
+  ],
+  "defaultTarget": "source",
+  "locales": ["en","de"],
+
+  "applications": [
+    {
+      "class": "proxmox.ve.desktop.Application",
+      "theme": "proxmox.theme.Theme",
+      "name": "desktop",
+      "writeIndexHtmlToRoot": false,
+      "include": [ "proxmox.ve.desktop.page.*" ]
+    }
+  ],
+
+  "libraries": [
+    "../../../qooxdoo/framework",
+    "../../modules/proxmox",
+    "."
+  ]
+}

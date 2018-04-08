@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-08 01:01+0200\n"
+"POT-Creation-Date: 2018-04-08 05:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,129 +19,134 @@ msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 msgid "Start"
-msgstr "Start"
+msgstr ""
 
 msgid "Shutdown"
-msgstr "Herunterfahren"
+msgstr ""
 
 msgid "Migrate"
-msgstr "Migration"
+msgstr ""
 
 msgid "Console"
-msgstr "Konsole"
+msgstr ""
 
 msgid "More"
-msgstr "Mehr"
+msgstr ""
 
 msgid "Help"
-msgstr "Hilfe"
+msgstr ""
 
 msgid "Summary"
-msgstr "Übersicht"
+msgstr ""
 
 msgid "Resources"
-msgstr "Ressourcen"
+msgstr ""
 
 msgid "Network"
-msgstr "Netzwerk"
+msgstr ""
 
 msgid "DNS"
-msgstr "DNS"
+msgstr ""
 
 msgid "Options"
-msgstr "Optionen"
+msgstr ""
 
 msgid "Task History"
-msgstr "Aufgabenhistorie"
+msgstr ""
 
 msgid "Backup"
-msgstr "Sicherung"
+msgstr ""
 
 msgid "Replication"
-msgstr "Replizierung"
+msgstr ""
 
 msgid "Snapshots"
-msgstr "Snapshots"
+msgstr ""
 
 msgid "Firewall"
-msgstr "Firewall"
+msgstr ""
 
 msgid "Alias"
-msgstr "Alias"
+msgstr ""
 
 msgid "IPSet"
-msgstr "IPSet"
+msgstr ""
 
 msgid "Log"
 msgstr ""
 
 msgid "Permissions"
-msgstr "Rechte"
+msgstr ""
 
 msgid "Hardware"
-msgstr "Hardware"
+msgstr ""
 
 msgid "Monitor"
-msgstr "Monitor"
+msgstr ""
 
 msgid "Server View"
-msgstr "Server-Ansicht"
+msgstr ""
 
 msgid "Folder View"
-msgstr "Ordner-Ansicht"
+msgstr ""
 
 msgid "Storage View"
-msgstr "Storage-Ansicht"
+msgstr ""
 
 msgid "Pool View"
-msgstr "Pool-Ansicht"
+msgstr ""
 
 msgid "Documentation"
-msgstr "Dokumentation"
+msgstr ""
 
 msgid "Create VM"
-msgstr "Erstelle VM"
+msgstr ""
 
 msgid "Create CT"
-msgstr "Erstelle CT"
+msgstr ""
 
 msgid "Logout"
-msgstr "Abmelden"
+msgstr ""
 
 msgid "Search"
-msgstr "Suchen"
+msgstr ""
 
 msgid "Proxmox VE Login"
-msgstr "Proxmox VE Anmeldung"
+msgstr ""
 
 msgid "Username"
-msgstr "Benutzername"
+msgstr ""
 
 msgid "Password"
-msgstr "Kennwort"
+msgstr ""
 
 msgid "Login"
-msgstr "Anmelden"
+msgstr ""
 
+#
+msgid "Cancel"
+msgstr ""
+
+#
 msgid "This field is required"
-msgstr "Diese Feld darf nicht leer sein"
+msgstr ""
 
 #
 msgid "Linux PAM standard authentication"
 msgstr ""
 
 msgid "Realm"
-msgstr "Bereich"
+msgstr ""
 
 #
 msgid "Proxmox VE authentication server"
-msgstr "Proxmox VE authentication server"
+msgstr ""
 
 msgid "Language"
-msgstr "Sprache"
+msgstr ""
 
 msgid "You are logged in as '%1'"
-msgstr "Sie sind angemeldet als '%1'"
+msgstr ""
 
 msgid "Save User name"
 msgstr ""

@@ -401,7 +401,7 @@ qx.Class.define("proxmox.ve.desktop.part.Navbar", {
                             },
                             {
                                 label: this.tr("Ceph"),
-                                icon: "image:proxmox/logo-ceph.png",
+                                icon: "image:proxmox/image/logo-ceph.png",
                                 id: "ceph",
                                 children: [
                                     {

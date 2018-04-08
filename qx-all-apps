@@ -1,0 +1,9 @@
+#!/bin/bash
+QXCMD=$(/usr/bin/which qx)
+for app in apps/*; do
+    pushd .
+    echo -e "\n\nChangeing to ${app}:\n"
+    cd ${app}
+    ${QXCMD} $@
+    popd
+done

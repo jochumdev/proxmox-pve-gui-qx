@@ -69,7 +69,8 @@ qx.Class.define("proxmox.ve.desktop.window.Login", {
         form.add(languageBox, this.tr("Language"), null, "language");
 
         languageBox.addListener("changeValue", (e) => {
-            app.setLanguage(e.getData().getModel());
+            var data = e.getData();
+            app.setLanguage(data.getModel());
         });
 
         /**
