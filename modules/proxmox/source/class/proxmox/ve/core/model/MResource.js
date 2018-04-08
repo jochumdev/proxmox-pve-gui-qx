@@ -21,32 +21,28 @@ qx.Mixin.define("proxmox.ve.core.model.MResource", {
         },
 
         getDiskUsagePercent: function() {
-            var type = this.getType();
-            if (type == "pool") {
+            if (!qx.util.OOUtil.hasProperty(this, "disk")) {
                 return -1;
             }
             return Math.round(this.getDisk() / this.getMaxdisk() * 100 * 10) / 10;
         },
 
         getMemoryUsagePercent: function() {
-            var type = this.getType();
-            if (type === "storage") {
+            if (!qx.util.OOUtil.hasProperty(this, "mem")) {
                 return -1;
             }
             return Math.round(this.getMem() / this.getMaxmem() * 100 * 10) / 10;
         },
 
         getCPUUsagePercent: function() {
-            var type = this.getType();
-            if (type === "storage") {
+            if (!qx.util.OOUtil.hasProperty(this, "cpu")) {
                 return -1;
             }
             return Math.round(this.getCpu() * 100 * 10) / 10;
         },
 
         getDisplayUptime: function() {
-            var type = this.getType();
-            if (type === "storage" || type == "pool") {
+            if (!qx.util.OOUtil.hasProperty(this, "uptime")) {
                 return "-";
             }
             return proxmox.core.Utils.secondsToHHMMSS(this.getUptime());
