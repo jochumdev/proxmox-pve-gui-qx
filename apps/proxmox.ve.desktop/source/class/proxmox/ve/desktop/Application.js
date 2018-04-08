@@ -82,6 +82,7 @@ qx.Class.define("proxmox.ve.desktop.Application", {
 
             // Search Field
             var sr = new proxmox.ve.desktop.part.SearchResources("cellTap", ["type", "description", "node", "pool"]);
+            sr.setStateStoreKey("qx-globalsearchtable-columnstate");
             var srf = sr.getSearchField();
             var srTable = sr.getContainer();
             var searchWindow = new proxmox.ve.desktop.window.SearchTable(srTable);

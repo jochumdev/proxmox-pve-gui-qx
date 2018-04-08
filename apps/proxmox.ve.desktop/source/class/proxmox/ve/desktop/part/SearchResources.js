@@ -18,6 +18,7 @@ qx.Class.define("proxmox.ve.desktop.part.SearchResources", {
         this._columns = columns;
 
         var app = qx.core.Init.getApplication();
+        this._localStore = app.getLocalStore();
 
         var tableModel = this._tableModel = new qx.ui.table.model.Simple();
 
@@ -55,7 +56,7 @@ qx.Class.define("proxmox.ve.desktop.part.SearchResources", {
 
         tableModel.setColumns(headers);
 
-        var table = this._table = new qx.ui.table.Table(tableModel);
+        var table = this._table = new proxmox.core.ui.table.Table(tableModel);
         table.addListener(tableClickMode, (e) => {
             var data = tableModel.getRowData(e.getRow());
             app.getNavigator().navigateTo(data[data.length - 1], "");
@@ -64,6 +65,8 @@ qx.Class.define("proxmox.ve.desktop.part.SearchResources", {
         table.set({
             decorator: null
         });
+
+        this._loadTableState(this.getStateStoreKey());
 
         var sf = this.getSearchField();
         sf.addListener("input", (e) => {
@@ -92,6 +95,11 @@ qx.Class.define("proxmox.ve.desktop.part.SearchResources", {
             event: "changeSearchValue",
             init: "",
             apply: "_updateData"
+        },
+
+        stateStoreKey: {
+            init: "qx-searchtable-columnstate",
+            apply: "_loadTableState"
         }
     },
 
@@ -101,6 +109,8 @@ qx.Class.define("proxmox.ve.desktop.part.SearchResources", {
         _searchField: null,
         _columns: null,
         _serviceManager: null,
+
+        _localStore: null,
 
         getSearchField: function () {
             if (this._searchField !== null) {
@@ -138,11 +148,22 @@ qx.Class.define("proxmox.ve.desktop.part.SearchResources", {
             this.setModel(e.getData());
         },
 
+        _loadTableState: function(value) {
+            var colState = this._localStore.getItem(value);
+            if (colState !== null && colState !== "") {
+                this._table.restoreColumnState(colState);
+            }
+
+        },
+
         _updateData: function () {
             var model = this.getModel();
             if (!model) {
                 return;
             }
+
+            var columnState = this._table.getColumnState();
+            this._localStore.setItem(this.getStateStoreKey(), columnState);
 
             var limitType = this.getLimitType();
             var searchValue = this.getSearchValue();
@@ -178,7 +199,7 @@ qx.Class.define("proxmox.ve.desktop.part.SearchResources", {
                             break;
                         case "cpu":
                             var cpu = node.getCPUUsagePercent();
-                            rowData.push(cpu > 0 ? cpu.toString() + "% of " + node.getMaxcpu().toString() + "CPUs" : "");
+                            rowData.push(cpu >= 0 ? cpu.toString() + "% of " + node.getMaxcpu().toString() + "CPUs" : "");
                             break;
                         case "uptime":
                             rowData.push(node.getDisplayUptime());
@@ -198,7 +219,16 @@ qx.Class.define("proxmox.ve.desktop.part.SearchResources", {
                 data.push(rowData);
             });
 
+            var lastColIndex = data[0].length - 1;
+            data.sort(function (a, b) {
+                if (a[lastColIndex] < b[lastColIndex]) return -1;
+                if (a[lastColIndex] > b[lastColIndex]) return 1;
+                return 0;
+            })
+
             this._tableModel.setData(data);
+
+            this._table.restoreColumnState(columnState)
         }
     },
 
