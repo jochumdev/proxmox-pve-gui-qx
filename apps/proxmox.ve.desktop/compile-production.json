@@ -2,24 +2,27 @@
   "targets": [
     {
       "type": "source",
-      "outputPath": "../../source-output"
+      "outputPath": "../../source-output",
+      "minify": "minify"
     },
     {
       "type": "hybrid",
-      "outputPath": "../../hybrid-output"
+      "outputPath": "../../hybrid-output",
+      "minify": "minify"
     },
     {
       "type": "build",
-      "minify": "minify",
       "outputPath": "../../build-output",
-      "environment": {
-        "qx.debug": false,
-        "proxmox.debug-routing": false
-      }
+      "minify": "minify"
     }
   ],
   "defaultTarget": "source",
   "locales": ["en","de"],
+
+  "environment": {
+    "qx.debug": false,
+    "proxmox.debug-routing": false
+  },
 
   "applications": [
     {
