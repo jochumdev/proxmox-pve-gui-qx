@@ -7,6 +7,9 @@ qx.Class.define("proxmox.core.service.Manager", {
         this._endpoints = {};
         this._services = {};
         this._resourceServices = {};
+
+        var st = this._serviceTimer = new qx.event.Timer(this.getTimerInterval());
+        st.addListener("interval", this._onTimer, this);
     },
 
     statics: {
@@ -18,7 +21,8 @@ qx.Class.define("proxmox.core.service.Manager", {
 
     events: {
         disposedServices: "qx.event.type.Event",
-        disposedResourceServices: "qx.event.type.Event"
+        disposedResourceServices: "qx.event.type.Event",
+        timerInterval: "qx.event.type.Event",
     },
 
     properties: {
@@ -26,10 +30,17 @@ qx.Class.define("proxmox.core.service.Manager", {
             check: "String",
             init: "",
             apply: "_applyBaseUrl"
-        }
+        },
+
+        timerInterval: {
+            check: "Integer",
+            init: 5000,
+            apply: "_applyTimerInterval",
+        },
     },
 
     members: {
+        _serviceTimer: null,
         _endpoints: null,
         _services: null,
         _resourceServices: null,
@@ -41,16 +52,16 @@ qx.Class.define("proxmox.core.service.Manager", {
          * @param pattern {String} Path pattern, see: http://www.qooxdoo.org/5.1/api/#qx.lang.String~format
          * @param serviceClazz {Class?} Qx class which implements proxmox.core.service.core.IService.
          * @param method {String?} HTTP Method - default GET.
+         * @param wantsTimer {Boolean?} If the endpoint wants to get called periodically.
          */
-        registerEndpoint: function(name, pattern, serviceClazz, method) {
-            if (!method) {
-                method = proxmox.core.service.Manager.GET;
-            }
+        registerEndpoint: function(name, pattern, serviceClazz, method, wantsTimer) {
+            method = method || proxmox.core.service.Manager.GET;
             name = this._translateServiceName(name, method);
             this._endpoints[name] = {
                 pattern: pattern,
                 serviceClazz: serviceClazz,
-                method: method
+                method: method,
+                wantsTimer: wantsTimer || false
             };
         },
 
@@ -59,9 +70,7 @@ qx.Class.define("proxmox.core.service.Manager", {
          * @param method {String?} HTTP Method - default GET.
          */
         getService: function(name, method) {
-            if (!method) {
-                method = proxmox.core.service.Manager.GET;
-            }
+            method = method || proxmox.core.service.Manager.GET;
             name = this._translateServiceName(name, method);
             if (name in this._services) {
                 return this._services[name];
@@ -77,9 +86,7 @@ qx.Class.define("proxmox.core.service.Manager", {
          * @param method {String?} HTTP Method - default GET.
          */
         getResourceService: function(name, args, method) {
-            if (!method) {
-                method = proxmox.core.service.Manager.GET;
-            }
+            method = method || proxmox.core.service.Manager.GET;
             name = this._translateServiceName(name, method);
             if (name in this._resourceServices) {
                 var sv = this._resourceServices[name]
@@ -115,9 +122,17 @@ qx.Class.define("proxmox.core.service.Manager", {
             this.fireEvent("disposedResourceServices");
         },
 
+        getTimer: function() {
+            return this._serviceTimer;
+        },
+
+        executeTimerOnce: function() {
+            this._onTimer();
+        },
+
         _createService: function(name, args, method) {
             if (!(name in this._endpoints)) {
-                throw Error("Register the endpoint with registerEndpoint first");
+                throw Error(`Register the endpoint "${name}" with registerEndpoint first`);
             }
 
             var endpoint = this._endpoints[name];
@@ -128,7 +143,7 @@ qx.Class.define("proxmox.core.service.Manager", {
                 url = this.getBaseUrl() + "/" + endpoint.pattern;
             }
 
-            var sv = new (endpoint.serviceClazz)(url, method);
+            var sv = new (endpoint.serviceClazz)(url, method, endpoint.wantsTimer);
 
             return sv;
         },
@@ -140,7 +155,24 @@ qx.Class.define("proxmox.core.service.Manager", {
         _applyBaseUrl: function() {
             this.disposeServices();
             this.disposeResourceServices();
-        }
+        },
+
+        _applyTimerInterval: function(value) {
+            this._serviceTimer.setInterval(value);
+        },
+
+        _onTimer: function() {
+            var services = this._services;
+            Object.keys(services).forEach((key) => {
+                var service = services[key];
+                // Filter out services that dont want a timer.
+                if (!service.getWantsTimer()) {
+                    return;
+                }
+
+                service.executeTimer();
+            });
+        },
     },
 
     destruct: function () {

@@ -15,12 +15,13 @@ qx.Class.define("proxmox.core.service.core.AbstractService", {
         proxmox.core.service.core.IService
     ],
 
-    construct: function (url, method) {
+    construct: function (url, method, wantsTimer) {
         this.base(arguments);
 
         this.set({
             url: url,
-            method: method
+            method: method || proxmox.core.service.Manager.GET,
+            wantsTimer: wantsTimer || false,
         });
     },
 
@@ -86,7 +87,12 @@ qx.Class.define("proxmox.core.service.core.AbstractService", {
         mode: {
             check: ["no-cors", "cors", "same-origin"],
             init: "same-origin"
-        }
+        },
+
+        wantsTimer: {
+            check: "Boolean",
+            init: false,
+        },
     },
 
     members: {
@@ -111,6 +117,17 @@ qx.Class.define("proxmox.core.service.core.AbstractService", {
             }
 
             return this._createRequest(data, rethrow);
+        },
+
+        executeTimer: function() {
+            // Services which aren't GET requests aren't timeable.
+            if (this.getMethod() !== proxmox.core.service.Manager.GET) {
+              return;
+            }
+
+            this.fetch(null, true).catch((ex) => {
+              console.error(ex);
+            });
         },
 
         /**

@@ -18,13 +18,33 @@ qx.Mixin.define("proxmox.ve.core.application.MApplication", {
              */
             var sm = this.getServiceManager();
             sm.setBaseUrl("/api2/json");
-            sm.registerEndpoint("cluster/resources", "cluster/resources", proxmox.ve.core.service.cluster.Resources);
-            sm.registerEndpoint("cluster/tasks", "cluster/tasks", proxmox.ve.core.service.SimpleService);
-            sm.registerEndpoint("access/domains", "access/domains", proxmox.ve.core.service.SimpleService);
+            sm.registerEndpoint(
+                "cluster/resources",
+                "cluster/resources",
+                proxmox.ve.core.service.cluster.Resources,
+                null, // method
+                true, // wantsTimer
+            );
+            sm.registerEndpoint(
+                "cluster/tasks",
+                "cluster/tasks",
+                proxmox.ve.core.service.SimpleService,
+                null, // method
+                true, // wantsTimer
+            );
+            sm.registerEndpoint(
+                "access/domains",
+                "access/domains",
+                proxmox.ve.core.service.SimpleService,
+                null, // method
+                false, // wantsTimer
+            );
             sm.registerEndpoint(
                 "internal:login",
                 "access/ticket",
-                proxmox.ve.core.service.LoginService
+                proxmox.ve.core.service.LoginService,
+                null, // method
+                false, // wantsTimer
             );
 
             this._buildRoutes();

@@ -61,19 +61,6 @@ qx.Class.define("proxmox.ve.desktop.Application", {
             };
             this.getNavigator().setRouteParams(emptyRouteParams);
 
-            /**
-             * Timers
-             */
-            var st = this._servicesTimer = new qx.event.Timer(5000);
-            st.addListener("interval", () => {
-                this._serviceManager.getService("cluster/resources").fetch(null, true).catch((ex) => {
-                    console.error(ex);
-                });
-                this._serviceManager.getService("cluster/tasks").fetch(null, true).catch((ex) => {
-                    console.error(ex);
-                });
-            });
-
             var main_container = new qx.ui.container.Composite(new qx.ui.layout.Dock());
             var blocker = this._blocker = new qx.ui.core.Blocker(main_container).set({
                 color: "white",
@@ -145,15 +132,9 @@ qx.Class.define("proxmox.ve.desktop.Application", {
                 var data = e.getData();
 
                 if (data.login) {
-                    this._serviceManager.getService("cluster/resources").fetch(null, true).catch((ex) => {
-                        console.error(ex);
-                    });
-                    this._serviceManager.getService("cluster/tasks").fetch(null, true).catch((ex) => {
-                        console.error(ex);
-                    });
-
                     // Timer
-                    this._servicesTimer.start();
+                    this._serviceManager.executeTimerOnce();
+                    this._serviceManager.getTimer().start();
 
                     versionLabel.setValue(this.tr("Virtual Environment %1", "5.1-46"));
                     loginLabel.setValue(this.tr("You are logged in as '%1'", data.fullusername));
@@ -168,7 +149,7 @@ qx.Class.define("proxmox.ve.desktop.Application", {
                     }
                 } else {
                     // Timer
-                    this._servicesTimer.stop();
+                    this._serviceManager.getTimer().stop();
 
                     versionLabel.setValue(this.tr("Virtual Environment %1", "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"));
                     loginLabel.setValue("");
