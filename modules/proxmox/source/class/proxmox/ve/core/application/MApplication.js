@@ -13,6 +13,20 @@ qx.Mixin.define("proxmox.ve.core.application.MApplication", {
 
             this._pagebasepath = pagebasepath;
 
+            /**
+             * ServiceManager
+             */
+            var sm = this.getServiceManager();
+            sm.setBaseUrl("/api2/json");
+            sm.registerEndpoint("cluster/resources", "cluster/resources", proxmox.ve.core.service.cluster.Resources);
+            sm.registerEndpoint("cluster/tasks", "cluster/tasks", proxmox.ve.core.service.SimpleService);
+            sm.registerEndpoint("access/domains", "access/domains", proxmox.ve.core.service.SimpleService);
+            sm.registerEndpoint(
+                "internal:login",
+                "access/ticket",
+                proxmox.ve.core.service.LoginService
+            );
+
             this._buildRoutes();
         },
 

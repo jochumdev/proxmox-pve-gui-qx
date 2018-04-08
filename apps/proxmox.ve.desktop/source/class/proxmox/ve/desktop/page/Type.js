@@ -1,9 +1,5 @@
 qx.Class.define("proxmox.ve.desktop.page.Type", {
-    extend: qx.core.Object,
-    implement: proxmox.core.page.core.IView,
-    include: [
-        proxmox.core.page.core.MResourcePage
-    ],
+    extend: proxmox.core.page.core.Page,
 
     statics: {
         SUBPAGES: ["search"],
@@ -61,8 +57,6 @@ qx.Class.define("proxmox.ve.desktop.page.Type", {
             searchBar.add(sr.getSearchField());
 
             ct.add(sr.getContainer(), { edge: "north", width: "100%" });
-
-            this._contentContainer = ct;
             return ct;
         },
 

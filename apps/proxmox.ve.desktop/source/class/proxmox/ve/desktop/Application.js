@@ -45,10 +45,8 @@ qx.Class.define("proxmox.ve.desktop.Application", {
                 qx.log.appender.Console;
             }
 
-            // Init proxmox.core.application.MApplication
+            // Init proxmox.ve.core.application.MApplication
             this.initve("proxmox.ve.desktop.page.");
-
-            this._buildRoutes();
 
             // Container holder
             var ctHolder = this._contentContainerHolder = new qx.ui.container.Composite(new qx.ui.layout.Canvas()).set({
@@ -61,26 +59,7 @@ qx.Class.define("proxmox.ve.desktop.Application", {
                 pageId: "empty",
                 pageClazz: proxmox.ve.desktop.page.Empty,
             };
-
-            /**
-             * ServiceManager
-             */
-            var sm = this._serviceManager;
-            sm.setBaseUrl("/api2/json");
-            sm.registerEndpoint("cluster/resources", "cluster/resources", proxmox.ve.core.service.cluster.Resources);
-            sm.registerEndpoint("cluster/tasks", "cluster/tasks", proxmox.ve.core.service.SimpleService);
-            sm.registerEndpoint("access/domains", "access/domains", proxmox.ve.core.service.SimpleService);
-            sm.registerEndpoint(
-                "access/ticket",
-                "access/ticket",
-                proxmox.ve.core.service.SimpleService,
-                proxmox.core.service.Manager.POST
-            );
-            sm.registerEndpoint(
-                "internal:login",
-                "access/ticket",
-                proxmox.ve.core.service.LoginService
-            );
+            this.getNavigator().setRouteParams(emptyRouteParams);
 
             /**
              * Timers

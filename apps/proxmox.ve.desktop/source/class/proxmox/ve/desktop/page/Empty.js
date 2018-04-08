@@ -1,9 +1,5 @@
 qx.Class.define("proxmox.ve.desktop.page.Empty", {
-    extend: qx.core.Object,
-    implement: proxmox.core.page.core.IView,
-    include: [
-        proxmox.core.page.core.MResourcePage
-    ],
+    extend: proxmox.core.page.core.Page,
 
     statics: {
         SUBPAGES: ["empty"],

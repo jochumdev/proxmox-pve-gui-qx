@@ -1,9 +1,5 @@
 qx.Class.define("proxmox.ve.desktop.page.Datacenter", {
-    extend: qx.core.Object,
-    implement: proxmox.core.page.core.IView,
-    include: [
-        proxmox.core.page.core.MResourcePage
-    ],
+    extend: proxmox.core.page.core.Page,
 
     statics: {
         SUBPAGES: ["search"],
@@ -41,7 +37,6 @@ qx.Class.define("proxmox.ve.desktop.page.Datacenter", {
 
             ct.add(sr.getContainer(), { edge: "north", width: "100%" });
 
-            this._contentContainer = ct;
             return ct;
         },
 

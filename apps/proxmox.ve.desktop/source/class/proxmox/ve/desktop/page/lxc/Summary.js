@@ -13,7 +13,7 @@ qx.Class.define("proxmox.ve.desktop.page.lxc.Summary", {
             var scroll = new qx.ui.container.Scroll().set({
                 scrollbarX: "auto",
                 scrollbarY: "auto",
-                height: qx.bom.Viewport.getHeight() - 200
+                height: qx.bom.Viewport.getHeight()
             });
             scroll.add(new qx.ui.core.Widget().set({ width: 2000, minWidth: 2000, height: 2000, minHeight: 2000 }));
 
