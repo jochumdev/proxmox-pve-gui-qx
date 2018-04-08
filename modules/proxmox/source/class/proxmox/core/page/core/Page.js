@@ -11,6 +11,11 @@ qx.Class.define("proxmox.core.page.core.Page", {
             nullable: true,
             apply: "_applyId",
         },
+
+        subContainer: {
+            nullable: true,
+            apply: "_applySubContainer",
+        },
     },
 
     members: {
@@ -54,18 +59,20 @@ qx.Class.define("proxmox.core.page.core.Page", {
                 id: this.getId(),
             });
 
-            if (this._currentSubPageContainer !== null) {
-                this._contentContainer.remove(this._currentSubPageContainer);
-            }
+            this.setSubContainer(null);
 
             var subc = this._currentSubPageContainer = subPage.getSubPageContainer();
-            this._contentContainer.add(subc, { edge: "center", width: "100%", height: "100%"});
+            this.setSubContainer(subc);
             this._currentPageId = pageId;
 
             return true;
         },
 
         _applyId: function(value, old) {
+
+        },
+
+        _applySubContainer: function(value, old) {
 
         },
     },

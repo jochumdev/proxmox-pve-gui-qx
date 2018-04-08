@@ -1,5 +1,5 @@
 qx.Class.define("proxmox.ve.desktop.page.Lxc", {
-    extend: proxmox.core.page.core.ResourcePage,
+    extend: proxmox.ve.desktop.page.core.ResourcePage,
 
     statics: {
         SUBPAGES: ["summary", "console"],

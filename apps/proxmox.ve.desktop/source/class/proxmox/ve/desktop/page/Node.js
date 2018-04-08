@@ -1,5 +1,5 @@
 qx.Class.define("proxmox.ve.desktop.page.Node", {
-    extend: proxmox.core.page.core.ResourcePage,
+    extend: proxmox.ve.desktop.page.core.ResourcePage,
 
     statics: {
         SUBPAGES: ["summary"],

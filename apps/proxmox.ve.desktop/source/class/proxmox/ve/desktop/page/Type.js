@@ -1,5 +1,5 @@
 qx.Class.define("proxmox.ve.desktop.page.Type", {
-    extend: proxmox.core.page.core.Page,
+    extend: proxmox.ve.desktop.page.core.Page,
 
     statics: {
         SUBPAGES: ["search"],

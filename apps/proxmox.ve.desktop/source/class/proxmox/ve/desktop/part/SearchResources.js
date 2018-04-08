@@ -58,7 +58,7 @@ qx.Class.define("proxmox.ve.desktop.part.SearchResources", {
         var table = this._table = new qx.ui.table.Table(tableModel);
         table.addListener(tableClickMode, (e) => {
             var data = tableModel.getRowData(e.getRow());
-            app.navigateTo(data[data.length - 1], "");
+            app.getNavigator().navigateTo(data[data.length - 1], "");
         });
 
         table.set({
