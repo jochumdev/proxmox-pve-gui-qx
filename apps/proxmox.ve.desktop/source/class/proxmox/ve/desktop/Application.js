@@ -172,7 +172,7 @@ qx.Class.define("proxmox.ve.desktop.Application", {
 
                     versionLabel.setValue(this.tr("Virtual Environment %1", "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"));
                     loginLabel.setValue("");
-                    // this._navigator.setPageView(emptyRouteParams);
+                    this._navigator.setPageView(emptyRouteParams);
                     blocker.block();
 
                     this._loginWindow = new proxmox.ve.desktop.window.Login();
