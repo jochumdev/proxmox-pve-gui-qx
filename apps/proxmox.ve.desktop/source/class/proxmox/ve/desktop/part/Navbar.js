@@ -51,7 +51,7 @@ qx.Class.define("proxmox.ve.desktop.part.Navbar", {
 
             this._selectedTreeItem = id;
 
-            app.navigateTo(null, id);
+            app.getNavigator().navigateTo(null, id);
         });
 
         // app.addListener("changeRouteParams", (e) => {

@@ -85,7 +85,7 @@ qx.Class.define("proxmox.ve.desktop.part.ServerBrowser", {
             };
 
             this._selectedTreeItem = id;
-            app.navigateTo(id);
+            app.getNavigator().navigateTo(id);
         });
 
         /**

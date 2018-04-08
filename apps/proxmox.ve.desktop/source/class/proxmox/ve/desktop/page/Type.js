@@ -2,7 +2,7 @@ qx.Class.define("proxmox.ve.desktop.page.Type", {
     extend: qx.core.Object,
     implement: proxmox.core.page.core.IView,
     include: [
-        qx.locale.MTranslation,
+        proxmox.core.page.core.MResourcePage
     ],
 
     statics: {
@@ -10,79 +10,68 @@ qx.Class.define("proxmox.ve.desktop.page.Type", {
         DEFAULT_PAGE_ID: "search"
     },
 
-    properties: {
-        id: {
-            check: "String",
-            nullable: true,
-            init: null
-        }
-    },
-
     members: {
-        _searchResources: null,
+        _getContentContainer: function () {
+            var ct = new qx.ui.container.Composite(new qx.ui.layout.Dock()).set({ appearance: "content-box" });
 
-        getContainerAsync: function () {
-            return new qx.Promise((resolve, reject) => {
-                var ct = new qx.ui.container.Composite(new qx.ui.layout.Dock()).set({ appearance: "content-box"});
+            var actionsBar = new qx.ui.container.Composite(new qx.ui.layout.HBox(5)).set({ appearance: "actionsbar-box" });
+            actionsBar.setPadding([6, 5, 6, 8]);
+            ct.add(actionsBar, { edge: "north", width: "100%" });
 
-                var actionsBar = new qx.ui.container.Composite(new qx.ui.layout.HBox(5)).set({ appearance: "actionsbar-box" });
-                actionsBar.setPadding([6, 5, 6, 8]);
-                ct.add(actionsBar, {edge: "north", width: "100%"});
+            var idSplit = this.getId().split("/");
 
-                var idSplit = this.getId().split("/");
+            var headline;
+            switch (idSplit[1]) {
+                case "lxc":
+                    var headline = new qx.ui.basic.Label(this.tr("LXC Container")).set({ appearance: "actionsbar-label" });
+                    break;
+                case "qemu":
+                    var headline = new qx.ui.basic.Label(this.tr("Virtual Machine")).set({ appearance: "actionsbar-label" });
+                    break;
+                case "node":
+                    var headline = new qx.ui.basic.Label(this.tr("Nodes")).set({ appearance: "actionsbar-label" });
+                    break;
+                case "storage":
+                    var headline = new qx.ui.basic.Label(this.tr("Storage")).set({ appearance: "actionsbar-label" });
+                    break;
+                case "pool":
+                    var headline = new qx.ui.basic.Label(this.tr("Pool")).set({ appearance: "actionsbar-label" });
+                    break;
+                default:
+                    var headline = new qx.ui.basic.Label(this.tr("Unknown")).set({ appearance: "actionsbar-label" });
+            }
 
-                var headline;
-                switch(idSplit[1]) {
-                    case "lxc":
-                        var headline = new qx.ui.basic.Label(this.tr("LXC Container")).set({ appearance: "actionsbar-label" });
-                        break;
-                    case "qemu":
-                        var headline = new qx.ui.basic.Label(this.tr("Virtual Machine")).set({ appearance: "actionsbar-label" });
-                        break;
-                    case "node":
-                        var headline = new qx.ui.basic.Label(this.tr("Nodes")).set({ appearance: "actionsbar-label" });
-                        break;
-                    case "storage":
-                        var headline = new qx.ui.basic.Label(this.tr("Storage")).set({ appearance: "actionsbar-label" });
-                        break;
-                    case "pool":
-                        var headline = new qx.ui.basic.Label(this.tr("Pool")).set({ appearance: "actionsbar-label" });
-                        break;
-                    default:
-                        var headline = new qx.ui.basic.Label(this.tr("Unknown")).set({ appearance: "actionsbar-label" });
-                }
+            actionsBar.add(headline);
+            actionsBar.add(new qx.ui.basic.Atom(), { flex: 1 });
+            actionsBar.add(new proxmox.core.ui.form.CssButton(this.tr("Help"), ["fa", "fa-question-circle"]));
 
-                actionsBar.add(headline);
-                actionsBar.add(new qx.ui.basic.Atom(), { flex: 1 });
-                actionsBar.add(new proxmox.core.ui.form.CssButton(this.tr("Help"), ["fa", "fa-question-circle"]));
+            var navbar = new proxmox.ve.desktop.part.Navbar("searchOnly");
+            ct.add(navbar.getContainer(), { edge: "west", height: "100%" });
 
-                var navbar = new proxmox.ve.desktop.part.Navbar("searchOnly");
-                ct.add(navbar.getContainer(), {edge: "west", height: "100%"});
+            // Content
+            var sr = this._searchResources = new proxmox.ve.desktop.part.SearchResources();
+            sr.startListening();
+            sr.setLimitType(idSplit[1]);
 
-                // Content
-                var sr = this._searchResources = new proxmox.ve.desktop.part.SearchResources();
-                sr.startListening();
-                sr.setLimitType(idSplit[1]);
+            var searchBar = new qx.ui.container.Composite(new qx.ui.layout.HBox(5)).set({ appearance: "actionsbar-box" });
+            searchBar.setPadding([6, 5, 6, 8]);
+            ct.add(searchBar, { edge: "north", width: "100%" });
 
-                var searchBar = new qx.ui.container.Composite(new qx.ui.layout.HBox(5)).set({ appearance: "actionsbar-box" });
-                searchBar.setPadding([6, 5, 6, 8]);
-                ct.add(searchBar, {edge: "north", width: "100%"});
+            searchBar.add(new qx.ui.basic.Atom(), { flex: 1 });
+            searchBar.add(sr.getSearchField());
 
-                searchBar.add(new qx.ui.basic.Atom(), { flex: 1 });
-                searchBar.add(sr.getSearchField());
+            ct.add(sr.getContainer(), { edge: "north", width: "100%" });
 
-                ct.add(sr.getContainer(), {edge: "north", width: "100%"});
-
-                resolve(ct);
-            });
+            this._contentContainer = ct;
+            return ct;
         },
 
-        navigateToPageId: function(pageId) {
+        _getSubPage: function(pageId) {
             return true;
         },
     },
 
-    destruct: function() {
+    destruct: function () {
         this._disposeObjects("_searchResources");
     }
 });

@@ -28,10 +28,8 @@ qx.Mixin.define("proxmox.core.page.core.MResourcePage", {
         },
 
         resourceData: {
-            async: true,
             event: "changeResourceData",
             nullable: true,
-            init: null
         }
     },
 
@@ -39,7 +37,9 @@ qx.Mixin.define("proxmox.core.page.core.MResourcePage", {
         _app: null,
         _serviceManager: null,
 
+        _contentContainerPromise: null,
         _contentContainer: null,
+        _currentPageId: null,
         _currentSubPageContainer: null,
         _resourceService: null,
 
@@ -55,34 +55,47 @@ qx.Mixin.define("proxmox.core.page.core.MResourcePage", {
             var nodeId = this.getId();
             model.forEach((node) => {
                 if (node.getId() == nodeId) {
-                    this.setResourceDataAsync(node).then(() => { return null; });
+                    this.setResourceData(node);
                 }
             });
         },
 
         // proxmox.page.core.IView implementation
         getContainerAsync: function () {
-            if (this.getResourceData() === null) {
+            if (this._contentContainerPromise !== null) {
+                return this._contentContainerPromise;
+            }
 
-                return new qx.Promise((resolve, reject) => {
+            if (this.getResourceData() === null) {
+                this._contentContainerPromise = new qx.Promise((resolve, reject) => {
                     this.addListenerOnce("changeResourceData", resolve)
                 }).then(() => {
                     this._contentContainer = this._getContentContainer();
                     return this._contentContainer;
                 });
+            } else {
+                this._contentContainerPromise = new qx.Promise((resolve, reject) => {
+                    this._contentContainer = this._getContentContainer();
+                    resolve(this._contentContainer);
+                });
             }
 
-            return this.getResourceDataAsync().then(() => {
-                this._contentContainer = this._getContentContainer();
-                return this._contentContainer;
-            });
+            return this._contentContainerPromise;
         },
 
         // proxmox.page.core.IView implementation
         navigateToPageId: function (pageId) {
+            if (pageId === this._currentPageId) {
+                return true;
+            }
+
             var subPage = this._getSubPage(pageId);
             if (subPage === false) {
                 return false;
+            }
+
+            if (subPage === true) {
+                return true;
             }
 
             subPage.setPage(this);
@@ -90,12 +103,13 @@ qx.Mixin.define("proxmox.core.page.core.MResourcePage", {
                 id: this.getId(),
             });
 
-            if (this._currentSubPageContainer != null) {
+            if (this._currentSubPageContainer !== null) {
                 this._contentContainer.remove(this._currentSubPageContainer);
             }
 
             var subc = this._currentSubPageContainer = subPage.getSubPageContainer();
             this._contentContainer.add(subc, { edge: "north", width: "100%" });
+            this._currentPageId = pageId;
 
             return true;
         }
