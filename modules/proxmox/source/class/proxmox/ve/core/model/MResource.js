@@ -21,44 +21,59 @@ qx.Mixin.define("proxmox.ve.core.model.MResource", {
         },
 
         getDiskUsagePercent: function() {
-            if (!qx.util.OOUtil.hasProperty(this, "disk")) {
+            if (!qx.Class.hasProperty(this.constructor, "disk")) {
                 return -1;
             }
+
             return Math.round(this.getDisk() / this.getMaxdisk() * 100 * 10) / 10;
         },
 
         getMemoryUsagePercent: function() {
-            if (!qx.util.OOUtil.hasProperty(this, "mem")) {
+            if (!qx.Class.hasProperty(this.constructor, "mem")) {
                 return -1;
             }
             return Math.round(this.getMem() / this.getMaxmem() * 100 * 10) / 10;
         },
 
         getCPUUsagePercent: function() {
-            if (!qx.util.OOUtil.hasProperty(this, "cpu")) {
+            var type = this.getType();
+            if (type === "storage" || type === "pool") {
                 return -1;
+            }
+
+            var status = this.getStatus();
+            if (status !== "online" && status !== "running") {
+                return -1;
+            }
+
+            if (!qx.Class.hasProperty(this.constructor, "cpu")) {
+                return 0;
             }
             return Math.round(this.getCpu() * 100 * 10) / 10;
         },
 
         getDisplayUptime: function() {
-            if (!qx.util.OOUtil.hasProperty(this, "uptime")) {
+            if (!qx.Class.hasProperty(this.constructor, "uptime")) {
                 return "-";
             }
+
+            var status = this.getStatus();
+            if (status !== "online" && status !== "running") {
+                return "-";
+            }
+
             return proxmox.core.Utils.secondsToHHMMSS(this.getUptime());
         },
 
         searchValue: function(value) {
-            if (this.getType().includes(value)) {
-                return true;
-            }
+            var value = new qx.type.BaseString(value).toLocaleLowerCase();
 
-            if (this.getNode().includes(value)) {
-                return true;
-            }
+            var strings = [this.getType(), this.getNode(), this.getName(), this.getPool()];
 
-            if (this.getName().includes(value)) {
-                return true;
+            for (var i = 0; i < strings.length; i++) {
+                if (new qx.type.BaseString(strings[i]).toLocaleLowerCase().indexOf(value) !== -1) {
+                    return true;
+                }
             }
 
             return false;
