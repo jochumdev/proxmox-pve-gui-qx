@@ -10,7 +10,7 @@ qx.Class.define("proxmox.core.ui.table.Table", {
         __restoringColumnState: false,
 
         getColumnState: function() {
-            if (this.__loadingColumnState) {
+            if (this.__restoringColumnState) {
                 return;
             }
 
