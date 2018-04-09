@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-08 05:41+0200\n"
+"POT-Creation-Date: 2018-04-09 23:16+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -169,15 +169,19 @@ msgstr ""
 msgid "Storage"
 msgstr ""
 
+#
 msgid "Node '%1'"
 msgstr ""
 
+#
 msgid "Container %1 (%2) on node '%3'"
 msgstr ""
 
+#
 msgid "Virtual Machine %1 (%2) on node '%3'"
 msgstr ""
 
+#
 msgid "Storage '%1' on node '%2'"
 msgstr ""
 
@@ -256,11 +260,13 @@ msgstr ""
 msgid "Uptime"
 msgstr ""
 
+#
 msgid "one row"
 msgid_plural "%1 rows"
 msgstr[0] ""
 msgstr[1] ""
 
+#
 msgid "one of one row"
 msgid_plural "%1 of %2 rows"
 msgstr[0] ""
@@ -286,6 +292,7 @@ msgstr ""
 msgid "Members"
 msgstr ""
 
+#
 msgid "Resource Pool: %1"
 msgstr ""
 
