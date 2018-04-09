@@ -125,7 +125,7 @@ qx.Class.define("proxmox.ve.desktop.part.ServerBrowser", {
             this.setMode("empty");
         });
 
-        app.addListener("changeRouteParams", (e) => {
+        app.getNavigator().addListener("changeRouteParams", (e) => {
             var data = e.getData();
             var table = tree.getLookupTable();
             table.forEach((node) => {
