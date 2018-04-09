@@ -2,22 +2,7 @@
  * The base mixin for all Qooxdoo based proxmox applications.
  */
 qx.Mixin.define("proxmox.core.application.MApplication", {
-    events: {
-        changeLogin: "qx.event.type.Data"
-    },
-
     properties: {
-        csrfPreventionToken: {
-            init: null,
-            nullable: true
-        },
-
-        language: {
-            nullable: true,
-            init: "en",
-            apply: "_appyLanguage"
-        },
-
         contentContainer: {
             nullable: true,
             apply: "_appplyContentContainer"

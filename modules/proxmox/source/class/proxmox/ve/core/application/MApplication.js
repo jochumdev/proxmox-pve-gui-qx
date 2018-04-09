@@ -1,9 +1,28 @@
+/**
+ * Mixing for Proxmox VE Applications.
+ *
+ * Users have to implement "_onLogin" and "_onLogout".
+ */
 qx.Mixin.define("proxmox.ve.core.application.MApplication", {
     include: [
         proxmox.core.application.MApplication,
     ],
 
+    events: {
+        changeLogin: "qx.event.type.Data"
+    },
+
     properties: {
+        csrfPreventionToken: {
+            init: null,
+            nullable: true
+        },
+
+        language: {
+            nullable: true,
+            init: "en",
+            apply: "_appyLanguage"
+        },
         versionInfo: {
             event: "changeVersionInfo",
             nullable: true,
@@ -22,6 +41,9 @@ qx.Mixin.define("proxmox.ve.core.application.MApplication", {
 
             this._registerSMEndpoints();
             this._buildRoutes();
+
+            // Login state changes
+            this.addListener("changeLogin", this._onVELoginChange, this);
         },
 
         _registerSMEndpoints: function() {
@@ -133,6 +155,34 @@ qx.Mixin.define("proxmox.ve.core.application.MApplication", {
 
                 return routeParams;
             });
+        },
+
+        _onVELoginChange: function(e) {
+            var data = e.getData();
+
+            if (data.login === true) {
+                // Navigator
+                this._navigator.init();
+
+                // Timer
+                this._serviceManager.executeTimerOnce();
+                this._serviceManager.getTimer().start();
+
+                // Versioninfo
+                var vs = this._serviceManager.getService("version");
+                vs.fetch().then((model) => {
+                    this.setVersionInfo(model);
+                });
+
+                // Now executes the applications "_onLogin"
+                this._onLogin(data);
+            } else {
+                // Timer
+                this._serviceManager.getTimer().stop();
+
+                // Now executes the applications "_onLogout"
+                this._onLogout(data);
+            }
         }
     }
 });

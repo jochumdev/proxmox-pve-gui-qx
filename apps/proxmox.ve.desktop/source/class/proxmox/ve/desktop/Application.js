@@ -27,6 +27,9 @@ qx.Class.define("proxmox.ve.desktop.Application", {
 
         _servicesTimer: null,
 
+        _versionLabel: null,
+        _loginLabel: null,
+
         /**
          * This method contains the initial application code and gets called
          * during startup of the application
@@ -62,7 +65,7 @@ qx.Class.define("proxmox.ve.desktop.Application", {
             this.getNavigator().setRouteParams(emptyRouteParams);
 
             var main_container = new qx.ui.container.Composite(new qx.ui.layout.Dock());
-            var blocker = this._blocker = new qx.ui.core.Blocker(main_container).set({
+            this._blocker = new qx.ui.core.Blocker(main_container).set({
                 color: "white",
                 opacity: 0.4
             });
@@ -105,12 +108,12 @@ qx.Class.define("proxmox.ve.desktop.Application", {
                 win.focus();
             });
 
-            var versionLabel = new qx.ui.basic.Label("").set({ appearance: "header-label", rich: true });
-            headerColumn.add(versionLabel);
+            this._versionLabel = new qx.ui.basic.Label("").set({ appearance: "header-label", rich: true });
+            headerColumn.add(this._versionLabel);
             headerColumn.add(srf);
             headerColumn.add(new qx.ui.basic.Atom(), { flex: 1 });
-            var loginLabel = new qx.ui.basic.Label("").set({ appearance: "header-label" });
-            headerColumn.add(loginLabel);
+            this._loginLabel = new qx.ui.basic.Label("").set({ appearance: "header-label" });
+            headerColumn.add(this._loginLabel);
             headerColumn.add(new proxmox.core.ui.basic.CssImage(["fa", "fa-gear"]).set({ appearance: "header-label" }));
             var docButton = new proxmox.core.ui.form.CssButton(this.tr("Documentation"), ["fa", "fa-book"]).set({ appearance: "white-button-header" });
             docButton.addListener("execute", (e) => {
@@ -126,46 +129,6 @@ qx.Class.define("proxmox.ve.desktop.Application", {
 
             logoutButton.addListener("execute", (e) => {
                 this.getServiceManager().getService("internal:login").logout();
-            });
-
-            this.addListener("changeLogin", (e) => {
-                var data = e.getData();
-
-                if (data.login) {
-                    // Timer
-                    this._serviceManager.executeTimerOnce();
-                    this._serviceManager.getTimer().start();
-
-                    // Versioninfo
-                    var vs = this._serviceManager.getService("version");
-                    vs.fetch().then((model) => {
-                        this.setVersionInfo(model);
-
-                        versionLabel.setValue(this.tr("Virtual Environment %1", `${model.getVersion()}-${model.getRelease()}`));
-                    });
-
-                    loginLabel.setValue(this.tr("You are logged in as '%1'", data.fullusername));
-
-                    blocker.unblock();
-
-                    this._navigator.init();
-
-                    if (this._loginWindow) {
-                        this._loginWindow.dispose();
-                        this._loginWindow = null;
-                    }
-                } else {
-                    // Timer
-                    this._serviceManager.getTimer().stop();
-
-                    versionLabel.setValue(this.tr("Virtual Environment %1", "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"));
-                    loginLabel.setValue("");
-                    this._navigator.setPageView(emptyRouteParams);
-                    blocker.block();
-
-                    this._loginWindow = new proxmox.ve.desktop.window.Login();
-                    this._loginWindow.open();
-                }
             });
 
             // Vertical splitpane for the log
@@ -205,6 +168,38 @@ qx.Class.define("proxmox.ve.desktop.Application", {
             } else {
                 ctHolder.add(value, { edge: 0 });
             }
-        }
+        },
+
+        _onLogin: function (data) {
+            // Versioninfo
+            if (this.getVersionInfo() === null) {
+                this.addListenerOnce("changeVersionInfo", (e) => {
+                    var model = e.getData();
+                    this._versionLabel.setValue(this.tr("Virtual Environment %1", `${model.getVersion()}-${model.getRelease()}`));
+                });
+            } else {
+                var model = this.getVersionInfo();
+                this._versionLabel.setValue(this.tr("Virtual Environment %1", `${model.getVersion()}-${model.getRelease()}`));
+            }
+
+            this._loginLabel.setValue(this.tr("You are logged in as '%1'", data.fullusername));
+
+            this._blocker.unblock();
+
+            if (this._loginWindow !== null) {
+                this._loginWindow.dispose();
+                this._loginWindow = null;
+            }
+        },
+
+        _onLogout: function(data) {
+            this._versionLabel.setValue(this.tr("Virtual Environment %1", "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"));
+            this._loginLabel.setValue("");
+            this._navigator.setPageView(emptyRouteParams);
+            this._blocker.block();
+
+            this._loginWindow = new proxmox.ve.desktop.window.Login();
+            this._loginWindow.open();
+        },
     }
 });
