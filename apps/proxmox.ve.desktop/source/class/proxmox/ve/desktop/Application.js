@@ -30,6 +30,8 @@ qx.Class.define("proxmox.ve.desktop.Application", {
         _versionLabel: null,
         _loginLabel: null,
 
+        _emptyRouteParams: null,
+
         /**
          * This method contains the initial application code and gets called
          * during startup of the application
@@ -57,12 +59,12 @@ qx.Class.define("proxmox.ve.desktop.Application", {
                 height: qx.bom.Viewport.getHeight() - 100,
             });
 
-            var emptyRouteParams = {
+            this._emptyRouteParams = {
                 id: "empty",
                 pageId: "empty",
                 pageClazz: proxmox.ve.desktop.page.Empty,
             };
-            this.getNavigator().setRouteParams(emptyRouteParams);
+            this.getNavigator().setRouteParams(this._emptyRouteParams);
 
             var main_container = new qx.ui.container.Composite(new qx.ui.layout.Dock());
             this._blocker = new qx.ui.core.Blocker(main_container).set({
@@ -195,7 +197,7 @@ qx.Class.define("proxmox.ve.desktop.Application", {
         _onLogout: function(data) {
             this._versionLabel.setValue(this.tr("Virtual Environment %1", "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"));
             this._loginLabel.setValue("");
-            this._navigator.setPageView(emptyRouteParams);
+            this._navigator.setPageView(this._emptyRouteParams);
             this._blocker.block();
 
             this._loginWindow = new proxmox.ve.desktop.window.Login();
