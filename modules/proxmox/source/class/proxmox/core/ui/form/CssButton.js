@@ -12,7 +12,7 @@ qx.Class.define("proxmox.core.ui.form.CssButton", {
 
     /**
      * @param label {String} label of the atom
-     * @param icon {String?null} Icon URL of the atom
+     * @param icon {Array?null} Icon URL of the atom
      * @param command {qx.ui.command.Command?null} Command instance to connect with
      */
     construct: function (label, icon, command) {

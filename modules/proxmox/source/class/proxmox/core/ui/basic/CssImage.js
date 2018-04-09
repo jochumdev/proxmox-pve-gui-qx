@@ -47,7 +47,7 @@ qx.Class.define("proxmox.core.ui.basic.CssImage",
     _getContentHint: function()
     {
       return {
-        width: 24,
+        width: 17,
         height: 16,
       }
     },
