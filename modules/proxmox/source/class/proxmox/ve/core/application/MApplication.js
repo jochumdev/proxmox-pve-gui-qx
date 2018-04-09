@@ -3,6 +3,13 @@ qx.Mixin.define("proxmox.ve.core.application.MApplication", {
         proxmox.core.application.MApplication,
     ],
 
+    properties: {
+        versionInfo: {
+            event: "changeVersionInfo",
+            nullable: true,
+        }
+    },
+
     members: {
         _pagebasepath: null,
 
@@ -40,6 +47,13 @@ qx.Mixin.define("proxmox.ve.core.application.MApplication", {
             sm.registerEndpoint(
                 "access/domains",
                 "access/domains",
+                proxmox.ve.core.service.SimpleService,
+                null,   // method - default GET
+                false, // wantsTimer
+            );
+            sm.registerEndpoint(
+                "version",
+                "version",
                 proxmox.ve.core.service.SimpleService,
                 null,   // method - default GET
                 false, // wantsTimer

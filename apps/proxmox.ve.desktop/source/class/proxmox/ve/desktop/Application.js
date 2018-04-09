@@ -136,7 +136,14 @@ qx.Class.define("proxmox.ve.desktop.Application", {
                     this._serviceManager.executeTimerOnce();
                     this._serviceManager.getTimer().start();
 
-                    versionLabel.setValue(this.tr("Virtual Environment %1", "5.1-46"));
+                    // Versioninfo
+                    var vs = this._serviceManager.getService("version");
+                    vs.fetch().then((model) => {
+                        this.setVersionInfo(model);
+
+                        versionLabel.setValue(this.tr("Virtual Environment %1", `${model.getVersion()}-${model.getRelease()}`));
+                    });
+
                     loginLabel.setValue(this.tr("You are logged in as '%1'", data.fullusername));
 
                     blocker.unblock();
