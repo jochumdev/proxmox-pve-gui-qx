@@ -6,11 +6,19 @@ qx.Class.define("proxmox.ve.desktop.page.Lxc", {
         DEFAULT_PAGE_ID: "summary"
     },
 
+    properties: {
+        currentData: {
+            event: "changeCurrentData",
+            nullable: true,
+        },
+    },
+
     members: {
         _currentService: null,
 
         _tbStartButton: null,
         _tbShutdownButton: null,
+        _tbConsoleButton: null,
 
         // overriden
         _init: function() {
@@ -25,11 +33,12 @@ qx.Class.define("proxmox.ve.desktop.page.Lxc", {
             cs.set({
                 wantsTimer: true,
             });
-            cs.fetch().then((model) => {
-                console.log(model);
-            })
+            cs.addListener("changeModel", this.setCurrentData, this);
+            cs.fetch();
 
-
+            /**
+             * Start/Shutdown button.
+             */
             this._tbStartButton = new proxmox.core.ui.form.CssButton(this.tr("Start"), ["fa", "fa-play"]);
             this._tbShutdownButton = new proxmox.core.ui.form.CssButton(this.tr("Shutdown"), ["fa", "fa-power-off"]);
             this._tbStartButton.addListener("execute", () => {
@@ -63,6 +72,32 @@ qx.Class.define("proxmox.ve.desktop.page.Lxc", {
             });
 
             /**
+             * Console buttons
+             */
+            var consoleMenu = new qx.ui.menu.Menu().set({
+                offsetLeft: -93,
+            });
+
+            var cmNovnc = new qx.ui.menu.Button("noVNC", "proxmox/image/novnc.png");
+            cmNovnc.addListener("execute", () => {
+                var rdata = this.getResourceData();
+                proxmox.ve.core.Utils.openVNCViewer(rdata.getType(), rdata.getShortId(), rdata.getNode(), rdata.getName());
+            });
+            consoleMenu.add(cmNovnc);
+            var cmSpice = new qx.ui.menu.Button("SPICE", "proxmox/image/virt-viewer.png");
+            consoleMenu.add(cmSpice);
+            var cmXtermjs = new qx.ui.menu.Button("xterm.js", "proxmox/image/xtermjs.png");
+            cmXtermjs.addListener("execute", () => {
+                var rdata = this.getResourceData();
+                proxmox.core.Utils.openXtermJsViewer(rdata.getType(), rdata.getShortId(), rdata.getNode(), rdata.getName());
+            });
+            consoleMenu.add(cmXtermjs);
+
+            consoleMenu.setMinWidth(120);
+            this._tbConsoleButton = new proxmox.core.ui.form.CssSplitButton(this.tr("Console"), ["fa", "fa-terminal"], consoleMenu);
+
+
+            /**
              * Update buttons
              */
             // First time
@@ -74,6 +109,11 @@ qx.Class.define("proxmox.ve.desktop.page.Lxc", {
             this.addListener("changeResourceData", this._buttonsOnResourceDataChanged, this);
         },
 
+        // overriden
+        _destroy: function() {
+            this._currentService.removeListener("changeModel", this.setCurrentData);
+        },
+
         _getContentContainer: function () {
             var containerLayout = new qx.ui.layout.Dock();
             var container = new qx.ui.container.Composite(containerLayout).set({ appearance: "content-box" });
@@ -82,27 +122,13 @@ qx.Class.define("proxmox.ve.desktop.page.Lxc", {
             toolbar.setPadding([6, 5, 6, 8]);
             container.add(toolbar, {edge: "north", width: "100%"});
 
-            var consoleMenu = new qx.ui.menu.Menu().set({
-                offsetLeft: -93,
-            });
-
-            var cmNovnc = new qx.ui.menu.Button("noVNC", "proxmox/image/novnc.png");
-            consoleMenu.add(cmNovnc);
-            var cmSpice = new qx.ui.menu.Button("SPICE", "proxmox/image/virt-viewer.png");
-            consoleMenu.add(cmSpice);
-            var cmXtermjs = new qx.ui.menu.Button("xterm.js", "proxmox/image/xtermjs.png");
-            consoleMenu.add(cmXtermjs);
-
-            consoleMenu.setMinWidth(120);
-            var consoleButton = new proxmox.core.ui.form.CssSplitButton(this.tr("Console"), ["fa", "fa-terminal"], consoleMenu);
-
             var headline = new qx.ui.basic.Label(this.getResourceData().getHeadline()).set({ appearance: "toolbar-label" });
             toolbar.add(headline);
             toolbar.add(new qx.ui.basic.Atom(), { flex: 1 });
             toolbar.add(this._tbStartButton);
             toolbar.add(this._tbShutdownButton);
             toolbar.add(new proxmox.core.ui.form.CssButton(this.tr("Migrate"), ["fa", "fa-paper-plane-o"]));
-            toolbar.add(consoleButton);
+            toolbar.add(this._tbConsoleButton);
             toolbar.add(new proxmox.core.ui.form.CssButton(this.tr("More")));
             toolbar.add(new proxmox.core.ui.form.CssButton(this.tr("Help"), ["fa", "fa-question-circle"]));
 
