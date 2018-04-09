@@ -62,5 +62,26 @@ qx.Class.define("proxmox.core.Utils", {
             return window.location.hostname.replace(proxmox.core.Utils.IP6_bracket_match,
                 function(m, addr, offset, original) { return addr; });
         },
+
+        downloadWithName: function(uri, name) {
+            var link = qx.dom.Element.create("a", {href: uri, style: 'display:none;visibility:hidden;height:0px;'});
+
+            // Note: we need to tell android the correct file name extension
+            // but we do not set 'download' tag for other environments, because
+            // It can have strange side effects (additional user prompt on firefox)
+            var android = navigator.userAgent.match(/Android/i) ? true : false;
+            if (android) {
+                qx.bom.element.Attribute.set(element, "download", name);
+            }
+
+            if (link.fireEvent) {
+                link.fireEvent('onclick');
+            } else {
+                var evt = document.createEvent("MouseEvents");
+                evt.initMouseEvent('click', true, true, window, 1, 0, 0, 0, 0, false, false, false, false, 0, null);
+                link.dispatchEvent(evt);
+            }
+            qx.dom.Element.remove(link);
+        },
     }
 });

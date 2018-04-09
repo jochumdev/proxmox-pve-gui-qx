@@ -3,7 +3,7 @@ qx.Class.define("proxmox.ve.core.Utils", {
 
     statics: {
         getDefaultViewer: function (allowSpice) {
-            var dv = 'html5';
+            var dv = 'vv'; // TODOD: in Proxmox code this is "html5".
 
             var app = qx.core.Init.getApplication();
             var versionInfo = app.getVersionInfo();
@@ -19,19 +19,23 @@ qx.Class.define("proxmox.ve.core.Utils", {
         },
 
         openDefaultConsoleWindow: function(allowSpice, vmtype, vmid, nodename, vmname) {
-            var dv = proxmox.ve.core.Utils.defaultViewer(allowSpice);
+            var dv = proxmox.ve.core.Utils.getDefaultViewer(allowSpice);
             proxmox.ve.core.Utils.openConsoleWindow(dv, vmtype, vmid, nodename, vmname);
         },
 
         openConsoleWindow: function (viewer, vmtype, vmid, nodename, vmname) {
-            // kvm, lxc, shell, upgrade
+            // qemu, lxc, shell, upgrade
 
-            if (vmid == undefined && (vmtype === 'kvm' || vmtype === 'lxc')) {
-                throw "missing vmid";
+            if (vmid == undefined && (vmtype === 'qemu' || vmtype === 'lxc')) {
+                throw new Error("missing vmid");
             }
 
             if (!nodename) {
-                throw "no nodename specified";
+                throw new Error("no nodename specified");
+            }
+
+            if (vmtype === "qemu") {
+                vmtype = "kvm";
             }
 
             if (viewer === 'html5') {
@@ -56,11 +60,15 @@ qx.Class.define("proxmox.ve.core.Utils", {
                     proxmox.ve.core.Utils.openSpiceViewer(url, params);
                 }
             } else {
-                throw "unknown viewer type";
+                throw new Error(`unknown viewer type "${viewer}`);
             }
         },
 
         openVNCViewer: function(vmtype, vmid, nodename, vmname) {
+            if (vmtype === "qemu") {
+                vmtype = "kvm";
+            }
+
             var url = qx.util.Uri.toParameter({
                 console: vmtype,
                 novnc: 1,
@@ -71,5 +79,27 @@ qx.Class.define("proxmox.ve.core.Utils", {
             var nw = window.open("/?" + url, '_blank', "innerWidth=745,innerheight=427");
             nw.focus();
         },
+
+        openSpiceViewer: function(url, params) {
+            var sm = qx.core.Init.getApplication().getServiceManager();
+
+            var simpleService = new proxmox.ve.core.service.SimpleService(sm.getBaseUrl() + url);
+            simpleService.set({
+                method: "POST",
+                noModelTransform: true,
+            });
+
+            simpleService.fetch(params).then((data) => {
+                var raw = "[virt-viewer]\n";
+                for (var key in data) {
+                    raw += key + "=" + data[key] + "\n";
+                }
+                var url = 'data:application/x-virt-viewer;charset=UTF-8,' +
+                    encodeURIComponent(raw);
+
+                proxmox.core.Utils.downloadWithName(url, "pve-spice.vv");
+            }).catch((ex) => console.error(ex));
+
+        }
     }
 });

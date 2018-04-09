@@ -8,8 +8,7 @@ qx.Class.define("proxmox.ve.desktop.page.Lxc", {
 
     properties: {
         currentData: {
-            event: "changeCurrentData",
-            nullable: true,
+            async: true,
         },
     },
 
@@ -27,13 +26,13 @@ qx.Class.define("proxmox.ve.desktop.page.Lxc", {
 
             // The "current" service
             var cs = this._currentService = sm.getResourceService(
-                "nodes/{node}/{fullVmId}/status/{action}",
+                "nodes/{node}/{fullVmId}/status/{command}",
                 [resourceData.getNode(), resourceData.getId(), "current"],
             );
             cs.set({
                 wantsTimer: true,
             });
-            cs.addListener("changeModel", this.setCurrentData, this);
+            cs.addListener("changeModel", this._setCurrentData, this);
             cs.fetch();
 
             /**
@@ -47,7 +46,7 @@ qx.Class.define("proxmox.ve.desktop.page.Lxc", {
                 this._tbShutdownButton.setEnabled(true);
 
                 var sv = sm.getUnregisteredResourceService(
-                    "nodes/{node}/{fullVmId}/status/{action}",
+                    "nodes/{node}/{fullVmId}/status/{command}",
                     [resourceData.getNode(), resourceData.getId(), "start"],
                     proxmox.core.service.Manager.POST,
                 ).fetch().finally(() => {
@@ -62,7 +61,7 @@ qx.Class.define("proxmox.ve.desktop.page.Lxc", {
                 this._tbShutdownButton.setEnabled(false);
 
                 var sv = sm.getUnregisteredResourceService(
-                    "nodes/{node}/{fullVmId}/status/{action}",
+                    "nodes/{node}/{fullVmId}/status/{command}",
                     [resourceData.getNode(), resourceData.getId(), "shutdown"],
                     proxmox.core.service.Manager.POST,
                 ).fetch().finally(() => {
@@ -80,22 +79,31 @@ qx.Class.define("proxmox.ve.desktop.page.Lxc", {
 
             var cmNovnc = new qx.ui.menu.Button("noVNC", "proxmox/image/novnc.png");
             cmNovnc.addListener("execute", () => {
-                var rdata = this.getResourceData();
-                proxmox.ve.core.Utils.openVNCViewer(rdata.getType(), rdata.getShortId(), rdata.getNode(), rdata.getName());
-            });
+                proxmox.ve.core.Utils.openVNCViewer(resourceData.getType(), resourceData.getShortId(), resourceData.getNode(), resourceData.getName());
+            }, this);
             consoleMenu.add(cmNovnc);
             var cmSpice = new qx.ui.menu.Button("SPICE", "proxmox/image/virt-viewer.png");
+            cmSpice.addListener("execute", (e) => {
+                this.getCurrentDataAsync().then((model) => {
+                    var allowSpice = model.getSpice() === 1;
+                    proxmox.ve.core.Utils.openDefaultConsoleWindow(allowSpice, resourceData.getType(), resourceData.getShortId(), resourceData.getNode(), resourceData.getName());
+                });
+            }, this);
             consoleMenu.add(cmSpice);
             var cmXtermjs = new qx.ui.menu.Button("xterm.js", "proxmox/image/xtermjs.png");
             cmXtermjs.addListener("execute", () => {
-                var rdata = this.getResourceData();
-                proxmox.core.Utils.openXtermJsViewer(rdata.getType(), rdata.getShortId(), rdata.getNode(), rdata.getName());
-            });
+                proxmox.core.Utils.openXtermJsViewer(resourceData.getType(), resourceData.getShortId(), resourceData.getNode(), resourceData.getName());
+            }, this);
             consoleMenu.add(cmXtermjs);
 
             consoleMenu.setMinWidth(120);
             this._tbConsoleButton = new proxmox.core.ui.form.CssSplitButton(this.tr("Console"), ["fa", "fa-terminal"], consoleMenu);
-
+            this._tbConsoleButton.addListener("execute", (e) => {
+                this.getCurrentDataAsync().then((model) => {
+                    var allowSpice = model.getSpice() === 1;
+                    proxmox.ve.core.Utils.openDefaultConsoleWindow(allowSpice, resourceData.getType(), resourceData.getShortId(), resourceData.getNode(), resourceData.getName());
+                });
+            }, this);
 
             /**
              * Update buttons
@@ -111,7 +119,7 @@ qx.Class.define("proxmox.ve.desktop.page.Lxc", {
 
         // overriden
         _destroy: function() {
-            this._currentService.removeListener("changeModel", this.setCurrentData);
+            this._currentService.removeListener("changeModel", this._setCurrentData);
         },
 
         _getContentContainer: function () {
@@ -163,6 +171,10 @@ qx.Class.define("proxmox.ve.desktop.page.Lxc", {
                 this._tbStartButton.setEnabled(true);
                 this._tbShutdownButton.setEnabled(false);
             }
-        }
+        },
+
+        _setCurrentData: function(e) {
+            this.setCurrentDataAsync(e.getData()).then(() => null);
+        },
     }
 });

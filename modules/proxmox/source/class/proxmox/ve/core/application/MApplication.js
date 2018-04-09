@@ -90,14 +90,14 @@ qx.Mixin.define("proxmox.ve.core.application.MApplication", {
 
             // Yes, we can register the same service with different methods.
             sm.registerEndpoint(
-                "nodes/{node}/{fullVmId}/status/{action}",
+                "nodes/{node}/{fullVmId}/status/{command}",
                 "nodes/%1/%2/status/%3",
                 proxmox.ve.core.service.SimpleService,
                 null,   // method - default GET
                 false,
             );
             sm.registerEndpoint(
-                "nodes/{node}/{fullVmId}/status/{action}",
+                "nodes/{node}/{fullVmId}/status/{command}",
                 "nodes/%1/%2/status/%3",
                 proxmox.ve.core.service.SimpleService,
                 proxmox.core.service.Manager.POST,

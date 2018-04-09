@@ -89,6 +89,11 @@ qx.Class.define("proxmox.core.service.core.AbstractService", {
             init: "same-origin"
         },
 
+        noModelTransform: {
+            check: "Boolean",
+            init: false,
+        },
+
         wantsTimer: {
             check: "Boolean",
             init: false,
@@ -230,6 +235,10 @@ qx.Class.define("proxmox.core.service.core.AbstractService", {
                     this.fireDataEvent("loaded", model);
 
                     this.setState("completed");
+
+                    if (this.getNoModelTransform() === true) {
+                        return data;
+                    }
 
                     return model;
                 }).catch((ex) => {
