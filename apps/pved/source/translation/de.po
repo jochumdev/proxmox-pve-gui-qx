@@ -1,0 +1,388 @@
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#, fuzzy
+msgid ""
+msgstr "Project-Id-Version: PACKAGE VERSION\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2018-04-09 23:16+0200\nPO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\nLast-Translator: FULL NAME <EMAIL@ADDRESS>\nLanguage-Team: LANGUAGE <LL@li.org>\nLanguage: \nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: proxmox/ve/desktop/page/Lxc.js:41 proxmox/ve/desktop/page/Node.js:21
+#: proxmox/ve/desktop/page/Qemu.js:41
+msgid "Start"
+msgstr "Start"
+
+#: proxmox/ve/desktop/page/Lxc.js:42 proxmox/ve/desktop/page/Node.js:22
+#: proxmox/ve/desktop/page/Qemu.js:42
+msgid "Shutdown"
+msgstr "Herunterfahren"
+
+#: proxmox/ve/desktop/page/Lxc.js:138 proxmox/ve/desktop/page/Node.js:23
+#: proxmox/ve/desktop/page/Qemu.js:138
+msgid "Migrate"
+msgstr "Migration"
+
+#: proxmox/ve/desktop/page/Lxc.js:100 proxmox/ve/desktop/page/Node.js:24
+#: proxmox/ve/desktop/page/Qemu.js:100 proxmox/ve/desktop/part/Navbar.js:169
+#: proxmox/ve/desktop/part/Navbar.js:259
+msgid "Console"
+msgstr "Konsole"
+
+#: proxmox/ve/desktop/page/Lxc.js:140 proxmox/ve/desktop/page/Node.js:25
+#: proxmox/ve/desktop/page/Qemu.js:140
+msgid "More"
+msgstr "Mehr"
+
+#: proxmox/ve/desktop/page/Datacenter.js:22 proxmox/ve/desktop/page/Lxc.js:141
+#: proxmox/ve/desktop/page/Node.js:26 proxmox/ve/desktop/page/Pool.js:21
+#: proxmox/ve/desktop/page/Qemu.js:141 proxmox/ve/desktop/page/Storage.js:21
+#: proxmox/ve/desktop/page/Type.js:42
+msgid "Help"
+msgstr "Hilfe"
+
+#: proxmox/ve/desktop/part/Navbar.js:118 proxmox/ve/desktop/part/Navbar.js:141
+#: proxmox/ve/desktop/part/Navbar.js:164 proxmox/ve/desktop/part/Navbar.js:254
+#: proxmox/ve/desktop/part/Navbar.js:339 proxmox/ve/desktop/part/Navbar.js:464
+msgid "Summary"
+msgstr "Übersicht"
+
+#: proxmox/ve/desktop/part/Navbar.js:174
+msgid "Resources"
+msgstr "Ressourcen"
+
+#: proxmox/ve/desktop/part/Navbar.js:179 proxmox/ve/desktop/part/Navbar.js:354
+msgid "Network"
+msgstr "Netzwerk"
+
+#: proxmox/ve/desktop/part/Navbar.js:184 proxmox/ve/desktop/part/Navbar.js:359
+msgid "DNS"
+msgstr "DNS"
+
+#: proxmox/ve/desktop/part/Navbar.js:189 proxmox/ve/desktop/part/Navbar.js:219
+#: proxmox/ve/desktop/part/Navbar.js:269 proxmox/ve/desktop/part/Navbar.js:304
+#: proxmox/ve/desktop/part/Navbar.js:386 proxmox/ve/desktop/part/Navbar.js:469
+#: proxmox/ve/desktop/part/Navbar.js:531
+msgid "Options"
+msgstr "Optionen"
+
+#: proxmox/ve/desktop/part/Navbar.js:194 proxmox/ve/desktop/part/Navbar.js:274
+#: proxmox/ve/desktop/part/Navbar.js:440
+msgid "Task History"
+msgstr "Aufgabenhistorie"
+
+#: proxmox/ve/desktop/part/Navbar.js:199 proxmox/ve/desktop/part/Navbar.js:284
+#: proxmox/ve/desktop/part/Navbar.js:479
+msgid "Backup"
+msgstr "Sicherung"
+
+#: proxmox/ve/desktop/part/Navbar.js:204 proxmox/ve/desktop/part/Navbar.js:289
+#: proxmox/ve/desktop/part/Navbar.js:435 proxmox/ve/desktop/part/Navbar.js:484
+msgid "Replication"
+msgstr "Replizierung"
+
+#: proxmox/ve/desktop/part/Navbar.js:209 proxmox/ve/desktop/part/Navbar.js:294
+msgid "Snapshots"
+msgstr "Snapshots"
+
+#: proxmox/ve/desktop/part/Navbar.js:214 proxmox/ve/desktop/part/Navbar.js:299
+#: proxmox/ve/desktop/part/Navbar.js:381 proxmox/ve/desktop/part/Navbar.js:526
+msgid "Firewall"
+msgstr "Firewall"
+
+#: proxmox/ve/desktop/part/Navbar.js:224 proxmox/ve/desktop/part/Navbar.js:309
+#: proxmox/ve/desktop/part/Navbar.js:541
+msgid "Alias"
+msgstr "Alias"
+
+#: proxmox/ve/desktop/part/Navbar.js:229 proxmox/ve/desktop/part/Navbar.js:314
+#: proxmox/ve/desktop/part/Navbar.js:546
+msgid "IPSet"
+msgstr "IPSet"
+
+#: proxmox/ve/desktop/part/Navbar.js:234 proxmox/ve/desktop/part/Navbar.js:319
+#: proxmox/ve/desktop/part/Navbar.js:391 proxmox/ve/desktop/part/Navbar.js:428
+msgid "Log"
+msgstr ""
+
+#: proxmox/ve/desktop/part/Navbar.js:128 proxmox/ve/desktop/part/Navbar.js:151
+#: proxmox/ve/desktop/part/Navbar.js:241 proxmox/ve/desktop/part/Navbar.js:326
+#: proxmox/ve/desktop/part/Navbar.js:489
+msgid "Permissions"
+msgstr "Rechte"
+
+#: proxmox/ve/desktop/part/Navbar.js:264
+msgid "Hardware"
+msgstr "Hardware"
+
+#: proxmox/ve/desktop/part/Navbar.js:279 proxmox/ve/desktop/part/Navbar.js:413
+msgid "Monitor"
+msgstr "Monitor"
+
+#: proxmox/ve/desktop/part/ServerBrowser.js:171
+msgid "Server View"
+msgstr "Server-Ansicht"
+
+#: proxmox/ve/desktop/part/ServerBrowser.js:172
+msgid "Folder View"
+msgstr "Ordner-Ansicht"
+
+#: proxmox/ve/desktop/part/ServerBrowser.js:173
+msgid "Storage View"
+msgstr "Storage-Ansicht"
+
+#: proxmox/ve/desktop/part/ServerBrowser.js:174
+msgid "Pool View"
+msgstr "Pool-Ansicht"
+
+#: proxmox/ve/desktop/Application.js:120
+msgid "Documentation"
+msgstr "Dokumentation"
+
+#: proxmox/ve/desktop/Application.js:126
+msgid "Create VM"
+msgstr "Erstelle VM"
+
+#: proxmox/ve/desktop/Application.js:127
+msgid "Create CT"
+msgstr "Erstelle CT"
+
+#: proxmox/ve/desktop/Application.js:129
+msgid "Logout"
+msgstr "Abmelden"
+
+#: proxmox/ve/desktop/part/SearchResources.js:120
+#: proxmox/ve/desktop/part/Navbar.js:105 proxmox/ve/desktop/part/Navbar.js:459
+msgid "Search"
+msgstr "Suchen"
+
+#: proxmox/ve/desktop/window/Login.js:5
+msgid "Proxmox VE Login"
+msgstr "Proxmox VE Anmeldung"
+
+#: proxmox/ve/desktop/window/Login.js:38
+msgid "Username"
+msgstr "Benutzername"
+
+#: proxmox/ve/desktop/window/Login.js:42
+msgid "Password"
+msgstr "Kennwort"
+
+#: proxmox/ve/desktop/window/Login.js:92
+msgid "Login"
+msgstr "Anmelden"
+
+#
+msgid "This field is required"
+msgstr "Diese Feld darf nicht leer sein"
+
+#
+msgid "Linux PAM standard authentication"
+msgstr ""
+
+#: proxmox/ve/desktop/window/Login.js:48
+msgid "Realm"
+msgstr "Bereich"
+
+#
+msgid "Proxmox VE authentication server"
+msgstr "Proxmox VE authentication server"
+
+#: proxmox/ve/desktop/window/Login.js:69
+msgid "Language"
+msgstr "Sprache"
+
+#: proxmox/ve/desktop/Application.js:187
+msgid "You are logged in as '%1'"
+msgstr "Sie sind angemeldet als '%1'"
+
+#: proxmox/ve/desktop/window/Login.js:79
+msgid "Save User name"
+msgstr ""
+
+#: proxmox/ve/desktop/page/Datacenter.js:19
+#: proxmox/ve/desktop/part/ServerBrowser.js:200
+msgid "Datacenter"
+msgstr ""
+
+#: proxmox/ve/desktop/Application.js:180 proxmox/ve/desktop/Application.js:184
+#: proxmox/ve/desktop/Application.js:198
+msgid "Virtual Environment %1"
+msgstr ""
+
+#: proxmox/ve/desktop/page/Type.js:28
+#: proxmox/ve/desktop/part/ServerBrowser.js:244
+msgid "Nodes"
+msgstr ""
+
+#: proxmox/ve/desktop/page/Type.js:22
+#: proxmox/ve/desktop/part/ServerBrowser.js:247
+msgid "LXC Container"
+msgstr ""
+
+#: proxmox/ve/desktop/page/Type.js:25
+#: proxmox/ve/desktop/part/ServerBrowser.js:250
+msgid "Virtual Machine"
+msgstr ""
+
+#: proxmox/ve/desktop/page/Type.js:31
+#: proxmox/ve/desktop/part/ServerBrowser.js:253
+#: proxmox/ve/desktop/part/Navbar.js:474
+msgid "Storage"
+msgstr ""
+
+#
+msgid "Node '%1'"
+msgstr ""
+
+#
+msgid "Container %1 (%2) on node '%3'"
+msgstr ""
+
+#
+msgid "Virtual Machine %1 (%2) on node '%3'"
+msgstr ""
+
+#
+msgid "Storage '%1' on node '%2'"
+msgstr ""
+
+#: proxmox/ve/desktop/part/Navbar.js:344
+msgid "Shell"
+msgstr ""
+
+#: proxmox/ve/desktop/part/Navbar.js:349
+msgid "System"
+msgstr ""
+
+#: proxmox/ve/desktop/part/Navbar.js:364
+msgid "Time"
+msgstr ""
+
+#: proxmox/ve/desktop/part/Navbar.js:369
+msgid "Syslog"
+msgstr ""
+
+#: proxmox/ve/desktop/part/Navbar.js:376
+msgid "Updates"
+msgstr ""
+
+#: proxmox/ve/desktop/part/Navbar.js:398
+msgid "Disks"
+msgstr ""
+
+#: proxmox/ve/desktop/part/Navbar.js:403
+msgid "Ceph"
+msgstr ""
+
+#: proxmox/ve/desktop/part/Navbar.js:408
+msgid "Configuration"
+msgstr ""
+
+#: proxmox/ve/desktop/part/Navbar.js:418
+msgid "OSD"
+msgstr ""
+
+#: proxmox/ve/desktop/part/Navbar.js:423 proxmox/ve/desktop/part/Navbar.js:504
+msgid "Pools"
+msgstr ""
+
+#: proxmox/ve/desktop/part/Navbar.js:446
+msgid "Subscription"
+msgstr ""
+
+#: proxmox/ve/desktop/part/Navbar.js:494
+msgid "Users"
+msgstr ""
+
+#: proxmox/ve/desktop/part/Navbar.js:499
+msgid "Groups"
+msgstr ""
+
+#: proxmox/ve/desktop/part/Navbar.js:509
+msgid "Roles"
+msgstr ""
+
+#: proxmox/ve/desktop/part/Navbar.js:514
+msgid "Authentication"
+msgstr ""
+
+#: proxmox/ve/desktop/part/Navbar.js:521
+msgid "HA"
+msgstr ""
+
+#: proxmox/ve/desktop/part/Navbar.js:536
+msgid "Security Group"
+msgstr ""
+
+#: proxmox/ve/desktop/part/Navbar.js:553
+msgid "Support"
+msgstr ""
+
+#: proxmox/ve/desktop/part/Navbar.js:123
+msgid "Content"
+msgstr ""
+
+#: proxmox/ve/desktop/part/SearchResources.js:29
+msgid "Type"
+msgstr ""
+
+#: proxmox/ve/desktop/part/SearchResources.js:32
+msgid "Description"
+msgstr ""
+
+#: proxmox/ve/desktop/part/SearchResources.js:35
+msgid "Disk usage %"
+msgstr ""
+
+#: proxmox/ve/desktop/part/SearchResources.js:38
+msgid "Memory usage %"
+msgstr ""
+
+#: proxmox/ve/desktop/part/SearchResources.js:41
+msgid "CPU usage"
+msgstr ""
+
+#: proxmox/ve/desktop/part/SearchResources.js:44
+msgid "Uptime"
+msgstr ""
+
+#
+msgid "one row"
+msgid_plural "%1 rows"
+msgstr[0] ""
+msgstr[1] ""
+
+#
+msgid "one of one row"
+msgid_plural "%1 of %2 rows"
+msgstr[0] ""
+msgstr[1] ""
+
+#: proxmox/ve/desktop/page/Type.js:34
+#: proxmox/ve/desktop/part/SearchResources.js:50
+msgid "Pool"
+msgstr ""
+
+#
+msgid "Host"
+msgstr ""
+
+#
+msgid "Mock Data"
+msgstr ""
+
+#: proxmox/ve/desktop/part/ServerBrowser.js:256
+msgid "Resource Pool"
+msgstr ""
+
+#: proxmox/ve/desktop/page/Type.js:37
+msgid "Unknown"
+msgstr ""
+
+#: proxmox/ve/desktop/part/Navbar.js:146
+msgid "Members"
+msgstr ""
+
+#
+msgid "Resource Pool: %1"
+msgstr ""
+
+#: proxmox/ve/desktop/part/SearchResources.js:47
+msgid "Node"
+msgstr ""

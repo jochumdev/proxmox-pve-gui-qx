@@ -1,0 +1,42 @@
+{
+  "targets": [
+    {
+      "type": "source",
+      "outputPath": "../../source-output",
+      "minify": "minify"
+    },
+    {
+      "type": "hybrid",
+      "outputPath": "../../hybrid-output",
+      "minify": "minify"
+    },
+    {
+      "type": "build",
+      "outputPath": "../../build-output",
+      "minify": "minify"
+    }
+  ],
+  "defaultTarget": "source",
+  "locales": ["en","de"],
+
+  "environment": {
+    "qx.debug": false,
+    "proxmox.debug-routing": false
+  },
+
+  "applications": [
+    {
+      "class": "pved.Application",
+      "theme": "p.theme.Theme",
+      "name": "desktop",
+      "writeIndexHtmlToRoot": false,
+      "include": [ "pved.page.*" ]
+    }
+  ],
+
+  "libraries": [
+    "../../../qooxdoo/framework",
+    "../../modules/proxmox",
+    "."
+  ]
+}
