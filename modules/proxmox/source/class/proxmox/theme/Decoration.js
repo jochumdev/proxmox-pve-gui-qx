@@ -102,7 +102,7 @@ qx.Theme.define("proxmox.theme.Decoration", {
      * Own
      */
 
-    "actionsbar-border": {
+    "toolbar-border": {
       style: {
         widthBottom: 1,
         color: "background"

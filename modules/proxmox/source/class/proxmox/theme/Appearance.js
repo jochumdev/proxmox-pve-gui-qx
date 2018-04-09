@@ -172,7 +172,7 @@ qx.Theme.define("proxmox.theme.Appearance",
         }
       },
 
-      "actionsbar-label": {
+      "toolbar-label": {
         style: function (states) {
           return {
             font: "header",
@@ -244,10 +244,10 @@ qx.Theme.define("proxmox.theme.Appearance",
         }
       },
 
-      "actionsbar-box": {
+      "toolbar-box": {
         style: function (states) {
           return {
-            decorator: "actionsbar-border",
+            decorator: "toolbar-border",
           }
         }
       },
