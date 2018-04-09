@@ -4,7 +4,7 @@ qx.Class.define("proxmox.core.page.core.ResourcePage", {
     construct: function () {
         this.base(arguments);
 
-        var app = this._serviceManager = qx.core.Init.getApplication();
+        var app = this._app = qx.core.Init.getApplication();
         var sm = this._serviceManager = app.getServiceManager();
 
         this._resourceService = sm.getService("cluster/resources");
