@@ -1,0 +1,318 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-04-09 15:38+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#
+msgid "Datacenter"
+msgstr ""
+
+#
+msgid "Help"
+msgstr ""
+
+#
+msgid "Documentation"
+msgstr ""
+
+#
+msgid "Create VM"
+msgstr ""
+
+#
+msgid "Create CT"
+msgstr ""
+
+#
+msgid "Logout"
+msgstr ""
+
+#
+msgid "Virtual Environment %1"
+msgstr ""
+
+#
+msgid "You are logged in as '%1'"
+msgstr ""
+
+#
+msgid "Start"
+msgstr ""
+
+#
+msgid "Shutdown"
+msgstr ""
+
+#
+msgid "Migrate"
+msgstr ""
+
+#
+msgid "Console"
+msgstr ""
+
+#
+msgid "More"
+msgstr ""
+
+#
+msgid "LXC Container"
+msgstr ""
+
+#
+msgid "Virtual Machine"
+msgstr ""
+
+#
+msgid "Nodes"
+msgstr ""
+
+#
+msgid "Storage"
+msgstr ""
+
+#
+msgid "Pool"
+msgstr ""
+
+#
+msgid "Unknown"
+msgstr ""
+
+#
+msgid "Type"
+msgstr ""
+
+#
+msgid "Description"
+msgstr ""
+
+#
+msgid "Disk usage %"
+msgstr ""
+
+#
+msgid "Memory usage %"
+msgstr ""
+
+#
+msgid "CPU usage"
+msgstr ""
+
+#
+msgid "Uptime"
+msgstr ""
+
+#
+msgid "Node"
+msgstr ""
+
+#
+msgid "Search"
+msgstr ""
+
+#
+msgid "Proxmox VE Login"
+msgstr ""
+
+#
+msgid "Username"
+msgstr ""
+
+#
+msgid "Password"
+msgstr ""
+
+#
+msgid "Realm"
+msgstr ""
+
+#
+msgid "Language"
+msgstr ""
+
+#
+msgid "Save User name"
+msgstr ""
+
+#
+msgid "Login"
+msgstr ""
+
+#
+msgid "Server View"
+msgstr ""
+
+#
+msgid "Folder View"
+msgstr ""
+
+#
+msgid "Storage View"
+msgstr ""
+
+#
+msgid "Pool View"
+msgstr ""
+
+#
+msgid "Resource Pool"
+msgstr ""
+
+#
+msgid "Summary"
+msgstr ""
+
+#
+msgid "Content"
+msgstr ""
+
+#
+msgid "Permissions"
+msgstr ""
+
+#
+msgid "Members"
+msgstr ""
+
+#
+msgid "Resources"
+msgstr ""
+
+#
+msgid "Network"
+msgstr ""
+
+#
+msgid "DNS"
+msgstr ""
+
+#
+msgid "Options"
+msgstr ""
+
+#
+msgid "Task History"
+msgstr ""
+
+#
+msgid "Backup"
+msgstr ""
+
+#
+msgid "Replication"
+msgstr ""
+
+#
+msgid "Snapshots"
+msgstr ""
+
+#
+msgid "Firewall"
+msgstr ""
+
+#
+msgid "Alias"
+msgstr ""
+
+#
+msgid "IPSet"
+msgstr ""
+
+#
+msgid "Log"
+msgstr ""
+
+#
+msgid "Hardware"
+msgstr ""
+
+#
+msgid "Monitor"
+msgstr ""
+
+#
+msgid "Shell"
+msgstr ""
+
+#
+msgid "System"
+msgstr ""
+
+#
+msgid "Time"
+msgstr ""
+
+#
+msgid "Syslog"
+msgstr ""
+
+#
+msgid "Updates"
+msgstr ""
+
+#
+msgid "Disks"
+msgstr ""
+
+#
+msgid "Ceph"
+msgstr ""
+
+#
+msgid "Configuration"
+msgstr ""
+
+#
+msgid "OSD"
+msgstr ""
+
+#
+msgid "Pools"
+msgstr ""
+
+#
+msgid "Subscription"
+msgstr ""
+
+#
+msgid "Users"
+msgstr ""
+
+#
+msgid "Groups"
+msgstr ""
+
+#
+msgid "Roles"
+msgstr ""
+
+#
+msgid "Authentication"
+msgstr ""
+
+#
+msgid "HA"
+msgstr ""
+
+#
+msgid "Security Group"
+msgstr ""
+
+#
+msgid "Support"
+msgstr ""
