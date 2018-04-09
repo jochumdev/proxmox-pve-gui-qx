@@ -7,8 +7,72 @@ qx.Class.define("proxmox.ve.desktop.page.Lxc", {
     },
 
     members: {
+        _currentService: null,
+
         _tbStartButton: null,
         _tbShutdownButton: null,
+
+        // overriden
+        _init: function() {
+            var resourceData = this.getResourceData();
+            var sm = this._serviceManager;
+
+            // The "current" service
+            var cs = this._currentService = sm.getResourceService(
+                "nodes/{node}/{fullVmId}/status/{action}",
+                [resourceData.getNode(), resourceData.getId(), "current"],
+            );
+            cs.set({
+                wantsTimer: true,
+            });
+            cs.fetch().then((model) => {
+                console.log(model);
+            })
+
+
+            this._tbStartButton = new proxmox.core.ui.form.CssButton(this.tr("Start"), ["fa", "fa-play"]);
+            this._tbShutdownButton = new proxmox.core.ui.form.CssButton(this.tr("Shutdown"), ["fa", "fa-power-off"]);
+            this._tbStartButton.addListener("execute", () => {
+                this.removeListener("changeResourceData", this._buttonsOnResourceDataChanged);
+                this._tbStartButton.setEnabled(false);
+                this._tbShutdownButton.setEnabled(true);
+
+                var sv = sm.getUnregisteredResourceService(
+                    "nodes/{node}/{fullVmId}/status/{action}",
+                    [resourceData.getNode(), resourceData.getId(), "start"],
+                    proxmox.core.service.Manager.POST,
+                ).fetch().finally(() => {
+                    this.addListener("changeResourceData", this._buttonsOnResourceDataChanged, this);
+                    sv.dispose();
+                });
+            });
+
+            this._tbShutdownButton.addListener("execute", () => {
+                this.removeListener("changeResourceData", this._buttonsOnResourceDataChanged);
+                this._tbStartButton.setEnabled(true);
+                this._tbShutdownButton.setEnabled(false);
+
+                var sv = sm.getUnregisteredResourceService(
+                    "nodes/{node}/{fullVmId}/status/{action}",
+                    [resourceData.getNode(), resourceData.getId(), "shutdown"],
+                    proxmox.core.service.Manager.POST,
+                ).fetch().finally(() => {
+                    this.addListener("changeResourceData", this._buttonsOnResourceDataChanged, this);
+                    sv.dispose();
+                });
+            });
+
+            /**
+             * Update buttons
+             */
+            // First time
+            var e = new qx.event.type.Data();
+            e.init(resourceData);
+            this._buttonsOnResourceDataChanged(e);
+
+            // Now listen to the service
+            this.addListener("changeResourceData", this._buttonsOnResourceDataChanged, this);
+        },
 
         _getContentContainer: function () {
             var containerLayout = new qx.ui.layout.Dock();
@@ -31,24 +95,19 @@ qx.Class.define("proxmox.ve.desktop.page.Lxc", {
 
             consoleMenu.setMinWidth(120);
             var consoleButton = new proxmox.core.ui.form.CssSplitButton(this.tr("Console"), ["fa", "fa-terminal"], consoleMenu);
-            var startButton = this._tbStartButton = new proxmox.core.ui.form.CssButton(this.tr("Start"), ["fa", "fa-play"]);
-            var shutdownButton = this._tbShutdownButton = new proxmox.core.ui.form.CssButton(this.tr("Shutdown"), ["fa", "fa-power-off"]);
 
             var headline = new qx.ui.basic.Label(this.getResourceData().getHeadline()).set({ appearance: "toolbar-label" });
             toolbar.add(headline);
             toolbar.add(new qx.ui.basic.Atom(), { flex: 1 });
-            toolbar.add(startButton);
-            toolbar.add(shutdownButton);
+            toolbar.add(this._tbStartButton);
+            toolbar.add(this._tbShutdownButton);
             toolbar.add(new proxmox.core.ui.form.CssButton(this.tr("Migrate"), ["fa", "fa-paper-plane-o"]));
             toolbar.add(consoleButton);
-            toolbar.add(new proxmox.core.ui.form.CssButton(this.tr("More"), ["fa", "fa-book"]));
+            toolbar.add(new proxmox.core.ui.form.CssButton(this.tr("More")));
             toolbar.add(new proxmox.core.ui.form.CssButton(this.tr("Help"), ["fa", "fa-question-circle"]));
 
             var navbar = new proxmox.ve.desktop.part.Navbar("lxc");
             container.add(navbar.getContainer(), {edge: "west", height: "100%"});
-
-            // The other times
-            this.addListener("changeResourceData", this._onResourceDataChanged, this);
 
             return container;
         },
@@ -69,7 +128,7 @@ qx.Class.define("proxmox.ve.desktop.page.Lxc", {
             return subPage;
         },
 
-        _onResourceDataChanged: function(e) {
+        _buttonsOnResourceDataChanged: function(e) {
             var data = e.getData();
             if (data.getStatus() === "running") {
                 this._tbStartButton.setEnabled(false);

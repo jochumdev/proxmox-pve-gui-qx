@@ -13,6 +13,11 @@ qx.Mixin.define("proxmox.ve.core.application.MApplication", {
 
             this._pagebasepath = pagebasepath;
 
+            this._registerSMEndpoints();
+            this._buildRoutes();
+        },
+
+        _registerSMEndpoints: function() {
             /**
              * ServiceManager
              */
@@ -22,32 +27,46 @@ qx.Mixin.define("proxmox.ve.core.application.MApplication", {
                 "cluster/resources",
                 "cluster/resources",
                 proxmox.ve.core.service.cluster.Resources,
-                null, // method
+                null,   // method - default GET
                 true, // wantsTimer
             );
             sm.registerEndpoint(
                 "cluster/tasks",
                 "cluster/tasks",
                 proxmox.ve.core.service.SimpleService,
-                null, // method
+                null,   // method - default GET
                 true, // wantsTimer
             );
             sm.registerEndpoint(
                 "access/domains",
                 "access/domains",
                 proxmox.ve.core.service.SimpleService,
-                null, // method
+                null,   // method - default GET
                 false, // wantsTimer
             );
             sm.registerEndpoint(
                 "internal:login",
                 "access/ticket",
                 proxmox.ve.core.service.LoginService,
-                null, // method
+                null,   // method - default GET
                 false, // wantsTimer
             );
 
-            this._buildRoutes();
+            // Yes, we can register the same service with different methods.
+            sm.registerEndpoint(
+                "nodes/{node}/{fullVmId}/status/{action}",
+                "nodes/%1/%2/status/%3",
+                proxmox.ve.core.service.SimpleService,
+                null,   // method - default GET
+                false,
+            );
+            sm.registerEndpoint(
+                "nodes/{node}/{fullVmId}/status/{action}",
+                "nodes/%1/%2/status/%3",
+                proxmox.ve.core.service.SimpleService,
+                proxmox.core.service.Manager.POST,
+                false,
+            );
         },
 
         _buildRoutes: function () {

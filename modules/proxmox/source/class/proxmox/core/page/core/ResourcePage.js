@@ -49,6 +49,20 @@ qx.Class.define("proxmox.core.page.core.ResourcePage", {
             });
         },
 
+        /**
+         * Get called before _getContentContainer gets called
+         * overwrite if you want to init some stuff.
+         */
+        _init: function() {},
+
+        /**
+         * Gets called on destruct, overwrite if you want to dispose your
+         * own stuff.
+         */
+        _destroy: function() {
+
+        },
+
         // overriden
         // proxmox.page.core.IView implementation
         getContainerAsync: function () {
@@ -60,11 +74,13 @@ qx.Class.define("proxmox.core.page.core.ResourcePage", {
                 this._contentContainerPromise = new qx.Promise((resolve, reject) => {
                     this.addListenerOnce("changeResourceData", resolve)
                 }).then(() => {
+                    this._init();
                     this._contentContainer = this._getContentContainer();
                     return this._contentContainer;
                 });
             } else {
                 this._contentContainerPromise = new qx.Promise((resolve, reject) => {
+                    this._init();
                     this._contentContainer = this._getContentContainer();
                     resolve(this._contentContainer);
                 });
@@ -75,6 +91,7 @@ qx.Class.define("proxmox.core.page.core.ResourcePage", {
     },
 
     destruct: function() {
+        this._destroy();
         this._serviceManager.disposeResourceServices();
         this._disposeObjects("_contentContainer", "_currentSubPageContainer");
     }

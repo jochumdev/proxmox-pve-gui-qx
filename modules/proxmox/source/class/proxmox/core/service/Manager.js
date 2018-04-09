@@ -22,7 +22,6 @@ qx.Class.define("proxmox.core.service.Manager", {
     events: {
         disposedServices: "qx.event.type.Event",
         disposedResourceServices: "qx.event.type.Event",
-        timerInterval: "qx.event.type.Event",
     },
 
     properties: {
@@ -100,8 +99,24 @@ qx.Class.define("proxmox.core.service.Manager", {
             }
 
             var sv = this._createService(name, args, method);
-            this._resourceServices[name] = {sv: sv, args: qx.data.Array(args)};
+            this._resourceServices[name] = {sv: sv, args: new qx.data.Array(args)};
             return sv;
+        },
+
+        /**
+         * Creates and returns a resource service that won't be registerd internaly.
+         *
+         * WARNING: You need to dispose that service yourself.
+         *
+         * @param name {String} Service Name.
+         * @param args {Array?} Array of arguments for the endpoint registered with registerEndpoint.
+         * @param method {String?} HTTP Method - default GET.
+         */
+        getUnregisteredResourceService: function(name, args, method) {
+            method = method || proxmox.core.service.Manager.GET;
+            name = this._translateServiceName(name, method);
+
+            return this._createService(name, args, method);
         },
 
         disposeServices: function() {
@@ -115,7 +130,7 @@ qx.Class.define("proxmox.core.service.Manager", {
 
         disposeResourceServices: function() {
             Object.keys(this._resourceServices).forEach((key) => {
-                this._disposeObjects(this._resourceServices[key]);
+                this._disposeObjects(this._resourceServices[key].sv);
             });
             this._resourceServices = {};
 
@@ -165,6 +180,17 @@ qx.Class.define("proxmox.core.service.Manager", {
             var services = this._services;
             Object.keys(services).forEach((key) => {
                 var service = services[key];
+                // Filter out services that dont want a timer.
+                if (!service.getWantsTimer()) {
+                    return;
+                }
+
+                service.executeTimer();
+            });
+
+            var rServices = this._resourceServices;
+            Object.keys(rServices).forEach((key) => {
+                var service = rServices[key].sv;
                 // Filter out services that dont want a timer.
                 if (!service.getWantsTimer()) {
                     return;
