@@ -59,6 +59,14 @@ qx.Class.define("p.service.core.AbstractService", {
         },
 
         /**
+         * Raw data from the API (manipulated by the delegate if any).
+         */
+        data: {
+          nullable: true,
+          event: "changeData",
+        },
+
+        /**
          * The state of the request as an url. If you want to check if the request
          * did it’s job, use, the {@link #changeState} event and check for one of the
          * listed values.
@@ -216,6 +224,8 @@ qx.Class.define("p.service.core.AbstractService", {
                     if (del && qx.lang.Type.isFunction(del.manipulateData)) {
                         data = del.manipulateData(data);
                     }
+
+                    this.setData(data);
 
                     // create the class
                     this.__marshaler.toClass(data, true);

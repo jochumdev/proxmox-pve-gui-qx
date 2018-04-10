@@ -6,6 +6,7 @@ qx.Class.define("pvec.service.LoginService", {
 
         this.set({
             method: p.service.Manager.POST,
+            noModelTransform: true,
         });
 
         this._app = qx.core.Init.getApplication();
@@ -13,11 +14,6 @@ qx.Class.define("pvec.service.LoginService", {
 
     members: {
         _app: null,
-
-        _configureRequest: function (data) {
-            var cfg = this.base(arguments, data);
-            return cfg;
-        },
 
         getDelegate: function () {
             return {
@@ -48,23 +44,23 @@ qx.Class.define("pvec.service.LoginService", {
 
         login: function (username, password, realm, saveUsername) {
             return this.fetch({ username: username, password: password, realm: realm })
-                .then((model) => {
-                    qx.module.Cookie.set("PVEAuthCookie", model.getTicket(), null, "/");
+                .then((data) => {
+                    qx.module.Cookie.set("PVEAuthCookie", data.ticket, null, "/");
                     qx.module.Cookie.set("PVELangCookie", this._app.getLanguage(), null, "/");
                     var loginData = {
-                        fullusername: model.getUsername(),
+                        fullusername: data.username,
                         login: true
                     };
 
                     this._app.getLocalStore().setItem("qx-userinfo", {
                         username: username,
-                        fullusername: model.getUsername(),
+                        fullusername: data.username,
                         realm: realm,
                         locale: this._app.getLanguage(),
                         saveUsername: saveUsername,
                     });
 
-                    this._app.setCsrfPreventionToken(model.getCSRFPreventionToken());
+                    this._app.setCsrfPreventionToken(data.CSRFPreventionToken);
                     this._app.fireDataEvent("changeLogin", loginData);
                 })
         },
@@ -87,11 +83,11 @@ qx.Class.define("pvec.service.LoginService", {
             this.fetch({
                 username: userInfo.fullusername,
                 password: qx.module.Cookie.get("PVEAuthCookie")
-            }, true).then((model) => {
+            }, true).then((data) => {
 
                 this._app.setLanguage(userInfo.locale);
-                this._app.setCsrfPreventionToken(model.getCSRFPreventionToken());
-                this._app.fireDataEvent("changeLogin", { fullusername: model.getUsername(), login: true });
+                this._app.setCsrfPreventionToken(data.CSRFPreventionToken);
+                this._app.fireDataEvent("changeLogin", { fullusername: data.username, login: true });
             }).catch((ex) => {
                 this._app.fireDataEvent("changeLogin", { login: false });
             });
