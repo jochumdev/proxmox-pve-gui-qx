@@ -148,8 +148,6 @@ qx.Class.define("pved.Application", {
             // Container holder
             hspane.add(ctHolder, 1)
 
-            // this._navigator.setPageView(emptyRouteParams);
-
             // Log row
             var logRow = new qx.ui.container.Composite(new qx.ui.layout.Basic());
             vspane.add(logRow, 0);

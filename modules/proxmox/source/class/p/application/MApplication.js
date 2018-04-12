@@ -7,6 +7,10 @@ qx.Mixin.define("p.application.MApplication", {
             nullable: true,
             apply: "_appplyContentContainer"
         },
+
+        caps: {
+            nullable: true,
+        },
     },
 
     members: {

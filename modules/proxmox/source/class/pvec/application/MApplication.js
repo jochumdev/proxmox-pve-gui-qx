@@ -23,10 +23,11 @@ qx.Mixin.define("pvec.application.MApplication", {
             init: "en",
             apply: "_appyLanguage"
         },
+
         versionInfo: {
             event: "changeVersionInfo",
             nullable: true,
-        }
+        },
     },
 
     members: {

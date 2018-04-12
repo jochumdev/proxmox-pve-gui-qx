@@ -164,13 +164,12 @@ qx.Class.define("pved.page.Lxc", {
 
         _buttonsOnResourceDataChanged: function(e) {
             var data = e.getData();
-            if (data.getStatus() === "running") {
-                this._tbStartButton.setEnabled(false);
-                this._tbShutdownButton.setEnabled(true);
-            } else {
-                this._tbStartButton.setEnabled(true);
-                this._tbShutdownButton.setEnabled(false);
-            }
+            var caps = this._app.getCaps();
+
+            var running = data.getStatus() === "running";
+
+            this._tbStartButton.setEnabled(!!(!running && caps.vms['VM.PowerMgmt']));
+            this._tbShutdownButton.setEnabled(!!(running && caps.vms['VM.PowerMgmt']));
         },
 
         _setCurrentData: function(e) {

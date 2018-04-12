@@ -60,6 +60,7 @@ qx.Class.define("pvec.service.LoginService", {
                         saveUsername: saveUsername,
                     });
 
+                    this._app.setCaps(data.cap);
                     this._app.setCsrfPreventionToken(data.CSRFPreventionToken);
                     this._app.fireDataEvent("changeLogin", loginData);
                 })
@@ -87,6 +88,7 @@ qx.Class.define("pvec.service.LoginService", {
 
                 this._app.setLanguage(userInfo.locale);
                 this._app.setCsrfPreventionToken(data.CSRFPreventionToken);
+                this._app.setCaps(data.cap);
                 this._app.fireDataEvent("changeLogin", { fullusername: data.username, login: true });
             }).catch((ex) => {
                 this._app.fireDataEvent("changeLogin", { login: false });

@@ -4,8 +4,7 @@ qx.Class.define("p.page.core.ResourcePage", {
     construct: function () {
         this.base(arguments);
 
-        var app = this._app = qx.core.Init.getApplication();
-        var sm = this._serviceManager = app.getServiceManager();
+        var sm = this._serviceManager = this._app.getServiceManager();
 
         this._resourceService = sm.getService("cluster/resources");
 
@@ -28,7 +27,6 @@ qx.Class.define("p.page.core.ResourcePage", {
     },
 
     members: {
-        _app: null,
         _serviceManager: null,
         _resourceService: null,
 

@@ -5,6 +5,14 @@ qx.Class.define("p.page.core.Page", {
     ],
     implement: p.page.core.IView,
 
+    construct: function () {
+        this.base(arguments);
+
+        var app = this._app = qx.core.Init.getApplication();
+
+        this._caps = app.getCaps();
+    },
+
     properties: {
         id: {
             check: "String",
@@ -19,6 +27,10 @@ qx.Class.define("p.page.core.Page", {
     },
 
     members: {
+        _app: null,
+
+        _caps: null,
+
         _contentContainerPromise: null,
         _contentContainer: null,
 
